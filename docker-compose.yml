@@ -1,0 +1,89 @@
+﻿version: '3.8'
+
+services:
+  nginx:
+    image: nginx:1.25.3-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/letsencrypt
+      - ./nginx/html:/var/www/certbot
+    depends_on:
+      - nest
+      - nuxt
+      - vue
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot:v3.0.0
+    volumes:
+      - ./nginx/ssl:/etc/letsencrypt
+      - ./nginx/html:/var/www/certbot
+    entrypoint: >
+      /bin/sh -c "
+      trap exit TERM;
+      while :; do
+        certbot renew --quiet --webroot --webroot-path=/var/www/certbot;
+        nginx -s reload;
+        sleep 12h;
+      done;
+      "
+    networks:
+      - app-network
+
+  nest:
+    build:
+      context: ./nest-app
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres_user:postgres_password@postgres:5432/nest_db
+      NODE_ENV: production
+    networks:
+      - app-network
+
+  nuxt:
+    build:
+      context: ./nuxt-app
+      dockerfile: Dockerfile
+    environment:
+      NUXT_API_BASE: https://your-domain.com/api
+    networks:
+      - app-network
+
+  vue:
+    build:
+      context: ./vue-app
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15.5-alpine
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: nest_db
+    volumes:
+      - postgres_/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4:8.3
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@your-domain.com
+      PGADMIN_DEFAULT_PASSWORD: secure_password
+    ports:
+      - "5050:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
