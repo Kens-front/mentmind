@@ -9,7 +9,21 @@
                 <ChatItem 
                     v-for="chat of chatStore.chats"
                     :key="chat.id"
-                    :chat="{...chat, lastMessage: getMessageText(chat)}"
+                    :chat="{
+                      ...chat,
+                      countUnread: Number(chat.countUnread),
+                       chatId: chat.id, 
+                       'lastActivity.time': '', 
+                       'lastActivity.timestamp': '',
+                        isFixedBottom:false, 
+                        'lastMessage.status': '',
+                        status: '',
+                        typing: false,
+                        metadata: '',
+                        dialogsExpanded: false,
+                        isSelected: false,
+                        lastMessage: getMessageText(chat)
+                    }"
                     @select="openChatPage($event.chat)"
                     />
             </div>

@@ -62,7 +62,7 @@
             <el-form-item  v-if="setVisibleElement([RoleList.MENTOR, RoleList.STUDENT])" label="Учебное направление">
                 <div class="tags">
                     <el-tag 
-                        v-for="(tag, index) in learnDirections"
+                        v-for="(tag, index) of learnDirections"
                         :key="tag?.label"
                         :type="COLORS[index]"
                         round
@@ -97,7 +97,7 @@ import { MENTOR_LEVELS, USER_LEVELS, USER_STATUSES } from '../constants'
 interface IProps {
     role: RoleList | undefined
     id: number
-    learnDirections: any [] | boolean
+    learnDirections: {label: string, value: number, title: string, id: number} []  
 }
 
 const {role, id, learnDirections} = defineProps<IProps>()

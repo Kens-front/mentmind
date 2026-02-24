@@ -10,7 +10,9 @@ export interface IAnalytic {
       "completed": number,
       "cancelled": number,
       "closer": number,
-      "allCloserLessons":number,
+      "totalRevenue":number,
+        upcomingSum: number,
+        averageLessonCount: number
       "allSalaryCount": {
         "finalamount": string
       }

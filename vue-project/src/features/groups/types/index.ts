@@ -5,8 +5,7 @@ export interface IGroup {
     "name": string,
     "description": string,
     "mentorId": number | null,
-    "students": TUserFull [ ],
-    isAvailable: boolean
+    studentIds: number[],
 }
 
 export interface ICreateGroupDto extends Omit<IGroup, 'id'> {

@@ -40,24 +40,30 @@ const role = computed(() => authStore.userData.user?.role)
 
 const directions = computed(() => {
     if (!role.value) {
-        return false
+        return []
     }
 
     const titleDirection = directionsByRole[role.value]
 
 
     if (!titleDirection) {
-        return false
+        return []
     }
 
     //@ts-ignore
     const directionData = userStore.updateUser?.profile?.[titleDirection];
 
     if (directionData && typeof directionData === 'number') {
-        return [learnDirection.options.find(option => option.value === directionData)];
+        const option = learnDirection.options.find(option => option.value === directionData);
+        
+        if (option) {
+          return [option]
+        }
+        
+        return [];
     }
  
-    return learnDirection.options.filter(option => directionData?.includes(option.value)) || false;
+    return learnDirection.options.filter(option => directionData?.includes(option.value));
 })
 
  

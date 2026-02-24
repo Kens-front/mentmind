@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import type { IHomework } from '@/features/homeworks/types';
 import { AlarmClock, SuccessFilled } from '@element-plus/icons-vue';
-import { computed } from 'vue';
+import {type Component, computed} from 'vue';
 
 interface IProps {
     homework: IHomework
@@ -28,11 +28,12 @@ interface IProps {
 
 const {homework} = defineProps<IProps>()
 
-const HOMEWORK_STATUSES_ICON = {
+const HOMEWORK_STATUSES_ICON: Record<string, Component> = {
     pending: AlarmClock,
     completed: SuccessFilled
 }
-
+    
+ 
 const icon = computed(() => HOMEWORK_STATUSES_ICON[homework.status])
 </script>
 

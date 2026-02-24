@@ -23,7 +23,7 @@
                         <OpenCreateLessonModal  
                             v-if="(setVisibleElement([RoleList.MENTOR]) && mentorId) && (groupStore.groups[$index]?.isAvailable) "
                             kind="group" 
-                            :student-ids="groupStore.groups[$index]?.students?.map(student => student?.id)" 
+                            :student-ids="groupStore.groups[$index]?.studentIds?.map(student => student) || []" 
                             :mentor-id="mentorId"
                         >
                             <el-tooltip placement="bottom" content="Создать занятие">

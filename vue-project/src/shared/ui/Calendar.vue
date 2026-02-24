@@ -34,6 +34,7 @@
 
 <script lang="ts" setup>
 import type { ILessonSlotEvent } from '@/features/mentor-availability/types';
+//@ts-ignore
 import {VueCal} from 'vue-cal';
 import 'vue-cal/style'
 import {CopyDocument} from "@element-plus/icons-vue";
