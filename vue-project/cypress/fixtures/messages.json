@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "senderId": 10,
+      "text": "Привет",
+      "chatId": 1,
+      "status": "read",
+      "createdAt": "2024-01-01T10:00:00.000Z",
+      "sender": {
+        "id": 10,
+        "name": "User 1"
+      }
+    },
+    {
+      "id": 2,
+      "senderId": 11,
+      "text": "Как дела?",
+      "chatId": 1,
+      "status": "read",
+      "createdAt": "2024-01-01T10:01:00.000Z",
+      "sender": {
+        "id": 11,
+        "name": "User 2"
+      }
+    }
+  ]
+  

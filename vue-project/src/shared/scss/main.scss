@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+:root {
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Playfair Display', serif;
+
+    --color-text-main: #505475;
+    --color-text-muted: #6B6B6B;
+    --color-text-light: #9A9A9A;
+
+    --line-height-body: 1.65;
+    --line-height-heading: 1.25;
+
+    --letter-spacing-heading: -0.02em;
+    --letter-spacing-ui: 0.02em;
+
+    --sidebar-bg: #4B3FCF;
+    /* темнее, спокойнее */
+    --sidebar-bg-muted: #3F35B5;
+    --accent: #8E84FF;
+    /* для hover / active */
+    --text-primary: #111111;
+    --text-muted: #6B6B6B;
+    --surface: #F8F8FA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text-primary);
+}
+
+.base {
+    height: 100%;
+}
+
+
+.vuecal--default-theme {
+    height: 900px;
+}
+
+.page {
+    display: grid;
+    row-gap: 2.4rem;
+}
+
+img {
+    width: 100%;
+}
+
+.profile_form .el-form-item {
+    padding: 1rem;
+    box-shadow: 5px 5px 10px #00000046;
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    color: var(--color-text-main);
+    letter-spacing: var(--letter-spacing-heading);
+    line-height: var(--line-height-heading);
+    margin: 0 0 0.6em 0;
+}
+
+h1 {
+    font-size: clamp(40px, 5vw, 48px);
+    font-weight: 600;
+}
+
+h2 {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    max-width: 720px;
+    line-height: 1.55;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: var(--line-height-body);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+p {
+    margin: 0 0 1.2em 0;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: var(--line-height-body);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+p {
+    margin: 0 0 1.2em 0;
+}
+
+a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    transition: border-color 0.2s ease;
+}
+
+a:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.6);
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-ui);
+    text-transform: uppercase;
+    color: var(--color-text-light);
+}
+
+.caption {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-leave-active {
+  transition-delay: 80ms;
+}
+
+.el-scrollbar__view {
+    height: 100%;
+}
