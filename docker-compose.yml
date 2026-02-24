@@ -18,7 +18,7 @@ services:
   # Nuxt 3
   nuxt:
     build:
-      context: .
+      context: ./landing2
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -30,7 +30,7 @@ services:
   # Vue 3
   vue:
     build:
-      context: .
+      context: ./vue-project
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
@@ -42,7 +42,7 @@ services:
   # NestJS (бэкенд)
   nest:
     build:
-      context: .
+      context: ./back
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
