@@ -21,7 +21,6 @@
                 <template #default="{$index}">
                     <div class="actions">
                         <OpenCreateLessonModal  
-                            v-if="(setVisibleElement([RoleList.MENTOR]) && mentorId) && (groupStore.groups[$index]?.isAvailable) "
                             kind="group" 
                             :student-ids="groupStore.groups[$index]?.studentIds?.map(student => student) || []" 
                             :mentor-id="mentorId"
