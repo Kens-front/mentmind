@@ -29,18 +29,22 @@ import { LessonParticipantModule } from './lesson-participant/lesson-participant
 import { LessonPackageModule } from './lesson-package/lesson-package.module';
 import { MetrikaModule } from './metrika/metrika.module';
 import { StudentGroupModule } from './student-group/student-group.module';
+import {ConfigModule} from "@nestjs/config";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,  // Настроим для глобального использования
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: "postgres",
-      password: 'qwerty',
-      database: 'mm',
+      host: process.env.DB_HOST,  // Используем переменные окружения
+      port: parseInt(process.env.DB_PORT),  // Преобразуем в число
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [],
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
     }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule],
   controllers: [AppController],

@@ -1,17 +1,18 @@
-﻿# Сборка
-FROM node:18.18.2-alpine AS build
+﻿# Vue 3
+FROM node:16
+
 WORKDIR /app
 
+# Устанавливаем зависимости
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
+# Копируем исходный код
 COPY . .
+
+# Собираем проект
 RUN npm run build
 
-# Сервер
-FROM nginx:1.25.3-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 8080
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "serve"]

@@ -1,26 +1,18 @@
-﻿# Сборка
-FROM node:18.18.2-alpine AS build
+﻿# NestJS
+FROM node:16
+
 WORKDIR /app
 
+# Устанавливаем зависимости
 COPY package*.json ./
-RUN npm ci --include=dev
+RUN npm install
 
+# Копируем исходный код
 COPY . .
+
+# Собираем проект
 RUN npm run build
 
-# Запуск
-FROM node:18.18.2-alpine
-WORKDIR /app
+EXPOSE 3001
 
-COPY package*.json ./
-RUN npm ci --include=production
-
-COPY --from=build /app/dist ./dist
-COPY prisma ./prisma
-
-# Для работы Prisma
-RUN npm install -g @prisma/client && \
-    npx prisma generate
-
-EXPOSE 4000
-CMD ["node", "dist/main"]
+CMD ["npm", "run", "start:prod"]
