@@ -16,6 +16,9 @@ export default defineNuxtConfig({
       scrollTrigger: true
     }
   },
+  build: {
+    transpile: ['gsap'],
+  },
   quasar: {
     extras: {
       fontIcons: ['material-icons']

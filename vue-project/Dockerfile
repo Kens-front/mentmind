@@ -1,23 +1,25 @@
-﻿# Используем официальный Node.js образ
-FROM node:20.19.0
+﻿# Шаг 1: Строим проект
+FROM node:16 AS build
 
-# Рабочая директория внутри контейнера
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем весь проект
 COPY . .
-
-# Собираем проект для продакшн
 RUN npm run build
 
-# Стартуем сервер для продакшн
-CMD ["npm", "run", "serve"]
+# Шаг 2: Настроим Nginx для сервера
+FROM nginx:alpine
 
-# Открываем порт для доступа к приложению
-EXPOSE 8080
+# Копируем собранные файлы из предыдущего шага в директорию Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Копируем кастомный конфиг для Nginx, если нужно
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]

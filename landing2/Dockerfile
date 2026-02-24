@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Стартуем сервер
-CMD ["npm", "run", "start"]
+CMD ["node", ".output/server/index.mjs"]
 
 # Открываем порт для доступа к приложению
 EXPOSE 3000
