@@ -18,44 +18,55 @@ services:
   # Nuxt 3
   nuxt:
     build:
-      context: ./landing2
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app
     networks:
-      - app-network
+      - app_network
 
   # Vue 3
   vue:
     build:
-      context: ./vue-project
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    volumes:
+      - .:/app
     networks:
-      - app-network
+      - app_network
 
   # NestJS (бэкенд)
   nest:
     build:
-      context: ./back
+      context: .
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
     networks:
-      - app-network
+      - app_network
 
   # PostgreSQL
   postgres:
     image: postgres:13
+    container_name: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     networks:
-      - app-network
+      - app_network
 
   # pgAdmin
   pgadmin:
@@ -65,8 +76,10 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
     networks:
-      - app-network
+      - app_network
 
   # Let's Encrypt для SSL
   certbot:
@@ -76,8 +89,9 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
-  app-network:
+  app_network:
     driver: bridge
 
 volumes:
+  pgadmin_data:
   postgres_data:
