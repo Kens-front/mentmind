@@ -1,18 +1,23 @@
-﻿# Nuxt 3
-FROM node:24.13.1
+﻿# Используем официальный Node.js образ
+FROM node:20-alpine
 
+# Рабочая директория внутри контейнера
 WORKDIR /app
 
-# Устанавливаем зависимости
+# Копируем файлы package.json и package-lock.json
 COPY package*.json ./
+
+# Устанавливаем зависимости
 RUN npm install
 
-# Копируем исходный код
+# Копируем весь проект
 COPY . .
 
-# Собираем проект
+# Собираем проект для продакшн
 RUN npm run build
 
-EXPOSE 3000
+# Стартуем сервер
+CMD ["npm", "run", "start"]
 
-CMD ["npm", "start"]
+# Открываем порт для доступа к приложению
+EXPOSE 3000

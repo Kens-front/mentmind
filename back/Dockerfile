@@ -1,18 +1,23 @@
-﻿# NestJS
-FROM node:16
+﻿# Используем официальный образ Node.js
+FROM node:16-alpine
 
+# Рабочая директория внутри контейнера
 WORKDIR /app
 
-# Устанавливаем зависимости
+# Копируем package.json и package-lock.json (или yarn.lock)
 COPY package*.json ./
+
+# Устанавливаем зависимости
 RUN npm install
 
-# Копируем исходный код
+# Копируем весь проект
 COPY . .
 
 # Собираем проект
 RUN npm run build
 
-EXPOSE 3001
-
+# Стартуем приложение в продакшн-режиме
 CMD ["npm", "run", "start:prod"]
+
+# Открываем порт для доступа к приложению
+EXPOSE 3000
