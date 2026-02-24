@@ -23,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+      - ./landing2:/app
     networks:
       - app_network
 
@@ -35,7 +35,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - .:/app
+      - ./vue-project:/app
     networks:
       - app_network
 
@@ -47,7 +47,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/app
+      - ./back:/app
     depends_on:
       - postgres
     networks:
