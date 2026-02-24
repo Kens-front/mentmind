@@ -1,5 +1,5 @@
 ﻿# Nuxt 3
-FROM node:16
+FROM node:24.13.1
 
 WORKDIR /app
 
