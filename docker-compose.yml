@@ -1,7 +1,7 @@
 ﻿version: '3.7'
 
 services:
-  # Нginx
+  # Nginx
   nginx:
     image: nginx:latest
     volumes:
@@ -23,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./landing2:/app
+      - ./landing2:/app   # Монтируем проект Nuxt в /app контейнера
     networks:
       - app_network
 
@@ -35,7 +35,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./vue-project:/app
+      - ./vue-project:/app   # Монтируем проект Vue в /app контейнера
     networks:
       - app_network
 
@@ -47,7 +47,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./back:/app
+      - ./back:/app   # Монтируем проект NestJS в /app контейнера
     depends_on:
       - postgres
     networks:

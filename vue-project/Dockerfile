@@ -1,5 +1,5 @@
 ﻿# Шаг 1: Строим проект
-FROM node:20 AS build
+FROM node:22.12 AS build
 
 WORKDIR /app
 
