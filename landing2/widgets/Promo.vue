@@ -73,7 +73,7 @@ onMounted(() => {
 	.Promo {
 		display: grid;
 		grid-template-columns: 100vw;
-		height: 100vh;
+		height: 100dvh;
 		min-width: 100vw;
 		background-color: inherit;
 
