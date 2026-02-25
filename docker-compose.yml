@@ -24,6 +24,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - HOST=0.0.0.0
+      - PORT=3000
       - NODE_ENV=production
     networks:
       - app_network

@@ -32,5 +32,10 @@ export default defineNuxtConfig({
       codeEditor: 'MonacoEditor',
       diffEditor: 'MonacoDiffEditor'
     }
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: '/api'
+    }
   }
 })
