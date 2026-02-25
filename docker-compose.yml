@@ -2,42 +2,42 @@
 
 services:
   # Nginx
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./ssl:/etc/ssl
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - nuxt
-      - vue
-      - nest
+#  nginx:
+#    image: nginx:latest
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/nginx.conf
+#      - ./ssl:/etc/ssl
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    depends_on:
+#      - nuxt
+#      - vue
+#      - nest
 
-  # Nuxt 3
-  nuxt:
-    build:
-      context: ./landing2
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./landing2:/app   # Монтируем проект Nuxt в /app контейнера
-    networks:
-      - app_network
-
-  # Vue 3
-  vue:
-    build:
-      context: ./vue-project
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./vue-project:/app   # Монтируем проект Vue в /app контейнера
-    networks:
-      - app_network
+#  # Nuxt 3
+#  nuxt:
+#    build:
+#      context: ./landing2
+#      dockerfile: Dockerfile
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./landing2:/app   # Монтируем проект Nuxt в /app контейнера
+#    networks:
+#      - app_network
+#
+#  # Vue 3
+#  vue:
+#    build:
+#      context: ./vue-project
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - ./vue-project:/app   # Монтируем проект Vue в /app контейнера
+#    networks:
+#      - app_network
 
   # NestJS (бэкенд)
   nest:
@@ -82,11 +82,11 @@ services:
       - app_network
 
   # Let's Encrypt для SSL
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./ssl:/etc/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+#  certbot:
+#    image: certbot/certbot
+#    volumes:
+#      - ./ssl:/etc/letsencrypt
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   app_network:
