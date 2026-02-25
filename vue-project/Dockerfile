@@ -1,5 +1,5 @@
 ﻿# 1. Используем легкую версию Node
-FROM node:18-alpine
+FROM node:22.12-alpine
 
 # 2. Устанавливаем рабочую директорию
 WORKDIR /app
