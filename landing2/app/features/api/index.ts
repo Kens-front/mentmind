@@ -23,7 +23,7 @@ interface IMetrikaApi {
 
 export const metrikaApi: IMetrikaApi = {
     async create(dto) {
-        const response = await fetch('http://localhost:5000/metrika', {
+        const response = await fetch('/api/metrika', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

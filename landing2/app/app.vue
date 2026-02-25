@@ -129,28 +129,27 @@ function onTouchStart(e) {
 onBeforeMount(() => 	document.body.style.overflow = 'hidden')
 onMounted(() => {
  
+ 
 	isLoaded.value = true
 	const sections = gsap.utils.toArray('.sections-container .pin')
-	const overlaps = gsap.utils.toArray('.sections-container .overlap')
-	const oveformrlaps = document.querySelector('.section .form')
-	const header = document.querySelector('header')
 	const container = horizontalContainer.value
 
 	gsap.to(aside.value, {x: 0, delay: 4});
 	gsap.fromTo('body', {overflow: 'hidden'}, {overflow: 'visible', delay: 4})
-	gsap.fromTo(header, {translateY: '-100%'}, {translateY: '0%', delay: 4})
 	// Горизонтальная анимация для первых трех секций
 	gsap.to(sections, {
-		x: () => -(container.scrollWidth - window.innerWidth),
+		x: () => -(container.scrollWidth - window.innerWidth - 500),
 		ease: 'none',
 		scrollTrigger: {
 			trigger: horizontalContainer.value,
 			start: 'top top',
-			end: () => `${container.scrollWidth - window.innerWidth}`,
+			end: () => `${container.scrollWidth - window.innerWidth - 700}`,
 			scrub: 2,
 			pin: true,
 			invalidateOnRefresh: true,
 			id: 'horizontal123',
+      onEnter: () => gsap.set(sections, { willChange: 'transform' }),
+      onLeaveBack: () => gsap.set(sections, { willChange: 'initial' })
 		},
 	})
 
@@ -163,6 +162,8 @@ onMounted(() => {
 			start: 'top top',
 			end: () => `bottom bottom`,
 			scrub: 1,
+      onEnter: () => gsap.set('.landing', { willChange: 'background-color, color' }),
+      onLeaveBack: () => gsap.set('.landing', { willChange: 'initial' })
 		},
 	})
 
@@ -210,7 +211,7 @@ useHead({
 	}
 
 	&__mobile {
-		min-height: 100vh;
+		min-height: 100dvh;
 		background-color: #161628;
 	}
 }
@@ -221,12 +222,11 @@ useHead({
 
 .sections-container {
 	display: flex;
-	width: fit-content;
 }
 
 .section {
 	min-width: 100vw;
-	min-height: 100vh;
+	min-height: 100dvh;
 	position: relative;
 }
 

@@ -41,7 +41,7 @@ onMounted(async () => {
         easy: 'power1.in',
         scrollTrigger: {
             trigger: '.we',
-            start: `center ${section.value?.offsetHeight}`, 
+            start: `top ${section.value?.offsetHeight}`, 
             end: `bottom top`,
             scrub: 1,
             id: 'about'

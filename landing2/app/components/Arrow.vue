@@ -24,7 +24,7 @@
     z-index: 12;
 
     @media screen and (max-width: 1024px){
-        bottom: 85%;
+        bottom: 77%;
     }
   }
   

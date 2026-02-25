@@ -159,43 +159,46 @@ const architectureAchievments = ref([
     }
 ])
 onMounted(async () => {
-    await nextTick();
-    const contents = document.querySelectorAll('.directions .content');
-    const cards = document.querySelectorAll('.directions .card_inner')
-    // Создаем таймлайн с ScrollTrigger
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.directions',
-            start: 'top top', // Начало анимации, когда верх секции достигает верха окна
-            end: '+=2000', // Длительность скролла для анимации (настройте под свои нужды)
-            scrub: 1, // Анимация привязана к скроллу
-            pin: true, // Закрепляем секцию
-            anticipatePin: 1, // Улучшает поведение закрепления
-        }
-    });
+  await nextTick();
+  const contents = document.querySelectorAll('.directions .content');
+  const cards = document.querySelectorAll('.directions .card_inner');
 
+  // Используем таймлайн с ScrollTrigger
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.directions',
+      start: 'top top', // Начало анимации
+      end: '+=1000', // Длительность скролла
+      scrub: 1, // Привязка к скроллу
+      pin: true, // Закрепление секции
+      anticipatePin: 1, // Улучшение поведения закрепления
+    }
+  });
 
-    const isDesktop = window.screen.width > 1024;
-    // Анимация каждого блока content
-    contents.forEach((content, index) => {
-        tl.fromTo(
-            content,
-            {
-                x: '100%', // Начальная позиция (справа, за пределами экрана)
-                opacity: 0, // Начальная прозрачность
-                ease: 'power1.inOut',
-            },
-            {
-                x: index * (isDesktop? 40:0), // Конечная позиция (в центре)
-                opacity: 1, // Полная видимость
-                duration: 1, // Длительность анимации для каждого блока
-                delay: index * 0.5, // Задержка для последовательного появления
-            },
-            index * 0.5 // Смещение во времени для последовательной анимации
-        ).to(content.querySelectorAll('.card-inner'), {rotateY: '180deg'}, '-=0.5');
-    });
+  const isDesktop = window.screen.width > 1024;
 
- 
+  // Анимация каждого блока .content
+  gsap.set(contents, { willChange: 'transform, opacity' }); // Устанавливаем will-change для улучшения производительности
+  contents.forEach((content, index) => {
+    tl.fromTo(
+        content,
+        {
+          x: '100%', // Начальная позиция (справа)
+          opacity: 0, // Начальная прозрачность
+          ease: 'power1.inOut',
+        },
+        {
+          x: isDesktop ? index * 40 : 0, // Конечная позиция
+          opacity: 1, // Конечная прозрачность
+          duration: 1, // Длительность анимации
+          delay: index * 0.5, // Задержка для последовательного появления
+        },
+        index * 0.5 // Смещение времени для анимации
+    ).to(content.querySelectorAll('.card-inner'), {
+      rotateY: '180deg',
+      duration: 1 // добавляем длительность для плавного поворота
+    }, '-=0.5');
+  });
 });
 </script>
 

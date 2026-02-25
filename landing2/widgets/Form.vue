@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <form @submit.prevent="onSubmit" class="form">
+        <form @submit.prevent.stop="onSubmit" class="form">
             <div class="image" :style="{backgroundImage: `url(${image})`}">
                
             </div>
@@ -25,7 +25,7 @@
                     <q-input v-model="formData.callbackMethod" ref="methodCallbackRef" :label="userMethod?.label"  lazy-rules :rules="emailRules" :placeholder="userMethod?.placeholder" color="white"/>
                     <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
                     <div class="checkbox">
-                        <q-item tag="label" v-ripple>
+                        <q-item class="item" tag="label" v-ripple>
                             <q-checkbox v-model="formData.checkbox" checked-icon="task_alt"
                             unchecked-icon="highlight_off"/>
                             <q-item-section>
@@ -34,7 +34,7 @@
                             </q-item-section>
                         </q-item>
                     </div>
-                    <button class="btn">Связаться</button>
+                    <button  type="submit" class="btn">Связаться</button>
                 </div>
             </transition>
 
@@ -103,6 +103,11 @@ const status = ref('pending')
 const userMethod = computed(() => PLACEHOLDERS[formData.method]);
 const nameRef = ref(null)
 const methodCallbackRef = ref(null)
+
+function onClick() {
+  nameRef.value.validate()
+  methodCallbackRef.value.validate()
+}
 async function onSubmit() {
     try {
       
@@ -119,6 +124,8 @@ async function onSubmit() {
       nameRef.value.validate()
       methodCallbackRef.value.validate()
       if (nameRef.value.hasError || methodCallbackRef.value.hasError) {
+        console.log(nameRef.value.hasError)
+        console.log(methodCallbackRef.value.hasError)
         return
       }
       
@@ -160,10 +167,6 @@ async function onSubmit() {
       })
         console.log(e);
     }
-    finally {
-      nameRef.value.resetValidation()
-      methodCallbackRef.value.resetValidation()
-    }
 }
 
  
@@ -182,7 +185,7 @@ onMounted( async () => {
         scrollTrigger: {
             trigger: '.form_wrap',
             start: 'top top', // Начало анимации, когда верх секции достигает верха окна
-            end: '+=3500', // Длительность скролла для анимации (настройте под свои нужды)
+            end: '+=1000', // Длительность скролла для анимации (настройте под свои нужды)
             scrub: 1, // Анимация привязана к скроллу
             pin: true, // Закрепляем секцию
             anticipatePin: 1, // Улучшает поведение закрепления
@@ -225,11 +228,11 @@ onMounted( async () => {
 <style lang="scss" scoped>
 .form_wrap {
     position: relative;
-    display: grid;
-    grid-template-rows: 1fr 8rem;
-    row-gap: 2rem;
+    display: flex;
+    align-items: center;
 
     @media screen and (max-width: 768px) {
+        display: grid;
         grid-template-rows: 1fr max-content;
     }
 }
@@ -291,7 +294,7 @@ onMounted( async () => {
     max-width: 85%;
     margin: 2rem auto;
     width: 100%;
-    height: 100%;
+    height: max-content;
     padding: 2rem;
     gap: 2rem;
     color: #fff;
@@ -404,6 +407,10 @@ h3 {
   font-size: 13px;
   opacity: 0.85;
   margin-top: 16px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 }
 
 .footer-divider {
@@ -431,6 +438,11 @@ h3 {
   a {
     text-decoration: underline;
     text-underline-offset: 2px;
+  }
+  
+  & .item {
+    padding: 8px 0;
+    font-size: 10px;
   }
 }
 @keyframes float {

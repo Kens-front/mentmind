@@ -53,7 +53,7 @@ const THEMES_CSS = {
         display: none;
 
         @media screen and (max-width:1024px) {
-            height: 100vh;
+            height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;

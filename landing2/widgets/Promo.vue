@@ -37,27 +37,35 @@ function setX(el) {
 }
 
 onMounted(() => {
-	// Изначально все слова на месте
+  const h = word1.value.offsetHeight;
 
-	const h = word1.value.offsetHeight;
+  // Использование will-change для подготовки анимаций
+  gsap.set([title.value, word1.value, word2.value, word3.value, word4.value], { willChange: 'transform, opacity' });
 
-	gsap.set(title.value, {height: h})
-	const tl = gsap.timeline();
-	tl
-		.from(word1.value, {opacity: 0, y: 100, scale: 0.8, duration: 1, ease: 'power2.inOut'})
-		.from(word2.value, {opacity: 0, y: 100,scale: 0.8, duration: 1, ease: 'power2.inOut'})
-		.to(title.value, {height: h * 2}, '<')
-		.from(word3.value, {opacity: 0, y: 100, scale: 0.8,duration: 1, ease: 'power2.inOut'})
-		.to(title.value, {height: h * 3}, '<')
-		.from(word4.value, {opacity: 0, y: 100, scale: 0.8,duration: 1, ease: 'power2.inOut'})
-		.to(title.value, {height: h * 4}, '<')
-		.to(word1.value, {  x: setX(word1.value)})
-		.to(word2.value, {  x: setX(word2.value)}, '<')
-		.to(word3.value, {  x: setX(word3.value)}, '<')
-		.to(word4.value, {  x: setX(word4.value)}, '<')
-		.to(subtitle.value, {y: -200, margin: 0}, '<')
-		.from(swiperText.value, {opacity: 0}, '<')
-		.from(label.value, {opacity:0, x: -20})
+  gsap.set(title.value, { height: h });
+
+  const tl = gsap.timeline();
+  tl
+      .from(word1.value, { opacity: 0, y: 100, scale: 0.8, duration: 1, ease: 'power2.inOut' })
+      .from(word2.value, { opacity: 0, y: 100, scale: 0.8, duration: 1, ease: 'power2.inOut' })
+      .to(title.value, { height: h * 2 }, '<')
+      .from(word3.value, { opacity: 0, y: 100, scale: 0.8, duration: 1, ease: 'power2.inOut' })
+      .to(title.value, { height: h * 3 }, '<')
+      .from(word4.value, { opacity: 0, y: 100, scale: 0.8, duration: 1, ease: 'power2.inOut' })
+      .to(title.value, { height: h * 4 }, '<')
+
+      // Использование transform для перемещения по оси X
+      .to(word1.value, { x: setX(word1.value) })
+      .to(word2.value, { x: setX(word2.value) }, '<')
+      .to(word3.value, { x: setX(word3.value) }, '<')
+      .to(word4.value, { x: setX(word4.value) }, '<')
+
+      // Анимация subtitle и swiperText
+      .to(subtitle.value, { y: -200, margin: 0 }, '<')
+      .from(swiperText.value, { opacity: 0 }, '<')
+
+      // Плавное движение label
+      .from(label.value, { opacity: 0, x: -20 });
 });
 </script>
 
