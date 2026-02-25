@@ -47,6 +47,10 @@
 			<Form/>
 		</section>
 	</div>
+
+	<div class="mobile">
+		TEST
+	</div>
 </template>
 
 <script setup>
@@ -138,12 +142,12 @@ onMounted(() => {
 	gsap.fromTo('body', {overflow: 'hidden'}, {overflow: 'visible', delay: 4})
 	// Горизонтальная анимация для первых трех секций
 	gsap.to(sections, {
-		x: () => -(container.scrollWidth - window.innerWidth - 500),
+		x: () => -(container.scrollWidth - window.innerWidth),
 		ease: 'none',
 		scrollTrigger: {
 			trigger: horizontalContainer.value,
 			start: 'top top',
-			end: () => `${container.scrollWidth - window.innerWidth - 700}`,
+			end: () => `${container.scrollWidth - window.innerWidth}`,
 			scrub: 2,
 			pin: true,
 			invalidateOnRefresh: true,
@@ -213,6 +217,10 @@ useHead({
 	&__mobile {
 		min-height: 100dvh;
 		background-color: #161628;
+	}
+
+	@media screen and (max-width: 1024px) {
+		display: none;
 	}
 }
 
@@ -340,6 +348,9 @@ useHead({
 		}
 }
 
+.mobile {
+	color: red;
+}
 @keyframes aura-color {
   0%, 100% {
     filter: blur(18px) hue-rotate(0deg);
