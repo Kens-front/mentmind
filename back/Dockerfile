@@ -12,7 +12,6 @@ RUN npm install
 
 # Копируем весь проект
 COPY . .
-
 # Собираем проект
 RUN npm run build
 
