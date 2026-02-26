@@ -74,11 +74,11 @@ onMounted(async () => {
     <StartMobile/>
     <client-only>
       <CubeSlider>
-        <SwiperSlide>
+        <!-- <SwiperSlide>
           <div class="wrap">
             <PromoMobile/>
           </div>
-        </SwiperSlide>
+        </SwiperSlide> -->
 
         <!-- <SwiperSlide>
           <div class="wrap">
