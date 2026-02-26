@@ -92,11 +92,11 @@ onMounted(async () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide>
+        <!-- <SwiperSlide>
           <div class="wrap">
             <Advantages :slides="firstSlider"/>
           </div>
-        </SwiperSlide>
+        </SwiperSlide> -->
       </CubeSlider>
  
 <!--      <div ref="secondSliderRef">-->
