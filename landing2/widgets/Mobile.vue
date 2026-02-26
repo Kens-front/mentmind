@@ -86,11 +86,11 @@ onMounted(async () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide>
+        <!-- <SwiperSlide>
           <div class="wrap">
             <AboutMobile /> 
           </div>
-        </SwiperSlide>
+        </SwiperSlide> -->
 
         <!-- <SwiperSlide>
           <div class="wrap">
