@@ -48,9 +48,9 @@
 		</section>
 	</div>
 
-	<div class="mobile">
+	<!-- <div class="mobile">
 		<Mobile/>
-	</div>
+	</div> -->
 </template>
 
 <script setup>
