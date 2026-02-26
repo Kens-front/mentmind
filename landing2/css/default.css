@@ -8,7 +8,7 @@
 }
 
 html {
-  font-size: .5208333333vw;
+  font-size: 0.5208333333vw;
   font-family: sans-serif;
   color: rgb(254, 233, 206);
   scroll-behavior: smooth;
@@ -34,7 +34,7 @@ body {
 
 @media screen and (max-width: 768px) {
   html {
-    font-size: .6208333333vmax;
+  font-size: clamp(3.7px, 0.4208333333vw, 6px);
   }
 }
 

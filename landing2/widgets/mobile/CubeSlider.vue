@@ -19,7 +19,7 @@ function onGetActiveIndex(swiper: any) {
           :slides-per-view="1"
           navigation
           class="my-swiper"
-          centeredSlides: true,
+          centeredSlided
           loop
           :effect="'cube'"
           :cubeEffect="{

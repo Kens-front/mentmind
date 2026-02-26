@@ -72,7 +72,7 @@ onMounted(async () => {
   <div class="mobile-v" :class="{'mobile-v__active': isLight}">
     
     <StartMobile/>
-      <!-- <CubeSlider>
+      <CubeSlider>
         <SwiperSlide>
           <div class="wrap">
             <PromoMobile/>
@@ -96,35 +96,34 @@ onMounted(async () => {
             <Advantages :slides="firstSlider"/>
           </div>
         </SwiperSlide>
-      </CubeSlider> -->
+      </CubeSlider>
  
-      <PromoMobile/>
-<!--      <div ref="secondSliderRef">-->
-<!--        <CubeSlider>-->
-<!--          <SwiperSlide>-->
-<!--            <div class="wrap">-->
-<!--              <Advantages :slides="firstSlider"/>-->
-<!--            </div>-->
-<!--          </SwiperSlide>-->
-
-<!--          <SwiperSlide>-->
-<!--            <div class="wrap">-->
-<!--              <StepMobilt/>-->
-<!--            </div>-->
-<!--          </SwiperSlide>-->
-
-<!--          <SwiperSlide>-->
-<!--            <div class="wrap">-->
-<!--              <DirectionMobile/>-->
-<!--            </div>-->
-<!--          </SwiperSlide>-->
-<!--        </CubeSlider>-->
-<!--      </div>-->
+     <div ref="secondSliderRef">
+       <CubeSlider>
+         <SwiperSlide>
+           <div class="wrap">
+             <Advantages :slides="firstSlider"/>
+           </div>
+         </SwiperSlide>
+ 
+         <SwiperSlide>
+           <div class="wrap">
+             <StepMobilt/>
+           </div>
+         </SwiperSlide>
+ 
+         <SwiperSlide>
+           <div class="wrap">
+             <DirectionMobile/>
+           </div>
+         </SwiperSlide>
+       </CubeSlider>
+     </div>
 
 
       <TarifMobile/>
 
-<!--      <FormMobile/>-->
+     <FormMobile/>
   </div>
  
 </template>

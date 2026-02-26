@@ -39,9 +39,9 @@ import {ref} from "vue";
 
 
 
-const group = ref(2400)
-const  base = ref( 3600)
-const top = ref(4500)
+const group = ref(1800)
+const  base = ref( 2200)
+const top = ref(4000)
 
 const cards = computed(() => [
   {
