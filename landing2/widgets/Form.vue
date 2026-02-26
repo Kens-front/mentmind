@@ -29,8 +29,8 @@
                             <q-checkbox v-model="formData.checkbox" checked-icon="task_alt"
                             unchecked-icon="highlight_off"/>
                             <q-item-section>
-                                <q-item-label>Я принимаю условия и даю <a target="_blank" href="http://localhost:5000/uploads/policy/agreement.pdf">согласие на обработку данных</a> в соответствии
-                                с <a target="_blank" href="http://localhost:5000/uploads/policy/policy.pdf">Политикой обработки персональных данных</a></q-item-label>
+                                <q-item-label>Я принимаю условия и даю <a target="_blank" href="api/uploads/policy/agreement.pdf">согласие на обработку данных</a> в соответствии
+                                с <a target="_blank" href="api/uploads/policy/policy.pdf">Политикой обработки персональных данных</a></q-item-label>
                             </q-item-section>
                         </q-item>
                     </div>

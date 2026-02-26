@@ -49,7 +49,7 @@
 	</div>
 
 	<div class="mobile">
-		TEST
+		<Mobile/>
 	</div>
 </template>
 
@@ -76,6 +76,7 @@ import pattern4 from '../public/assets/pattern4.png'
 import pattern5 from '../public/assets/pattern5.png'
 import { useProductStore } from './store';
 import { metrikaApi } from './features/api';
+import Mobile from "~~/widgets/Mobile.vue";
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
@@ -346,10 +347,6 @@ useHead({
 			pointer-events: none;
 			animation: aura-color 2s ease-in-out infinite;
 		}
-}
-
-.mobile {
-	color: red;
 }
 @keyframes aura-color {
   0%, 100% {

@@ -127,5 +127,9 @@ defineProps<IProps>();
  
  .subtitle {
    font-size: 2rem;
+
+   @media screen and (max-width: 1024px) {
+     font-size: 3rem;
+   }
  }
 </style>

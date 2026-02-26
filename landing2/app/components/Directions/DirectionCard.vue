@@ -61,6 +61,10 @@
         display: block;
         background: url('../../../public/assets/sky.png') no-repeat center/cover;
     }
+
+  @media screen and (max-width: 1024px) {
+    text-align: left;
+  }
 }
 
 .top {
@@ -70,6 +74,10 @@
     grid-template-columns: max-content 1fr;
     font-size: 5rem;
     gap: 2rem;
+  
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: max-content max-content;
+    }
 }
 
 .title {
