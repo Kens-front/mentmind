@@ -8,9 +8,9 @@
       <transition>
         <div v-if="status === 'pending'" class="inputs">
           <h2>Свяжемся с Вами в ближайшее время</h2>
-          <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white" required />
+          <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white" />
           <q-select v-model="formData.method" label="Предпочтительный способ связи" :options="options" behavior="menu"/>
-          <q-input v-model="formData.callbackMethod" ref="methodCallbackRef" :label="userMethod?.label" required :placeholder="userMethod?.placeholder" color="white"/>
+          <q-input v-model="formData.callbackMethod" ref="methodCallbackRef" :label="userMethod?.label" :placeholder="userMethod?.placeholder" color="white"/>
           <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
           <div class="checkbox">
             <q-item class="item" tag="label" v-ripple>
