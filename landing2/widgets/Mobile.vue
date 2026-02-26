@@ -71,8 +71,7 @@ onMounted(async () => {
 <template>
   <div class="mobile-v" :class="{'mobile-v__active': isLight}">
     
-    <StartMobile/>
-    <client-only>
+    <StartMobile/>>
       <CubeSlider>
         <!-- <SwiperSlide>
           <div class="wrap">
@@ -125,7 +124,6 @@ onMounted(async () => {
       <TarifMobile/>
 
 <!--      <FormMobile/>-->
-    </client-only>   
   </div>
  
 </template>
