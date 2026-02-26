@@ -73,53 +73,53 @@ onMounted(async () => {
     
     <StartMobile/>
     <client-only>
-      <CubeSlider>
-        <SwiperSlide>
-          <div class="wrap">
-            <PromoMobile/>
-          </div>
-        </SwiperSlide>
+<!--      <CubeSlider>-->
+<!--        <SwiperSlide>-->
+<!--          <div class="wrap">-->
+<!--            <PromoMobile/>-->
+<!--          </div>-->
+<!--        </SwiperSlide>-->
 
-        <SwiperSlide>
-          <div class="wrap">
-            <SecondMobile/>
-          </div>
-        </SwiperSlide>
+<!--        <SwiperSlide>-->
+<!--          <div class="wrap">-->
+<!--            <SecondMobile/>-->
+<!--          </div>-->
+<!--        </SwiperSlide>-->
 
-        <SwiperSlide>
-          <div class="wrap">
-            <AboutMobile /> 
-          </div>
-        </SwiperSlide>
+<!--        <SwiperSlide>-->
+<!--          <div class="wrap">-->
+<!--            <AboutMobile /> -->
+<!--          </div>-->
+<!--        </SwiperSlide>-->
 
-        <SwiperSlide>
-          <div class="wrap">
-            <Advantages :slides="firstSlider"/>
-          </div>
-        </SwiperSlide>
-      </CubeSlider>
+<!--        <SwiperSlide>-->
+<!--          <div class="wrap">-->
+<!--            <Advantages :slides="firstSlider"/>-->
+<!--          </div>-->
+<!--        </SwiperSlide>-->
+<!--      </CubeSlider>-->
  
-      <div ref="secondSliderRef">
-        <CubeSlider>
-          <SwiperSlide>
-            <div class="wrap">
-              <Advantages :slides="firstSlider"/>
-            </div>
-          </SwiperSlide>
+<!--      <div ref="secondSliderRef">-->
+<!--        <CubeSlider>-->
+<!--          <SwiperSlide>-->
+<!--            <div class="wrap">-->
+<!--              <Advantages :slides="firstSlider"/>-->
+<!--            </div>-->
+<!--          </SwiperSlide>-->
 
-          <SwiperSlide>
-            <div class="wrap">
-              <StepMobilt/>
-            </div>
-          </SwiperSlide>
+<!--          <SwiperSlide>-->
+<!--            <div class="wrap">-->
+<!--              <StepMobilt/>-->
+<!--            </div>-->
+<!--          </SwiperSlide>-->
 
-          <SwiperSlide>
-            <div class="wrap">
-              <DirectionMobile/>
-            </div>
-          </SwiperSlide>
-        </CubeSlider>
-      </div>
+<!--          <SwiperSlide>-->
+<!--            <div class="wrap">-->
+<!--              <DirectionMobile/>-->
+<!--            </div>-->
+<!--          </SwiperSlide>-->
+<!--        </CubeSlider>-->
+<!--      </div>-->
 
 
       <TarifMobile/>
