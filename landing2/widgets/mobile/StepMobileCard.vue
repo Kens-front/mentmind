@@ -1,10 +1,10 @@
 ﻿<template>
-  <div  @click.capture class="card" :style="{backgroundImage: `url(${background})`}">
+  <div  class="card" :style="{backgroundImage: `url(${background})`}">
     <div class="content">
       <h4 v-if="title" class="title">{{ title }}</h4>
     </div>
     <div v-if="description" class="content">
-      <p class="description" v-html="description"/>
+      <div class="description" v-html="description"/>
     </div>
   </div>
 </template>

@@ -23,7 +23,7 @@
         data-swiper-parallax="-23%"
     ></div>
     <swiper-slide v-for="slide of slides" :key="slide.title">
-      <div @click.stop="test">
+      <div>
         <div class="title" data-swiper-parallax="-300">{{slide.title}}</div>
         <div class="text" data-swiper-parallax="-200">
           <p>

@@ -1,5 +1,5 @@
 ﻿<template>
-  <transition >
+  <transition name="fade" mode="out-in" >
     <div  v-if="enrollmentStages.length" :key="enrollmentStages.length" class="slide">
       <client-only>
         <div class="slide-wrap">
