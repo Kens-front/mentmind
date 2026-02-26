@@ -71,32 +71,32 @@ onMounted(async () => {
 <template>
   <div class="mobile-v" :class="{'mobile-v__active': isLight}">
     
-    <StartMobile/>>
-      <CubeSlider>
-        <!-- <SwiperSlide>
+    <StartMobile/>
+      <!-- <CubeSlider>
+        <SwiperSlide>
           <div class="wrap">
             <PromoMobile/>
           </div>
-        </SwiperSlide> -->
+        </SwiperSlide>
 
-        <!-- <SwiperSlide>
+        <SwiperSlide>
           <div class="wrap">
             <SecondMobile/>
           </div>
-        </SwiperSlide> -->
+        </SwiperSlide>
 
-        <!-- <SwiperSlide>
+        <SwiperSlide>
           <div class="wrap">
             <AboutMobile /> 
           </div>
-        </SwiperSlide> -->
+        </SwiperSlide>
 
-        <!-- <SwiperSlide>
+       <SwiperSlide>
           <div class="wrap">
             <Advantages :slides="firstSlider"/>
           </div>
-        </SwiperSlide> -->
-      </CubeSlider>
+        </SwiperSlide>
+      </CubeSlider> -->
  
 <!--      <div ref="secondSliderRef">-->
 <!--        <CubeSlider>-->
