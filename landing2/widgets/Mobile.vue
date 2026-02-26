@@ -98,6 +98,7 @@ onMounted(async () => {
         </SwiperSlide>
       </CubeSlider> -->
  
+      <PromoMobile/>
 <!--      <div ref="secondSliderRef">-->
 <!--        <CubeSlider>-->
 <!--          <SwiperSlide>-->
