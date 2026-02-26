@@ -124,7 +124,7 @@ onMounted(async () => {
 
       <TarifMobile/>
 
-      <FormMobile/>
+<!--      <FormMobile/>-->
     </client-only>   
   </div>
  
