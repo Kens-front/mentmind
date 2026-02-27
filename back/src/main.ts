@@ -13,7 +13,8 @@ async function bootstrap() {
   })
   app.enableCors({ origin: true, credentials: true, });
   app.use(cookieParser());
-app.useGlobalFilters(new AllExceptionsFilter());    
+    app.set('trust proxy', 1);
+    app.useGlobalFilters(new AllExceptionsFilter());    
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true, // Автоматически преобразовывать JSON в объекты DTO

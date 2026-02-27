@@ -15,9 +15,6 @@ import { LessonPackage } from "src/lesson-package/entities/lesson-package.entity
 export class User {
     @PrimaryGeneratedColumn()
     id: number
-
-    @Column({default: 'dark', nullable: false})
-    theme: string
     
     @Column()
     first_name: string
