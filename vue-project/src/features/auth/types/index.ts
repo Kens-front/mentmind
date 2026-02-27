@@ -15,6 +15,7 @@ export interface ILoginResponse {
         last_name: string
         email: string
         avatar: string | null
+        theme: 'dark' | 'light'
     } | null
 
     token: string

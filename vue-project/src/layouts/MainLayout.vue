@@ -48,7 +48,7 @@ watch(
   <style lang="scss" scoped>
   .layout {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-areas: 'aside main';
     height: 100vh;
   }
@@ -56,8 +56,7 @@ watch(
   .main {
     padding: 2rem;
     height: inherit;
-    background: var(--surface);
-
+ 
   }
 
  

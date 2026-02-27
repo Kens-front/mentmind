@@ -2,7 +2,7 @@
     <div class="page">
         <CreateUserForm>
             <div class="top">
-                <h1>Студенты</h1>
+                <h1 class="title-c">Студенты</h1>
 
                 <OpenCreateUserModal 
                     v-if="setVisibleElement([RoleList.ADMIN])"

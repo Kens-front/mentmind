@@ -4,7 +4,10 @@
           <span>MentMind</span>
 
           <div class="info">
+            <div class="avatar">
               <el-avatar :icon="UserFilled" :src="avatar" />
+            </div>
+ 
 
               <span>
                 {{ authStore.userData.user?.first_name }}
@@ -28,6 +31,17 @@
                   </el-badge>
                 </RouterLink>
             </li>
+
+            <li>
+              <a>
+                <el-switch
+                    v-model="userStore.theme"
+                    active-text="Темная тема"
+                    size="small"
+                />
+              </a>
+            </li>
+            
             <li>
                 <RouterLink @click.prevent="onClick" to="">Выйти</RouterLink>
             </li>
@@ -47,12 +61,15 @@ import { UserFilled } from '@element-plus/icons-vue';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { ChatLineRound } from '@element-plus/icons-vue';
+import {useUserStore} from "@/features/users/store/store.ts";
 const router = useRouter();
 const authStore = useAuthStore()
 const chatStore = useChatStore()
-
+const userStore = useUserStore()
+ 
 const avatar = computed(() => authStore.userData.user?.avatar ? generateImageUrl(authStore.userData.user.avatar) : '');
 
+ 
 const navigation = computed(() => {
     return NAVIGATION_LINKS.filter(link => {
         const role = authStore.role;
@@ -76,11 +93,14 @@ async function onClick() {
 
 </script>
 <style lang="scss" scoped>
+.avatar {
+  border-radius: 50%;
+  border: 2px solid var(--gold-dark);
+}
 .aside {
   grid-area: aside;
-  background: linear-gradient(180deg, var(--sidebar-bg), var(--sidebar-bg-muted));
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-
+  border-right: 1px solid var(--border-gold);
+  padding: 2rem;
   display: grid;
   grid-template-rows: max-content 1fr;
   height: inherit;
@@ -111,7 +131,6 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(2rem, max-content));
   align-items: center;
   gap: .2rem;
-  padding: 10px 14px;
   border-radius: 10px;
   padding: 1rem 20px;
 
@@ -124,7 +143,7 @@ a {
 
 a:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  color: var(--gold-primary);
 }
 
 .active {
@@ -139,7 +158,8 @@ a:hover {
   padding: 2.4rem 2rem;
   font-size: 15px;
   font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: var(--gold-primary);
+  text-transform: uppercase;
 }
 
 .info {
@@ -149,6 +169,12 @@ a:hover {
   column-gap: 1rem;
   font-size: 15px;
   font-weight: 500;
+}
+
+li {
+  & i {
+    color: var(--gold-primary);
+  }
 }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <h1>Учебные направления</h1>
+        <h1 class="title-c">Учебные направления</h1>
 
         <LearnDirectionForm/>
 

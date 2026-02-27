@@ -1,6 +1,6 @@
 <template>
 	<div class="top">
-		<h1>Группы</h1>
+		<h1 class="title-c">Группы</h1>
 
 		<OpenModal v-bind="modalData">
 			<el-button>Создать группу</el-button>

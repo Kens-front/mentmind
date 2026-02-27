@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div>
-            <h1>Чаты</h1>
+            <h1 class="title-c">Чаты</h1>
         </div>
 
         <EmptyContainer>

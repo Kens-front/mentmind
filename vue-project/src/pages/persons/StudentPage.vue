@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <h1>Студент</h1>
+        <h1 class="title-c">Студент</h1>
 
         <UpdateUserForm>
             <UpdateUser :id="+id" :role="RoleList.STUDENT">

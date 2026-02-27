@@ -1,6 +1,7 @@
 <template>
     <div class="calendar-wrap">
-        <vue-cal
+        <vue-cal 
+            :dark="userStore.theme"
             :event-overlap="false"
             :events="events"             
             default-view="week"
@@ -38,6 +39,9 @@ import type { ILessonSlotEvent } from '@/features/mentor-availability/types';
 import {VueCal} from 'vue-cal';
 import 'vue-cal/style'
 import {CopyDocument} from "@element-plus/icons-vue";
+import {useAuthStore} from "@/features/auth/store";
+import {useUserStore} from "@/features/users/store/store.ts";
+const userStore = useUserStore();
 
 
 interface IProps {

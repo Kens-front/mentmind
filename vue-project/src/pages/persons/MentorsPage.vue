@@ -2,7 +2,7 @@
     <div class="page">
         <CreateUserForm>
             <div class="top">
-                <h1>Менторы</h1>
+                <h1 class="title-c">Менторы</h1>
 
                 <OpenCreateUserModal button-title="Создать ментора" :role="RoleList.MENTOR"/>
             </div>

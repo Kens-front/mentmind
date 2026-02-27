@@ -6,11 +6,14 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import './shared/scss/main.scss'
+import './shared/scss/default.css'
 import { vMaska } from 'maska/vue'
 import { ru } from 'element-plus/es/locales.mjs'
 import '@mobilon-dev/chotto/style.css'
 import  VueCookie  from 'vue-cookies'
 const app = createApp(App)
+import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css' // Тёмная тема
 
 app.use(createPinia())
 app.use(router)

@@ -2,9 +2,11 @@
 import axios from 'axios'
 import { useAuthStore } from '@/features/auth/store'
 import { notifyError } from './notifications'
+const isDev = true;
 
+const url = isDev? 'http://localhost:5000' : 'http://mentmind.ru/api'
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', // твой backend
+  baseURL: url, // твой backend
   withCredentials: true,
 })
 

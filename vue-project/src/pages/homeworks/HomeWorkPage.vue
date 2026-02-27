@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <div>
+        <div class="title-c">
             Занятие
         </div>
 

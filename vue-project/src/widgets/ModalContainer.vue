@@ -82,6 +82,6 @@ import { computed } from 'vue';
   flex-direction: column;
   padding: 2rem;
   border-radius: 1rem;
-  background-color: #fff;
+ 
 }
   </style>

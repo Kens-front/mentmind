@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <h1>Выплаты менторам</h1>
+        <h1 class="title-c">Выплаты менторам</h1>
         
         <EntitiesFilter
             :filter="filter"

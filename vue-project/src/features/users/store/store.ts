@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
-import { computed, reactive, ref, type Reactive } from "vue";
+import {computed, reactive, ref, type Reactive, watch} from "vue";
 import { RoleList, USER_LEVEL, USER_STATUSES, type IUpdateUserFull, type IUser, type IUserForm, type IUserFull, type IUserUpdateForm, type TUserFull, type TUserFullSpread } from "../types";
 import { userApi, type TProfile } from "../api";
 import type { LESSON_TYPES } from "@/features/lessons/types";
+import {useAuthStore} from "@/features/auth/store";
 
 
 export interface IMentorProfile {
@@ -35,6 +36,8 @@ export const useUserStore = defineStore('users', () => {
     }) as Reactive<IUserFull>
 
 
+    const theme = ref((localStorage.getItem("theme") === 'true') || false);
+
     const newUser = reactive({
         user: {} as IUser,
         profile: {
@@ -45,7 +48,7 @@ export const useUserStore = defineStore('users', () => {
 
     async function createUser(payload: IUserForm) {
         const { data } = await userApi.create({ ...payload, ...newUser.profile })
-
+ 
         const newItem = {
             id: data.user.id,
 
@@ -162,12 +165,30 @@ export const useUserStore = defineStore('users', () => {
      *     return Promise.all(promises)
      * }
      */
-
-
+    
 
     function setRole(role: RoleList) {
         newUser.user.role = role;
     }
+    
+    watch(theme, async (newVal) => {
+        console.log(newVal)
+        const html = document.querySelector('html');
+
+        if (!html) return;
+
+        if(html && !newVal) {
+            html.classList.remove('dark');
+
+            document.body.classList.add('light-theme');
+        } else {
+            html.classList.add('dark');
+
+            document.body.classList.remove('light-theme');
+        }
+
+        localStorage.setItem('theme', `${html.classList.contains('dark')}`);
+    }, {immediate: true})
     return {
         newUser,
         users,
@@ -179,6 +200,7 @@ export const useUserStore = defineStore('users', () => {
         update,
         getOne,
         getProfile,
+        theme,
         updateProfile,
     }
 })

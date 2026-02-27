@@ -21,9 +21,12 @@ interface IMetrikaApi {
 }
 
 
+const isDev = true;
+
+const url = isDev? 'http://localhost:5000/' : 'http://mentmind.ru/api/'
 export const metrikaApi: IMetrikaApi = {
     async create(dto) {
-        const response = await fetch('/api/metrika', {
+        const response = await fetch(`${url}metrika`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
