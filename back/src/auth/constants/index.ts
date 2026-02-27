@@ -8,9 +8,9 @@ export enum USER_PARAMS {
 
  
 export const TOKEN_DATA = {
-    httpOnly: true, // Доступно только через HTTP (защита от XSS)
-    maxAge: 1000 * 60 * 60 * 24, // Время жизни cookie (1 день в миллисекундах)
-    partitioned: true,
-    secure: true,
-    sameSite: 'none'
+    httpOnly: true,
+    secure: false, // 🔥 true только на HTTPS
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 🔥 'none' требует secure
+    path: '/',
+    domain: process.env.NODE_ENV === 'production' ? '.yourdomain.com' : undefined,
   } as CookieOptions
