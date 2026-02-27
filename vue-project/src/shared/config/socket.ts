@@ -5,7 +5,9 @@ import { useMessageStore } from '@/features/messages/store';
 import type { IMessage } from '@/features/messages/types';
 import { defineStore } from 'pinia';
 import { io, Socket } from 'socket.io-client';
+const isDev = false;
 
+const url = isDev? 'http://localhost:5000' : 'http://mentmind.ru/api'
 interface Message {
   from: string;
   text: string;
@@ -25,7 +27,7 @@ export const useSocketStore = defineStore('socket', {
       const messageStore = useMessageStore();
       const authStore = useAuthStore()
 
-      this.socket = io('http://localhost:5000', {
+      this.socket = io('http://mentmind.ru/api', {
         transports: ['websocket'],
         auth: {
             id,

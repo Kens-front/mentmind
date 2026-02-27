@@ -6,7 +6,7 @@ const isDev = false;
 
 const url = isDev? 'http://localhost:5000' : 'http://mentmind.ru/api'
 export const axiosInstance = axios.create({
-  baseURL: url, // твой backend
+  baseURL: 'http://mentmind.ru/api', // твой backend
   withCredentials: true,
 })
 
