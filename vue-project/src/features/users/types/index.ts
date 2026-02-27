@@ -97,7 +97,6 @@ export interface IUserForm {
     phone: string,
     password: string,
     role: RoleList
-    theme: 'dark' | 'light'
 }
 
 export interface IUserUpdateForm {
