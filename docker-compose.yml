@@ -38,8 +38,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
-    # volumes:
-    #   - vue_dist:/app/dist:ro
+    volumes:
+      - vue_dist:/usr/share/nginx/html/vue:ro
     networks:
       - app_network
 
