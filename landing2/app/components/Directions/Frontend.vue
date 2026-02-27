@@ -68,7 +68,13 @@ defineProps<IProps>();
 .title {
     font-size: 5rem;
     font-weight: 700;
-  color: #40e0c0;
+    color: #40e0c0;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 8rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
 }
 
 .main-tab {
@@ -129,7 +135,7 @@ defineProps<IProps>();
    font-size: 2rem;
 
    @media screen and (max-width: 1024px) {
-     font-size: 3rem;
+     font-size: 4rem;
    }
  }
 </style>

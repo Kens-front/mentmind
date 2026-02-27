@@ -442,7 +442,7 @@ h3 {
   
   & .item {
     padding: 8px 0;
-    font-size: 10px;
+    font-size: 1.4rem;
   }
 }
 @keyframes float {

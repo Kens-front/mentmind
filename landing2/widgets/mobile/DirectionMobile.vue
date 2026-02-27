@@ -54,7 +54,7 @@ function onChange(swiper: any) {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .swiper {
   width: 100%;
@@ -85,6 +85,15 @@ function onChange(swiper: any) {
 .vertical-container {
   height: 100%;
   width: 100%;
+
+  & .direction_items {
+    padding: 0;
+  }
+
+  & .direction_card {
+    max-width: 100%;
+  }
+ 
 }
 
 .hidden {

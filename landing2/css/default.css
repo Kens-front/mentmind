@@ -99,3 +99,16 @@ a {
   --padX: 18px;
   --headerH: 76px;
 }
+
+
+/* --- Цветовая схема (фиолетовая/бирюзовая) --- */
+:root {
+  --primary-color: #8b5cf6;        /* Яркий фиолетовый */
+  --primary-light: #a78bfa;        /* Светло-фиолетовый */
+  --primary-dark: #7c3aed;         /* Тёмно-фиолетовый */
+  --accent-color: #2dd4bf;         /* Бирюзовый/Teal */
+  --text-dark: #1a202c;            /* Тёмный текст */
+  --text-light: #a0aec0;           /* Светлый текст */
+  --card-bg-dark: #1a1a2e;         /* Тёмный фон карточки */
+  --card-bg-darker: #0f0f1e;       /* Ещё темнее */
+}

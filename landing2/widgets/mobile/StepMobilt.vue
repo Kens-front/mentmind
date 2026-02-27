@@ -124,7 +124,7 @@ const setThumbsSwiper = (swiper: any) => {
   align-items: center;
   justify-content: center;
   max-width: 100%;
-  height: 80%;
+  height: 90%;
   box-shadow: 0px 3px 30px #67287f;
   border-radius: 3rem;
 }

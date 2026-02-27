@@ -1,5 +1,47 @@
 <template>
-    <div class="tarif">
+        <div class="tariff-card-wrapper">
+      <!-- Внешняя карточка с фиолетовым эффектом -->
+      <div class="tariff-card-outer">
+        
+        <!-- Внутренняя карточка с чёрным фоном -->
+        <div class="tariff-card-inner">
+          
+          <!-- Бейдж скидки -->
+          <div class="discount-badge">-{{tarif.percent}}%</div>
+
+          <!-- Заголовок тарифа -->
+          <h3 class="tariff-title">{{ tarif.title }}</h3>
+
+          <!-- Цена -->
+          <div class="price-container">
+            <p>
+                <span class="line"></span>
+                <span class="price-old">3600/час</span>
+            </p>
+
+            <span class="price-new">{{ tarif.newPrice }}<span class="price-unit">/час</span></span>
+          </div>
+
+          <!-- Список преимуществ -->
+          <ul class="features-list">
+            <li
+                v-for="value of tarif.features"
+                :key="value"
+                class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span class="feature-text">{{ value }}</span>
+            </li>
+          </ul>
+
+          <!-- Кнопка -->
+          <button class="cta-button">Связаться</button>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="tarif">
         <div class="tarif-top">
           <div>
             <span class="tarif-label">-{{tarif.percent}}%</span>
@@ -25,8 +67,8 @@
             </div>
         </div>
 
-        <button  class="btn">Связаться</button>
-    </div>
+        <a href="#form" class="btn">Связаться</a>
+    </div> -->
 </template>
 
 <script setup lang="ts">
@@ -85,12 +127,12 @@ const {tarif } = defineProps<IProps>()
             margin: 0;
 
             @media screen and (max-width: 1024px) {
-                font-size: 3.2rem;
+                font-size: 4.2rem;
             }
         }
 
         @media screen and (max-width: 1024px) {
-            font-size: 4.4rem;
+            font-size: 5.4rem;
         }
     }
 
@@ -108,11 +150,8 @@ const {tarif } = defineProps<IProps>()
         border-bottom: 1px solid #E2E8F0;
         
         @media screen and (max-width: 1024px){
-            font-size: 3rem;
-        }
-
-        @media screen and (max-width: 768px){
-            row-gap: 3rem;
+            font-size: 4rem;
+            padding-bottom: 2rem;
         }
     }
 
@@ -144,12 +183,9 @@ const {tarif } = defineProps<IProps>()
 
                         
                 @media screen and (max-width: 1024px){
-                    font-size: 3rem;
+                    font-size: 4rem;
                 }
-
-                @media screen and (max-width: 768px){
-                    font-size: 3.4rem;
-                }
+ 
             }
             &:last-child {
                 font-size: 3.2rem;
@@ -157,7 +193,7 @@ const {tarif } = defineProps<IProps>()
 
                         
                 @media screen and (max-width: 1024px){
-                    font-size: 5rem;
+                    font-size: 6rem;
                 }
             }
         }
@@ -223,6 +259,13 @@ const {tarif } = defineProps<IProps>()
     height: max-content;
     align-self: anchor-center;
     letter-spacing: 0.04em;
+    text-align: center;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 5rem;
+        color: inherit;
+        font-weight: 600;
+    }
 }
 
 .btn:hover {
@@ -238,5 +281,276 @@ const {tarif } = defineProps<IProps>()
 .suffix {
     font-size: 3rem;
     font-weight: normal;
+}
+
+
+ 
+
+/* --- Внешняя карточка (фиолетовое свечение) --- */
+.tariff-card-outer {
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(45, 212, 191, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
+    linear-gradient(145deg, #2d1f4e 0%, #1a1a2e 50%, #0f0f1e 100%);
+  border-radius: 24px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 
+    0 0 60px rgba(139, 92, 246, 0.3),
+    inset 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+/* --- Внутренняя карточка (тёмная) --- */
+.tariff-card-inner {
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 50%, #0a0a15 100%);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 16px;
+  padding: 30px 24px 24px;
+  position: relative;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Фиолетовая линия сверху */
+.tariff-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(139, 92, 246, 0.8) 50%, 
+    transparent 100%
+  );
+}
+
+/* --- Бейдж скидки (фиолетовый градиент) --- */
+.discount-badge {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  z-index: 10;
+}
+
+/* --- Заголовок тарифа (фиолетовый) --- */
+.tariff-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 15px 0 20px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+/* --- Контейнер цены --- */
+.price-container {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    text-align: center;
+    margin-bottom: 25px;
+
+  & p {
+    &:first-child {
+        position: relative;
+        width: max-content;
+        font-size: 2.2rem;
+        margin: 0 auto;
+
+        & .line {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            height: .2rem;
+            background-color: #40e0c0;
+            width: 0%;
+        }
+
+                
+        @media screen and (max-width: 1024px){
+            font-size: 4rem;
+        }
+
+    }
+    &:last-child {
+        font-size: 3.2rem;
+        font-weight: bold;
+
+                
+        @media screen and (max-width: 1024px){
+            font-size: 6rem;
+        }
+    }
+}
+}
+
+.price-old {
+  display: block;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+  margin-bottom: 5px;
+}
+
+.price-new {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.price-unit {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(139, 92, 246, 0.7);
+}
+
+/* --- Список преимуществ --- */
+.features-list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.check-icon {
+  color: var(--accent-color);
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.gift-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.feature-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+/* --- Кнопка (фиолетовая с градиентом) --- */
+.cta-button {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(139, 92, 246, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 10px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 26px;
+  }
+
+  .tariff-card-outer {
+    padding: 20px;
+    border-radius: 20px;
+
+    @media screen and (max-width: 1024px) {
+        padding: 10px;
+    }
+  }
+
+  .tariff-card-inner {
+    padding: 25px 20px 20px;
+    border-radius: 14px;
+  }
+
+  .discount-badge {
+    padding: 8px 16px;
+    font-size: 14px;
+    left: 20px;
+  }
+
+  .tariff-title {
+    font-size: 24px;
+    margin-top: 10px;
+
+    @media screen and (max-width: 1024px) {
+        margin-top: 30px;
+    }
+  }
+
+  .price-new {
+    font-size: 32px;
+  }
+
+  .price-old {
+    font-size: 14px;
+  }
+
+  .features-list {
+    padding: 15px;
+  }
+
+  .feature-text {
+    font-size: 13px;
+  }
+
+  .cta-button {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
 }
 </style>

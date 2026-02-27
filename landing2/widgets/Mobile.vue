@@ -18,6 +18,7 @@ import StartMobile from "~~/widgets/mobile/StartMobile.vue";
  
 import FormMobile from "~~/widgets/mobile/FormMobile.vue";
 import TarifMobile from "~~/widgets/mobile/TarifMobile.vue";
+import { ref } from "vue";
 
 
 const firstSlider = [
@@ -57,6 +58,12 @@ const options = {
   threshold: 0.5,
 }
 
+
+const activeSlideIndex = ref(0)
+
+function onChange(index: number) {
+  activeSlideIndex.value = index
+}
  
 
 onMounted(async () => {
@@ -72,7 +79,7 @@ onMounted(async () => {
   <div class="mobile-v" :class="{'mobile-v__active': isLight}">
     
     <StartMobile/>
-      <CubeSlider>
+      <CubeSlider @change="onChange">
         <SwiperSlide>
           <div class="wrap">
             <PromoMobile/>
@@ -87,7 +94,7 @@ onMounted(async () => {
 
         <SwiperSlide>
           <div class="wrap">
-            <AboutMobile /> 
+              <AboutMobile v-if="activeSlideIndex === 2" /> 
           </div>
         </SwiperSlide>
 

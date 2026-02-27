@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="form_wrap">
+  <div id="form" class="form_wrap">
     <form @submit.prevent.stop="onSubmit" class="form">
       <div class="image" :style="{backgroundImage: `url(${image})`}">
 
@@ -7,7 +7,7 @@
 
       <transition>
         <div v-if="status === 'pending'" class="inputs">
-          <h2>Свяжемся с Вами в ближайшее время</h2>
+          <h2 class="title-main">Свяжемся с Вами в ближайшее время</h2>
           <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white" />
           <q-select v-model="formData.method" label="Предпочтительный способ связи" :options="options" behavior="menu"/>
           <q-input v-model="formData.callbackMethod" ref="methodCallbackRef" :label="userMethod?.label" :placeholder="userMethod?.placeholder" color="white"/>
@@ -167,6 +167,19 @@ onMounted( async () => {
   position: relative;
   display: flex;
   align-items: center;
+  min-height: 100dvh;
+
+  &:after {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    background: url('../../public/assets/sky.png') no-repeat center/cover;
+    mix-blend-mode: color-burn;
+  }
 
   @media screen and (max-width: 768px) {
     display: grid;
@@ -184,7 +197,7 @@ onMounted( async () => {
   max-width: 85%;
   margin: 2rem auto;
   width: 100%;
-  height: max-content;
+  height: 90%;
   padding: 2rem;
   gap: 2rem;
   color: #fff;
@@ -336,4 +349,11 @@ h3 {
   }
 }
 
+.title-main {
+  @media screen and (max-width:1024px) {
+    font-size: 6rem;
+    text-align: center;
+    line-height: 100%;
+  }
+}
 </style>

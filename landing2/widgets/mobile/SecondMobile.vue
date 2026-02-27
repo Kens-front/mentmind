@@ -36,7 +36,7 @@ const TITLE = 'Разрабатываем под вас индвидуальну
   justify-content: start;
   align-items: start;
   height: 100%;
-  color: rgb(254,233,206);
+ 
 
   &_title {
     position: relative;
@@ -45,7 +45,6 @@ const TITLE = 'Разрабатываем под вас индвидуальну
     justify-content: center;
     font-size: 10rem;
     line-height: 10rem;
-    opacity: .2;
 
     @media screen and (max-width: 767px) {
       font-size: 6rem;
@@ -113,6 +112,5 @@ const TITLE = 'Разрабатываем под вас индвидуальну
 
 .text {
   text-indent: 18rem;
-  color: #CBD5E1;
 }
 </style>

@@ -24,6 +24,17 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { nextTick, onMounted, ref } from 'vue';
 
+
+const text = ref(null)
+
+onMounted(() => {
+  const tl = gsap.timeline()
+
+  tl.to(text.value, {
+        backgroundPosition: '0 0',
+    })
+    .duration(2)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -101,7 +112,7 @@ import { nextTick, onMounted, ref } from 'vue';
 
 .spans {
   display: grid;
-  row-gap: 1rem;
+  row-gap: 10rem;
 }
 
 .mix {

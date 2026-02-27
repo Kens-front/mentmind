@@ -16,8 +16,16 @@ onMounted(() => {
   
   const leftLetters = left.value.querySelectorAll('span');
   const rightLetters = right.value.querySelectorAll('span');
+  const leftWord = left.value.querySelector('.left_image');
+  const rightWord = right.value.querySelector('.right_image');
   
   tl.to(document.body, {overflow: 'hidden'});
+  
+  tl.
+      to(leftWord, {display: 'flex'})
+      .to(rightWord, {display: 'flex'})
+  
+  
   leftLetters.forEach(l => {
     if (l) {
       tl.fromTo(l, {opacity: 0}, {opacity: 1});
@@ -32,8 +40,9 @@ onMounted(() => {
   tl
       .to(left.value, {translateX: '-100%'})
       .to(right.value, {translateX: '100%'}, '<')
-      .to(flap.value, {display: 'none'}, '<')
+      .to(flap.value, {opacity: 0}, '<')
       .to(document.body, {overflow: 'visible'})
+      .to(flap.value, {display: 'none'}, '<')
 })
 </script>
 
@@ -64,6 +73,19 @@ onMounted(() => {
   height: 100dvh;
   background: transparent;
   color: #E2E8F0;
+
+  
+  &:after {
+    position: absolute;
+    z-index: 22;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    background: url('../../public/assets/sky.png') no-repeat center/cover;
+    mix-blend-mode: color-burn;
+  }
 }
 
 .left, .right {
@@ -82,7 +104,7 @@ onMounted(() => {
 }
 
 .left_image, .right_image {
-  display: flex;
+  display: none;
   align-items: center;
   width: 100%;
   height: 100%;

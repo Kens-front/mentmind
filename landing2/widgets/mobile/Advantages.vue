@@ -11,6 +11,7 @@
     }"
       :navigation="true"
       :modules="modules"
+      nested
       class="mySwiper"
   >
     <div
@@ -23,7 +24,7 @@
         data-swiper-parallax="-23%"
     ></div>
     <swiper-slide v-for="slide of slides" :key="slide.title">
-      <div>
+      <div class="text__wrap">
         <div class="title" data-swiper-parallax="-300">{{slide.title}}</div>
         <div class="text" data-swiper-parallax="-200">
           <p>
@@ -64,7 +65,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Parallax, Pagination, Navigation],
+      modules: [Parallax],
     };
   },
   
@@ -103,6 +104,7 @@ export default {
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center;
+  opacity: 0.1;
 }
 
 .swiper-slide .title {
@@ -120,6 +122,11 @@ export default {
   max-width: 400px;
   margin-top: 4rem;
  
+}
+
+.text__wrap {
+  padding: 6rem;
+  height: 100%;
 }
 
 </style>
