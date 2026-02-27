@@ -93,7 +93,8 @@ const form = reactive<IUserForm>({
     login: '',
     phone: '',
     password: '',
-    role
+    role,
+    theme: 'dark'
 })
 
 const rules: FormRules = {
