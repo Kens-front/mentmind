@@ -21,7 +21,7 @@ interface IMetrikaApi {
 }
 
 
-const isDev = true;
+const isDev = false;
 
 const url = isDev? 'http://localhost:5000/' : 'http://mentmind.ru/api/'
 export const metrikaApi: IMetrikaApi = {
