@@ -65,7 +65,7 @@ export function generateImageUrl(imageUrl: string | undefined | null) {
     return;
   }
 
-  return `http://localhost:5000/${imageUrl}`
+  return `http://mentmind.ru/api/${imageUrl}`
 }
 
 

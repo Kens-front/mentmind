@@ -109,13 +109,7 @@ const userStore = useUserStore()
  
 const source = userStore.updateUser
 
-
-async function login(){
-  const response = await fetch('http://localhost:5000/auth/login', {method: "POST", headers: {'Content-Type': 'application/json', body: JSON.stringify({login: 'lizasi', password: 'Qwerty1'})}})
-  const data = await response.json()
-  console.log(data)
-}
-
+ 
 const imageFile = ref<File | null>(null)
 const imageUrl = ref<string | null>(null);
 
