@@ -12,7 +12,7 @@ interface Message {
   text: string;
   at: string;
 }
-const url = import.meta.env.VITE_API_URL;
+const url = import.meta.env.VITE_API_DOMAIN;
 export const useSocketStore = defineStore('socket', {
   state: () => ({
     socket: null as Socket | null,
