@@ -12,7 +12,7 @@ interface Message {
   text: string;
   at: string;
 }
-
+const url = import.meta.env.VITE_API_URL;
 export const useSocketStore = defineStore('socket', {
   state: () => ({
     socket: null as Socket | null,
@@ -26,7 +26,7 @@ export const useSocketStore = defineStore('socket', {
       const messageStore = useMessageStore();
       const authStore = useAuthStore()
 
-      this.socket = io('http://mentmind.ru/api', {
+      this.socket = io(url, {
         transports: ['websocket'],
         auth: {
             id,

@@ -37,7 +37,8 @@ services:
       context: ./vue-project
       dockerfile: Dockerfile
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+      VITE_API_URL: ${VITE_API_URL}
     volumes:
       - vue_dist:/usr/share/nginx/html/vue:ro
     networks:

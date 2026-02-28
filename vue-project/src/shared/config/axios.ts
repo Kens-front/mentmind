@@ -4,8 +4,9 @@ import { useAuthStore } from '@/features/auth/store'
 import { notifyError } from './notifications'
 const isDev = false;
  
+const url = import.meta.env.VITE_API_URL;
 export const axiosInstance = axios.create({
-  baseURL: 'http://mentmind.ru/api', // твой backend
+  baseURL: url, // твой backend
   withCredentials: true,
 })
 
