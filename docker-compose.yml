@@ -39,6 +39,7 @@ services:
     environment:
       NODE_ENV: production
       VITE_API_URL: ${VITE_API_URL}
+      VITE_API_DOMAIN: ${VITE_API_DOMAIN}
     volumes:
       - vue_dist:/usr/share/nginx/html/vue:ro
     networks:
