@@ -13,6 +13,17 @@ interface Message {
   at: string;
 }
 const url = import.meta.env.VITE_API_DOMAIN;
+
+
+
+
+console.log('🔌 [SOCKET] VITE_API_DOMAIN:', url);
+console.log('🔌 [SOCKET] URL.origin:', new URL(url).origin);
+console.log('🔌 [SOCKET] Connecting to:', url, 'with config:', {
+  path: '/socket.io/',
+  transports: ['websocket'],
+  withCredentials: true,
+});
 export const useSocketStore = defineStore('socket', {
   state: () => ({
     socket: null as Socket | null,
