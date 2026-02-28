@@ -6,8 +6,8 @@ services:
     image: nginx:latest
     container_name: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - vue_dist:/usr/share/nginx/html/vue:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - vue_dist:/usr/share/nginx/html/vue
     ports:
       - "80:80"
       # - "443:443"
