@@ -7,7 +7,7 @@ services:
     container_name: nginx
     build:
       context: .  # Контекст должен быть корнем, чтобы видеть vue-project
-      dockerfile: ./nginx/Dockerfile
+      dockerfile: ./vue-project/Dockerfile
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
