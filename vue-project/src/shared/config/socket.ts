@@ -27,7 +27,9 @@ export const useSocketStore = defineStore('socket', {
       const authStore = useAuthStore()
 
       this.socket = io(url, {
+        path: '/socket.io/',
         transports: ['websocket'],
+        withCredentials: true,
         auth: {
             id,
         },
