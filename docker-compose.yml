@@ -87,11 +87,21 @@ services:
     restart: always
 
   # Let's Encrypt для SSL
-  certbot:
+  certbot-renew:
     image: certbot/certbot
     volumes:
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
+    entrypoint: >
+      sh -c "trap exit TERM;
+             while :;
+             do
+               certbot renew --webroot -w /var/www/certbot \
+               --deploy-hook 'nginx -s reload';
+               sleep 12h & wait $${!};
+             done"
+    depends_on:
+      - nginx
 
 networks:
   app_network:
