@@ -18,21 +18,21 @@ services:
     networks:
       - app_network
     depends_on:
-      - nuxt
+#      - nuxt
       - nest
     restart: always 
 
 #  # Nuxt 3
-  nuxt:
-    build:
-      context: ./landing2
-      dockerfile: Dockerfile
-    environment:
-      - HOST=0.0.0.0
-      - PORT=3000
-      - NODE_ENV=production
-    networks:
-      - app_network
+#  nuxt:
+#    build:
+#      context: ./landing2
+#      dockerfile: Dockerfile
+#    environment:
+#      - HOST=0.0.0.0
+#      - PORT=3000
+#      - NODE_ENV=production
+#    networks:
+#      - app_network
 #
 #  # Vue 3
 #  vue:
