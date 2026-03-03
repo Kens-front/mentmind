@@ -34,7 +34,7 @@
           </ul>
 
           <!-- Кнопка -->
-          <button class="cta-button">Связаться</button>
+          <button @click="onClick" class="cta-button">Связаться</button>
 
         </div>
       </div>
@@ -77,6 +77,13 @@ interface IProps {
 }
 
 const {tarif } = defineProps<IProps>()
+const router = useRouter()
+function onClick() {
+  const form = document.querySelector('#form')
+  const formMobile = document.querySelector('#form-mobile')
+  const y = form?.offsetTop || formMobile?.offsetTop;
+  scrollTo(0, y);
+}
 </script>
 
 
@@ -403,8 +410,11 @@ const {tarif } = defineProps<IProps>()
   display: block;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.4);
-  text-decoration: line-through;
   margin-bottom: 5px;
+  
+  @media screen and (max-width: 1024px) {
+    text-decoration: line-through;
+  }
 }
 
 .price-new {

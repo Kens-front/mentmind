@@ -3,7 +3,7 @@
 		<div class="text">
 			<span class="subtitle" ref="subtitle">MentMinde</span>
 			<h1 class="title" ref="title">
-				<span class="word" ref="word1">Спрашивай</span>
+				<span class="word" ref="word1">Узнавай</span>
 				<span class="word" ref="word2"><span ref="label">By MentMind</span>Понимай</span>
 				<span class="word" ref="word3">Расти</span>
 				<span class="word" ref="word4">Вместе</span>

@@ -23,9 +23,10 @@ interface IMetrikaApi {
 
 const isDev = false;
  
+ 
 export const metrikaApi: IMetrikaApi = {
     async create(dto) {
-        const response = await fetch(`http://mentmind.ru/api/metrika`, {
+        const response = await fetch(`https://mentmind.ru/api/metrika`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

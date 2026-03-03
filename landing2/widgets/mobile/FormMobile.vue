@@ -1,5 +1,5 @@
 ﻿<template>
-  <div id="form" class="form_wrap">
+  <div id="form-mobile" class="form_wrap">
     <form @submit.prevent.stop="onSubmit" class="form">
       <div class="image" :style="{backgroundImage: `url(${image})`}">
 
@@ -30,8 +30,7 @@
         <div class="trust-line">🔒 Работаем официально и бережно относимся к вашим данным</div>
         <div class="footer-divider"></div>
         <div class="legal-line">
-          ИП Пасечник Константин Константинович · ИНН 1231231231 ·
-          <a href="#">Политика конфиденциальности</a>
+          ИП Пасечник Константин Константинович · ИНН 550719859728
         </div>
       </div>
     </form>
@@ -197,7 +196,7 @@ onMounted( async () => {
   max-width: 85%;
   margin: 2rem auto;
   width: 100%;
-  height: 90%;
+  height: 95%;
   padding: 2rem;
   gap: 2rem;
   color: #fff;

@@ -10,7 +10,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { JwtPort } from './jwt/jwt.service';
 
 @WebSocketGateway({
-  cors: { origin: '*'},
+  cors: { origin: '*', credentials: true,},
+  path: '/socket.io/',
   transports: ['websocket'],
 })
 @Injectable()

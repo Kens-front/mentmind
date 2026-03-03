@@ -196,6 +196,8 @@ const THEMES_CSS = {
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 2rem;
+  width: 20rem;
+  height: 10rem;
 
   @media screen and (max-width: 768px) {
     width: max-content;

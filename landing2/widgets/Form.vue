@@ -22,7 +22,16 @@
                     <h2>Свяжемся с Вами в ближайшее время</h2>
                     <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white"  lazy-rules  :rules="[val => val.length > 3 || 'Имя должно быть больше 2 символов']"/>
                     <q-select v-model="formData.method" label="Предпочтительный способ связи" :options="options" behavior="menu"/>
-                    <q-input v-model="formData.callbackMethod" ref="methodCallbackRef" :label="userMethod?.label"  lazy-rules :rules="emailRules" :placeholder="userMethod?.placeholder" color="white"/>
+                    <q-input 
+                        v-model="formData.callbackMethod" 
+                        ref="methodCallbackRef" 
+                        :label="userMethod?.label"  
+                        lazy-rules 
+                        :rules="rules[formData.method]" 
+                        :placeholder="userMethod?.placeholder" 
+                        color="white"
+                        v-bind="directives"
+                    />
                     <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
                     <div class="checkbox">
                         <q-item class="item" tag="label" v-ripple>
@@ -42,8 +51,7 @@
             <div class="trust-line">🔒 Работаем официально и бережно относимся к вашим данным</div>
             <div class="footer-divider"></div>
             <div class="legal-line">
-                ИП Пасечник Константин Константинович · ИНН 1231231231 ·
-                <a href="#">Политика конфиденциальности</a>
+                ИП Пасечник Константин Константинович · ИНН 550719859728
             </div>
         </div>
         </form>
@@ -73,6 +81,22 @@ const formData = reactive({
 const emailRules = [
     (val:string) => val.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) || 'Введите корректную почту'
 ]
+
+const rules = {
+  Email: [
+    (val:string) => val.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) || 'Введите корректную почту'
+  ],
+  
+  VK: [
+    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{4,31}$/) || 'Введите корректный никнейм'
+  ],
+
+  Telegram: [
+    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{4,31}$/) || 'Введите корректный никнейм'
+  ],
+  
+  
+}
 const text = ref('');
 const options = [
     'Телефон',
@@ -104,6 +128,15 @@ const userMethod = computed(() => PLACEHOLDERS[formData.method]);
 const nameRef = ref(null)
 const methodCallbackRef = ref(null)
 
+const directives = computed(() => {
+  if (formData.method === 'Телефон') {
+    return {
+      mask:"+7(###) ### - ####"
+    }
+  }
+  
+  return null;
+})
 function onClick() {
   nameRef.value.validate()
   methodCallbackRef.value.validate()
