@@ -163,7 +163,7 @@ async function onSubmit() {
       }
       
         const {name, method, callbackMethod} = formData;
-        const response = await fetch('http://mentmind.ru/api/request', {
+        const response = await fetch('https://mentmind.ru/api/request', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
