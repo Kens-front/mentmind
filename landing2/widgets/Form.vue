@@ -52,6 +52,9 @@
             <div class="footer-divider"></div>
             <div class="legal-line">
                 ИП Пасечник Константин Константинович · ИНН 550719859728
+              <p>
+                <a href="https://mentmind.ru/api/uploads/policy/user_agreement.pdf">Пользовательское соглашение</a>
+              </p>
             </div>
         </div>
         </form>
@@ -408,6 +411,8 @@ onMounted( async () => {
 }
 
 .footer {
+  position: relative;
+  z-index: 10;
     grid-column: 2 span;
     text-align: right;
     display: flex;

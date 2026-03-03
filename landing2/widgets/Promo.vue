@@ -1,7 +1,7 @@
 <template>
 	<div class="Promo">
 		<div class="text">
-			<span class="subtitle" ref="subtitle">MentMinde</span>
+			<span class="subtitle" ref="subtitle">MentMind</span>
 			<h1 class="title" ref="title">
 				<span class="word" ref="word1">Узнавай</span>
 				<span class="word" ref="word2"><span ref="label">By MentMind</span>Понимай</span>
