@@ -19,14 +19,7 @@
                 <span>
                   {{title}}
                 </span>
-
-                <el-tooltip
-                    v-if="true"
-                    content="Продублировать на следующую неделю"
-                    placement="right"
-                >
-                  <el-button><el-icon><CopyDocument /></el-icon></el-button>
-                </el-tooltip>
+ 
               </div>
             </template>
         </vue-cal>
@@ -59,9 +52,12 @@ const emits = defineEmits(['onClick', 'onDelete', 'onCreated', 'onDrag', 'onRead
     height: 100%;
 }
 .vuecal--default-theme {
-    --vuecal-height: 100%
+    --vuecal-height: 100%;
+  --vuecal-primary-color: var(--text-main);
 }
-
+.vuecal--default-theme.vuecal--dark {
+  --vuecal-primary-color: #7ae4e9;
+}
 .vuecal__event.completed {
     background-color: green;
 }

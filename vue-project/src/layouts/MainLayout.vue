@@ -1,6 +1,8 @@
 <template>
     <div class="layout">  
-      <Aside/>
+      
+      <Header @click="onClick"/>
+      <Aside :theme="isDarkTheme" @click:close-aside="onClick"/>
 
  
       <main class="main">
@@ -19,12 +21,20 @@ import { useChatStore } from '@/features/chats/api/store';
 import { useSocketStore } from '@/shared/config/socket';
 import Aside from '@/widgets/Aside.vue';
 import { BaseContainer } from '@mobilon-dev/chotto';
-import { onMounted, watch } from 'vue';
+import {onMounted, ref, watch} from 'vue';
+import Header from "@/widgets/Header.vue";
+import {useUserStore} from "@/features/users/store/store.ts";
 
 const auth = useAuthStore();
+const user = useUserStore();
 const chatStore = useChatStore()
 const socket = useSocketStore();
 
+const isDarkTheme = ref(false);
+
+function onClick(value?: boolean) {
+  isDarkTheme.value = value ?? !isDarkTheme.value;
+}
 onMounted(() => {
   const id = auth.userData.user?.id
   if (id) {
@@ -51,12 +61,22 @@ watch(
     grid-template-columns: 1fr 5fr;
     grid-template-areas: 'aside main';
     height: 100vh;
+    
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'header'
+        'main';
+    }
   }
   
   .main {
     padding: 2rem;
     height: inherit;
- 
+
+    & .base-container {
+      min-width: 100%;
+    }
   }
 
  

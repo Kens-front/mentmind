@@ -135,7 +135,7 @@
           </el-button>
 
           <el-popconfirm 
-            v-if="setVisibleElement([RoleList.ADMIN])"    
+            v-if="false"    
             title="Вы точно хотите добавить бонусное занятие?"
             placement="top-start"
             @confirm="addBonusConfirm"

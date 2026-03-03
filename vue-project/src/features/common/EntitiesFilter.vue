@@ -34,7 +34,7 @@
         <slot/>
       </el-scrollbar>
 
-        <div class="pagination">
+        <div v-if="total" class="pagination">
             <el-pagination
                 v-model:current-page="filter.skip"
                 v-model:page-size="filter.take"

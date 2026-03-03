@@ -1,7 +1,7 @@
 <template>
-    <aside class="aside">
+    <aside class="aside" :class="{show: theme}">
         <div class="logo">
-          <span>MentMind</span>
+          <span class="logo-text">MentMind</span>
 
           <div class="info">
             <div class="avatar">
@@ -17,7 +17,7 @@
 
         <el-scrollbar>
           <ul>
-            <li v-for="value of navigation">
+            <li v-for="value of navigation" class="link" @click="emits('click:close-aside', false)">
                 <RouterLink v-if="value.href !== Navigation.CHATS || !chatStore.unreadMessagesCount" active-class="active" :to="value.href">
                   <el-icon><component :is="value.icon"/></el-icon>
                   <span>{{ value.label }}</span>
@@ -62,6 +62,12 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { ChatLineRound } from '@element-plus/icons-vue';
 import {useUserStore} from "@/features/users/store/store.ts";
+
+interface IProps {
+  theme: boolean
+}
+
+const {theme} = defineProps<IProps>();
 const router = useRouter();
 const authStore = useAuthStore()
 const chatStore = useChatStore()
@@ -69,6 +75,7 @@ const userStore = useUserStore()
  
 const avatar = computed(() => authStore.userData.user?.avatar ? generateImageUrl(authStore.userData.user.avatar) : '');
 
+const emits = defineEmits(['click:close-aside']);
  
 const navigation = computed(() => {
     return NAVIGATION_LINKS.filter(link => {
@@ -105,6 +112,18 @@ async function onClick() {
   grid-template-rows: max-content 1fr;
   height: inherit;
   gap: 3.2rem;
+  transition: .3s transform ease-in-out;
+  
+  @media screen and (max-width: 1024px) {
+    position: absolute;
+    z-index: 10;
+    background: var(--background-aside);
+    width: 100%;
+    transform: translateY(100%);
+    border-radius: 2rem;
+    padding: 2rem 0;
+    visibility: hidden;
+  }
 }
 
 .aside > div {
@@ -124,6 +143,7 @@ ul {
 
 li {
   list-style: none;
+  color: var(--text-heading);
 }
 
 a {
@@ -133,8 +153,7 @@ a {
   gap: .2rem;
   border-radius: 10px;
   padding: 1rem 20px;
-
-  color: rgba(255, 255, 255, 0.7);
+  
   text-decoration: none;
   font-size: 14px;
 
@@ -148,7 +167,7 @@ a:hover {
 
 .active {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--text-main);
   font-weight: 500;
 }
 
@@ -174,6 +193,17 @@ a:hover {
 li {
   & i {
     color: var(--gold-primary);
+  }
+}
+
+.show {
+  transform: translateY(10%);
+  visibility: visible;
+}
+
+.logo-text {
+  @media screen and (max-width: 1024px) {
+    display: none;
   }
 }
 </style>

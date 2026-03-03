@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </el-scrollbar>
-            <chat-input data-cy="chat-input" @send="onSend"/>
+            <chat-input :data-theme="theme" data-cy="chat-input" @send="onSend"/>
         </div>
     </div>
 </template>
@@ -29,10 +29,11 @@ import type { ICreateMessageDto } from '@/features/messages/types';
 import { notifySuccess } from '@/shared/config/notifications';
 import { generateImageUrl, scrollToBottom } from '@/shared/helpers';
 import { ChatInput, TextMessage } from '@mobilon-dev/chotto';
-import { nextTick, onMounted, ref, watch } from 'vue';
+import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import { useRoute } from 'vue-router';
 import { useMessageReadObserver } from '@/features/common/composables/useMessageReadObserver';
 import { useAuthStore } from '@/features/auth/store';
+import {useUserStore} from "@/features/users/store/store.ts";
 
 const route = useRoute()
 
@@ -42,6 +43,9 @@ const id = route.params.id;
 const {getMessages} = useGetMessages()
 const messageStore = useMessageStore()
 const authStore = useAuthStore()
+const userStore = useUserStore()
+
+const theme = computed(() => userStore.theme ? 'dark' : 'light')
 
 
 async function onSend(message:ICreateMessageDto) {

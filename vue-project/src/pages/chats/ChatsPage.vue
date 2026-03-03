@@ -8,6 +8,7 @@
             <div v-if="chatStore.chats.length" class="list">
                 <ChatItem 
                     v-for="chat of chatStore.chats"
+                    :data-theme="theme"
                     :key="chat.id"
                     :chat="{
                       ...chat,
@@ -36,12 +37,20 @@ import { useChatStore } from '@/features/chats/api/store';
 import type { IChat } from '@/features/chats/api/types';
 import EmptyContainer from '@/widgets/common/EmptyContainer.vue';
 import { BaseContainer, ChatItem } from '@mobilon-dev/chotto';
-import { onMounted } from 'vue';
+import {computed, onMounted} from 'vue';
 import { useRouter } from 'vue-router';
- 
+import '@mobilon-dev/chotto/themes/default.css'
+import '@mobilon-dev/chotto/themes/dark.css'
+import '@mobilon-dev/chotto/themes/green.css'
+import '@mobilon-dev/chotto/themes/mobilon1.css'
+import {useUserStore} from "@/features/users/store/store.ts";
 const router = useRouter();
 const chatStore = useChatStore();
+const userStore = useUserStore();
 
+const theme = computed(() => {
+    return userStore.theme ? 'dark' : 'light';
+})
 function getMessageText(chat: IChat) {
     if (!chat.lastMessage) {
         return 'В этом чате ещё нет сообщений'

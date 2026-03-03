@@ -302,6 +302,11 @@ watch(userStore.updateUser, async () => {
         display: grid;
         grid-template-columns: 1fr 3fr;
         column-gap: 2rem;
+      
+      @media screen and (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        padding: 2rem 0;
+      }
     }
 }
 
@@ -316,6 +321,10 @@ watch(userStore.updateUser, async () => {
         grid-template-rows: 100%;
         grid-row: 4 span;
         margin-bottom: 2rem;
+
+        @media screen and (max-width: 1024px) {
+          height: 34rem;
+        }
     }
 
     .el-upload {
@@ -344,6 +353,10 @@ watch(userStore.updateUser, async () => {
     display: grid;
     grid-template-columns: 100%;
     grid-column: 2 / 3;
+
+    @media screen and (max-width: 1024px) {
+      grid-column: 1 span;
+    }
 }
 
 .textarea {

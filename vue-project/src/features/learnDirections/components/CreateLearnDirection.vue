@@ -77,5 +77,9 @@ async function create() {
     grid-template-columns: 90% 1fr;
     align-items: end;
     column-gap: 1rem;
+  
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 100%;
+    }
 }
 </style>
