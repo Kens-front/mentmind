@@ -18,4 +18,5 @@ export const NAVIGATION_LINKS = [
     { label: 'Оплаты', href: Navigation.STUDENT_PAYOUTS, roles: [RoleList.ADMIN, RoleList.STUDENT], icon: Wallet },
     { label: 'Домашние занятия', href: Navigation.HOMEWORKS, roles: [], icon: Reading },
     { label: 'Создание домашнего занятия', href: Navigation.CREATE_HOMEWORKS, roles: [RoleList.MENTOR], icon: DocumentAdd },
+    { label: 'Психологические сессии', href: Navigation.PSYCHOLOGY, roles: [RoleList.ADMIN, RoleList.STUDENT], icon: DocumentAdd },
 ];

@@ -89,10 +89,13 @@ async function onSubmit() {
 
 <style lang="scss" scoped>
 .form {
+    position: relative;
+    z-index: 10;
     display: grid;
     padding: 1.2rem;
     border: 1px solid rebeccapurple;
     border-radius: 1rem;
+    background: var(--background-aside);
 }
 
  

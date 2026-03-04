@@ -7,6 +7,10 @@
             :users="[]"
             :total="studentPaymentStore.studentPayments[1]"
         >
+          
+          <template #modal>
+            <OpenCalculatePaymentModal/>
+          </template>
             <el-scrollbar height>
                 <StudentPayments/>
             </el-scrollbar>
@@ -31,6 +35,7 @@ import StudentPayments from '@/widgets/payments/StudentPayments.vue';
 import { computed, ref } from 'vue';
 import {useStudentPaymentStore} from "@/features/payments/store";
 import {format} from "date-fns";
+import OpenCalculatePaymentModal from "@/features/payments/components/OpenCalculatePaymentModal.vue";
  const studentPayoutsFilter = {
     start_date: new Date(new Date().setDate(1)),
     end_date:format(new Date(), 'yyyy-MM-dd'),

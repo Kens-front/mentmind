@@ -13,5 +13,6 @@ export enum Navigation {
     HOMEWORKS = '/homeworks',
     CREATE_HOMEWORKS = '/homeworks/create',
     PROFILE = '/profile',
-    GROUPS = '/groups'
+    GROUPS = '/groups',
+    PSYCHOLOGY = '/psycholoy'
 }

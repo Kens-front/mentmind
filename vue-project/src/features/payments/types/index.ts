@@ -66,3 +66,20 @@ export interface IStudentPayoutDto {
 
     amount: number
 }
+
+export interface ICalculatePayment {
+    lessonCount: number | null,
+    duration: LESSON_DURATION | null
+    lessonType: LESSON_TYPES | null
+}
+
+export interface ICreatePaymentDto {
+
+    lessons_count: number
+
+    lesson_duration: LESSON_DURATION
+    
+    lessonType: LESSON_TYPES
+
+    amount: number
+}

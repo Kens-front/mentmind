@@ -37,7 +37,10 @@ export class Payment {
 
   @Column({ nullable: true })
   externalPaymentId: string; // id от платёжки
-
+  
+  @Column({unique:true})
+  idempotencyKey: string;
+ 
   @CreateDateColumn({type: 'date'})
   createdAt: Date;
 

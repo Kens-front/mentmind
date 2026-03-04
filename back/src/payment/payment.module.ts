@@ -10,17 +10,21 @@ import { StudentProfile } from 'src/student_profile/entities/student_profile.ent
 import { LessonSlots } from 'src/lesson-slots/entities/lesson-slot.entity';
 import { UpdatePaymentHandler } from './handlers/update-payment.handle';
 import { LessonPackage } from 'src/lesson-package/entities/lesson-package.entity';
+import {CalculatePaymentQueryHandler} from "./handlers/calculate-payment.handler";
+import {User} from "../user/entities/user.entity";
+import {YoukassaService} from "../youkassa/youkassa.service";
 
 
 const handlers = [
   CreatePaymentHandler,
   GetPaymentsHandler,
-  UpdatePaymentHandler
+  UpdatePaymentHandler,
+  CalculatePaymentQueryHandler
 ];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Payment, Lesson, StudentProfile, LessonSlots, LessonPackage])],
+  imports: [TypeOrmModule.forFeature([Payment, Lesson, StudentProfile, LessonSlots, LessonPackage, User])],
   controllers: [PaymentController],
-  providers: [PaymentService, ...handlers],
+  providers: [PaymentService, YoukassaService, ...handlers],
 })
 export class PaymentModule {}

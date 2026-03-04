@@ -4,10 +4,14 @@ import * as jwt from 'jsonwebtoken';
 import {AuthService} from "../../auth/auth.service";
 import {Reflector} from "@nestjs/core";
 import {Roles} from "./roles.decorator";
+import {ConfigService} from "@nestjs/config";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
+  constructor(
+      private readonly reflector: Reflector,
+      private configService: ConfigService,
+  ) {}
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<Request>();
     const token = this.extractTokenFromHeader(request);
@@ -20,7 +24,7 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const payload = jwt.verify(token, 'secret-key');
+      const payload = jwt.verify(token, this.configService.get('KEY'));
 
  
       

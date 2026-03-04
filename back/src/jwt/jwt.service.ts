@@ -1,15 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ITokenData } from "src/user/types";
+import {ConfigService} from "@nestjs/config";
 
 
 
 @Injectable()
 export class JwtPort {
-    constructor(private jwtService: JwtService) {}
+    constructor(
+        private jwtService: JwtService,
+        private configService: ConfigService,
+    ) {}
 
     generateToken(data: ITokenData) {
-        return this.jwtService.sign(data, {secret: 'secret-key'});
+        console.log( this.configService.get('KEY'));
+        return this.jwtService.sign(data, {secret: this.configService.get('KEY')});
     }
 
     decodeToken(token: string) {
@@ -22,7 +27,7 @@ export class JwtPort {
 
     verifayToken(token: string) {
         try {
-             const user = this.jwtService.verify(token, {secret: 'secret-key'})
+             const user = this.jwtService.verify(token, {secret: this.configService.get('KEY')})
              return {
                 user,
                 isOk: true,

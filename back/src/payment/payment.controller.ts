@@ -1,4 +1,17 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Req,
+  Query,
+  Headers,
+  HttpException, HttpStatus
+} from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
@@ -8,20 +21,36 @@ import { GetPaymentsQuery } from './queries/get-payments.query';
 import { UpdatePaymentCommand } from './commands/update-payment.command';
 import { AuthGuard } from 'src/common/decorators/auth-guard';
 import { User } from 'src/user/entities/user.entity';
+import {CurrentUser} from "../common/decorators/current-user";
+import {query} from "express";
+import {CalculatePaymentQuery} from "./queries/calculate-payment.query";
+import {YoukassaService} from "../youkassa/youkassa.service";
 
 @Controller('payment')
 export class PaymentController {
   constructor(
     private readonly paymentService: PaymentService,
+    private readonly youkassaService: YoukassaService,
     private commandBus: CommandBus,
     private queryBus: QueryBus,
   ) {}
 
   @Post()
   @UseGuards(AuthGuard)
-  create(@Req() req, @Body() createPaymentDto: CreatePaymentDto) {
-    const id = req.user?.id || 0;
-    return this.commandBus.execute(new CreatePaymentCommand(Number(id), createPaymentDto));
+  async create(
+      @CurrentUser() user: User,
+      @Body() createPaymentDto: CreatePaymentDto,
+      @Headers('idempotency-key') idempotencyKey?: string,
+  ) {
+    const {lesson_duration, lessons_count} = createPaymentDto;
+    
+    if (!idempotencyKey) {
+      throw new HttpException('idempotency-key', HttpStatus.NOT_FOUND);
+    }
+    
+    const totalPrice = await this.queryBus.execute(new CalculatePaymentQuery({duration: lesson_duration, lessonCount: lessons_count, user}))
+    
+    return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
   }
 
   @Get()
@@ -32,6 +61,16 @@ export class PaymentController {
   ) {
     const user: User | undefined = req.user;
     return this.queryBus.execute(new GetPaymentsQuery(user, query));
+  }
+  
+  @Get('/calculate')
+  @UseGuards(AuthGuard)
+  calculatePayment(
+      @Query('duration') duration: string,
+      @Query('lessonCount') lessonCount: string,
+      @CurrentUser() user: User
+  ) {
+    return this.queryBus.execute(new CalculatePaymentQuery({duration: Number(duration), lessonCount: Number(lessonCount), user}));
   }
 
   @Get(':id')

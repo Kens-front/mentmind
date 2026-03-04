@@ -38,7 +38,7 @@ const userStore = useUserStore();
 
 
 interface IProps {
-    events: ILessonSlotEvent []
+    events: {start: Date, end: Date} []
     editable?: boolean
     title: string
 }

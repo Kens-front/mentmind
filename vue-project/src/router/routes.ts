@@ -116,6 +116,15 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: Navigation.PSYCHOLOGY,
+    component: Home,
+    children: [
+      { path: '', component: () => import('@/pages/psychology/PsychologyPage.vue') },
+    ],
+    meta: { requiresAuth: true },
+  },
+
+  {
     path: Navigation.GROUPS,
     component: Home,
     children: [

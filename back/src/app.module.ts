@@ -30,6 +30,9 @@ import { LessonPackageModule } from './lesson-package/lesson-package.module';
 import { MetrikaModule } from './metrika/metrika.module';
 import { StudentGroupModule } from './student-group/student-group.module';
 import {ConfigModule} from "@nestjs/config";
+import { YoukassaModule } from './youkassa/youkassa.module';
+import { PsychologyPackModule } from './psychology-pack/psychology-pack.module';
+import { PsychologySessionModule } from './psychology-session/psychology-session.module';
 
 @Module({
   imports: [
@@ -46,7 +49,7 @@ import {ConfigModule} from "@nestjs/config";
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
-    }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule],
+    }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule, YoukassaModule, PsychologyPackModule, PsychologySessionModule],
   controllers: [AppController],
   providers: [AppService],
 
