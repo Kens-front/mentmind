@@ -57,7 +57,7 @@ export class PaymentController {
 
   @Post('webhook')
   @HttpCode(200)
-  async handleWebhook(dto: any, @Ip() ip: string) {
+  async handleWebhook(@Body() dto: any, @Ip() ip: string) {
     this.youkassaService.verifyWebhook(ip)
 
     switch (dto.event) {

@@ -14,9 +14,9 @@ async function onClick() {
     }
     const {data} = await studentPaymentApi.create(body)
     
-    if (data.youkassaPayment?.confirmation?.confirmation_url) {
+    if (data?.confirmation?.confirmation_url) {
  
-      window.location.href = data.youkassaPayment.confirmation.confirmation_url
+      window.location.href = data.confirmation.confirmation_url
     }
   } catch (error) {
     console.log(error)
