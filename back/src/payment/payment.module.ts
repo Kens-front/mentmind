@@ -13,13 +13,15 @@ import { LessonPackage } from 'src/lesson-package/entities/lesson-package.entity
 import {CalculatePaymentQueryHandler} from "./handlers/calculate-payment.handler";
 import {User} from "../user/entities/user.entity";
 import {YoukassaService} from "../youkassa/youkassa.service";
+import { CapturePaymentHandler } from './handlers/capture-payment.handler';
 
 
 const handlers = [
   CreatePaymentHandler,
   GetPaymentsHandler,
   UpdatePaymentHandler,
-  CalculatePaymentQueryHandler
+  CalculatePaymentQueryHandler,
+  CapturePaymentHandler
 ];
 
 @Module({
