@@ -1,10 +1,10 @@
 import {Injectable, UnauthorizedException} from '@nestjs/common';
 import { CreateYoukassaDto } from './dto/create-youkassa.dto';
 import { UpdateYoukassaDto } from './dto/update-youkassa.dto';
-import {ICreatePayment, YooCheckout} from "@a2seven/yoo-checkout";
+import {ICapturePayment, ICreatePayment, Payment, YooCheckout} from "@a2seven/yoo-checkout";
 import {ConfigService} from "@nestjs/config";
 import Cidr from 'ip-cidr'
-import {Observable} from "rxjs";
+import {YookassaWebhookPayload} from "../payment/types";
 @Injectable()
 export class YoukassaService {
 
@@ -38,11 +38,8 @@ export class YoukassaService {
       },
       confirmation: {
         type: 'redirect',
-        return_url: 'test'
+        return_url: 'https://mentmind.ru/dashboard'
       },
-      metadata: {
-        ...createYoukassaDto.createPaymentDto
-      }
     };
 
     try {
@@ -74,6 +71,20 @@ export class YoukassaService {
         break;
       case 'payment.succeeded':
         break;
+    }
+  }
+  
+  async capturePayment(aPayment: YookassaWebhookPayload, idempotencyKey: string) {
+    try {
+      const capturePayload: ICapturePayment = {
+        amount: {...aPayment.object?.amount}
+      };
+      
+      const payment = await this.checkout.capturePayment(aPayment.object?.id, capturePayload, idempotencyKey);
+      console.log(payment)
+      return payment;
+    } catch (error) {
+      console.error(error);
     }
   }
 

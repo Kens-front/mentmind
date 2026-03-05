@@ -1,30 +1,35 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  UseGuards,
-  Req,
-  Query,
+  Get,
   Headers,
-  HttpException, HttpStatus, HttpCode, Ip
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Ip,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Req,
+  UseGuards
 } from '@nestjs/common';
-import { PaymentService } from './payment.service';
-import { CreatePaymentDto } from './dto/create-payment.dto';
-import { UpdatePaymentDto } from './dto/update-payment.dto';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreatePaymentCommand } from './commands/create-payment.command';
-import { GetPaymentsQuery } from './queries/get-payments.query';
-import { UpdatePaymentCommand } from './commands/update-payment.command';
-import { AuthGuard } from 'src/common/decorators/auth-guard';
-import { User } from 'src/user/entities/user.entity';
+import {PaymentService} from './payment.service';
+import {CreatePaymentDto} from './dto/create-payment.dto';
+import {UpdatePaymentDto} from './dto/update-payment.dto';
+import {CommandBus, EventBus, QueryBus} from '@nestjs/cqrs';
+import {CreatePaymentCommand} from './commands/create-payment.command';
+import {GetPaymentsQuery} from './queries/get-payments.query';
+import {UpdatePaymentCommand} from './commands/update-payment.command';
+import {AuthGuard} from 'src/common/decorators/auth-guard';
+import {User} from 'src/user/entities/user.entity';
 import {CurrentUser} from "../common/decorators/current-user";
-import {query} from "express";
 import {CalculatePaymentQuery} from "./queries/calculate-payment.query";
 import {YoukassaService} from "../youkassa/youkassa.service";
+import {PAYMENT_STATUS, YookassaWebhookPayload} from "./types";
+import {CapturePaymentCommand} from "./commands/capture-payment.command";
+import {PaymentPaid} from "./events/payment-paid.event";
 
 @Controller('payment')
 export class PaymentController {
@@ -33,6 +38,7 @@ export class PaymentController {
     private readonly youkassaService: YoukassaService,
     private commandBus: CommandBus,
     private queryBus: QueryBus,
+    private eventBus: EventBus,
   ) {}
 
   @Post()
@@ -50,22 +56,25 @@ export class PaymentController {
     
     const totalPrice = await this.queryBus.execute(new CalculatePaymentQuery({duration: lesson_duration, lessonCount: lessons_count, user}))
     
-    
-    return this.youkassaService.create({idempotencyKey, totalPrice: totalPrice.amount, createPaymentDto})
-    //return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
+ 
+    return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
   }
 
   @Post('webhook')
   @HttpCode(200)
-  async handleWebhook(@Body() dto: any, @Ip() ip: string) {
+  async handleWebhook(@Body() dto: YookassaWebhookPayload, @Ip() ip: string) {
     this.youkassaService.verifyWebhook(ip)
 
     switch (dto.event) {
       case 'payment.waiting_for_capture':
         console.log(JSON.stringify(dto));
+        await this.commandBus.execute(new CapturePaymentCommand(dto));
         //await this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
         break;
       case 'payment.succeeded':
+        await this.commandBus.execute(new UpdatePaymentCommand({externalPaymentId: dto?.object?.metadata?.paymentId, status: PAYMENT_STATUS.PAID}))
+
+        this.eventBus.publish(new PaymentPaid(Number(dto.object?.metadata?.userId), Number(dto.object?.metadata?.lessons_count)))
         console.log(JSON.stringify(dto));
         break;
     }
@@ -95,10 +104,10 @@ export class PaymentController {
     return this.paymentService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePaymentDto: UpdatePaymentDto) {
-    return this.commandBus.execute(new UpdatePaymentCommand({id: +id, ...updatePaymentDto}))
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updatePaymentDto: UpdatePaymentDto) {
+  //   return this.commandBus.execute(new UpdatePaymentCommand({id: +id, ...updatePaymentDto}))
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

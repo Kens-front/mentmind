@@ -22,13 +22,13 @@ export class UpdatePaymentHandler
   ) {}
 
   async execute(command: UpdatePaymentCommand): Promise<Payment> {
-    const { status, id, lesson_duration } = command.dto;
+    const { status, lesson_duration, externalPaymentId } = command.dto;
  
 
     return this.entityManager.transaction(async manager => {
         // 1. ЛОЧИМ ТОЛЬКО payment
         const payment = await manager.findOne(Payment, {
-          where: { id },
+          where: { externalPaymentId },
           lock: { mode: 'pessimistic_write' },
         });
       
@@ -50,10 +50,10 @@ export class UpdatePaymentHandler
             type: payment.lessonType
           })
       
-          lessonPackage.payment = payment
+            lessonPackage.payment = payment
             
             payment.paidAt = new Date();
-          await manager.save(LessonPackage, lessonPackage);
+            await manager.save(LessonPackage, lessonPackage);
         }
       
  
