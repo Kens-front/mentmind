@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, UnauthorizedException} from '@nestjs/common';
 import { CreateYoukassaDto } from './dto/create-youkassa.dto';
 import { UpdateYoukassaDto } from './dto/update-youkassa.dto';
 import {ICreatePayment, YooCheckout} from "@a2seven/yoo-checkout";
 import {ConfigService} from "@nestjs/config";
-
+import Cidr from 'ip-cidr'
+import {Observable} from "rxjs";
 @Injectable()
 export class YoukassaService {
 
@@ -12,12 +13,21 @@ export class YoukassaService {
   ) {
   }
   
+  private readonly ALLOWED_IPS = [
+    '185.71.76.0/27',
+    '185.71.77.0/27',
+    '77.75.153.0/25',
+    '77.75.156.11',
+    '77.75.156.35',
+    '77.75.154.128/25',
+    '2a02:5180::/32'
+  ];
   
   checkout = new YooCheckout({ shopId: this.configService.get('SHOP_ID'), secretKey: this.configService.get('SECRET_YOUKASSA_KEY') });
   
   async create(createYoukassaDto: CreateYoukassaDto) {
     
-    console.log(createYoukassaDto);
+ 
     const createPayload: ICreatePayment = {
       amount: {
         value: `${createYoukassaDto.totalPrice}.00`,
@@ -29,6 +39,9 @@ export class YoukassaService {
       confirmation: {
         type: 'redirect',
         return_url: 'test'
+      },
+      metadata: {
+        ...createYoukassaDto.createPaymentDto
       }
     };
 
@@ -36,6 +49,31 @@ export class YoukassaService {
       return  await this.checkout.createPayment(createPayload, createYoukassaDto.idempotencyKey);
     } catch (error) {
       console.error(error);
+    }
+  }
+  
+  verifyWebhook(ip: string) {
+    for(const range of this.ALLOWED_IPS) {
+      if (range.includes('/')) {
+        const cidr = new Cidr(range);
+        
+        if (cidr.contains(ip)) {
+          return cidr;
+        }
+      } else if (ip === range) return
+    }
+    
+    throw new UnauthorizedException("Запретный IP");
+  }
+  
+  handleWebhook(dto: any, ip: string) {
+    this.verifyWebhook(ip);
+    
+    switch (dto.event) {
+      case 'payment.waiting_for_capture':
+        break;
+      case 'payment.succeeded':
+        break;
     }
   }
 

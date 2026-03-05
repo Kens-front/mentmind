@@ -25,24 +25,21 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
     ) {}
 
     async execute(command: CreatePaymentCommand): Promise<any> {
-        const {idempotencyKey, totalPrice} = command
+        const {idempotencyKey, totalPrice, youkassaPaymentId} = command
         const user = await this.queryBus.execute(new GetUserBy(USER_PARAMS.ID, `${command.userId}`))
 
         if (!user) {
             throw new HttpException('Нет доступа', 403);
         }
- 
-        const youkassaPayment = await this.youkassaService.create({idempotencyKey, totalPrice: totalPrice})
-        
+
         const payment = this.payment.create({...command.createPaymentDto, idempotencyKey});
-        payment.externalPaymentId = youkassaPayment.id;
+        payment.externalPaymentId = youkassaPaymentId;
         payment.user = user;
 
 
         this.eventBus.publish(new PaymentPaid(user.id, command.createPaymentDto.lessons_count))
         return {
             payment: await this.payment.save(payment),
-            youkassaPayment
         }
     }
 }

@@ -10,7 +10,7 @@ import {
   Req,
   Query,
   Headers,
-  HttpException, HttpStatus
+  HttpException, HttpStatus, HttpCode, Ip
 } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
@@ -50,9 +50,26 @@ export class PaymentController {
     
     const totalPrice = await this.queryBus.execute(new CalculatePaymentQuery({duration: lesson_duration, lessonCount: lessons_count, user}))
     
-    return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
+    
+    return this.youkassaService.create({idempotencyKey, totalPrice: totalPrice.amount, createPaymentDto})
+    //return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
   }
 
+  @Post('webhook')
+  @HttpCode(200)
+  async handleWebhook(dto: any, @Ip() ip: string) {
+    this.youkassaService.verifyWebhook(ip)
+
+    switch (dto.event) {
+      case 'payment.waiting_for_capture':
+        console.log(JSON.stringify(dto));
+        //await this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
+        break;
+      case 'payment.succeeded':
+        console.log(JSON.stringify(dto));
+        break;
+    }
+  }
   @Get()
   @UseGuards(AuthGuard)
   findAll(
