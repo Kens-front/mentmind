@@ -72,9 +72,9 @@ export class PaymentController {
         //await this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
         break;
       case 'payment.succeeded':
-        await this.commandBus.execute(new UpdatePaymentCommand({externalPaymentId: dto?.object?.metadata?.paymentId, status: PAYMENT_STATUS.PAID}))
+        await this.commandBus.execute(new UpdatePaymentCommand({externalPaymentId: dto?.object?.id, status: PAYMENT_STATUS.PAID}))
 
-        this.eventBus.publish(new PaymentPaid(Number(dto.object?.metadata?.userId), Number(dto.object?.metadata?.lessons_count)))
+        // this.eventBus.publish(new PaymentPaid(Number(dto.object?.metadata?.userId), Number(dto.object?.metadata?.lessons_count)))
         console.log(JSON.stringify(dto));
         break;
     }
