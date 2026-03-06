@@ -39,8 +39,7 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import TarifCard from "~/components/TarifCard.vue";
 import {ref} from "vue";
-import {ELessonPrices} from "../../../common/types";
-
+import {ELessonPrices} from "~~/types";
 
 
 const group = ref(ELessonPrices.GROUP)

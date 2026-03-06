@@ -4,7 +4,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "../../user/entities/user.entity";
 import {Repository} from "typeorm";
 import {NotFoundException} from "@nestjs/common";
-import {ELessonPrices} from "../../../../common/types";
+import {ELessonPrices} from "../../lesson/types";
 
 
 @QueryHandler(CalculatePaymentQuery)

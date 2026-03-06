@@ -21,7 +21,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { nextTick, onMounted, ref } from 'vue';
 import TarifCard from '~/components/TarifCard.vue';
 import TarifSlider from '../widgets/TarifSlider.vue'
-import {ELessonPrices} from "../../common/types";
+import {ELessonPrices} from "~~/types";
+
 gsap.registerPlugin(ScrollTrigger)
 
 const prices = ref({

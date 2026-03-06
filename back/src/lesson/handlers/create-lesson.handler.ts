@@ -17,7 +17,7 @@ import { UserService } from "src/user/user.service";
 import { RoleList } from "src/user/types";
 import { LessonCreditsService } from "src/lesson-slots/lesson-slot.service";
 import { LessonParticipantService } from "src/lesson-participant/lesson-participant.service";
-import { ELessonPrices} from "../../../../common/types";
+import { ELessonPrices} from "../types";
 import { LessonPackage } from "src/lesson-package/entities/lesson-package.entity";
 import {LessonCompleteEvent} from "../events/lesson-completed.event";
 
