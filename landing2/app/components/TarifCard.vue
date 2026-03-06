@@ -16,7 +16,7 @@
           <div class="price-container">
             <p>
                 <span class="line"></span>
-                <span class="price-old">3600/час</span>
+                <span class="price-old">{{tarif.oldPrice}}/час</span>
             </p>
 
             <span class="price-new">{{ tarif.newPrice }}<span class="price-unit">/час</span></span>

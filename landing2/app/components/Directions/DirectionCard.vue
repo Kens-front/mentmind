@@ -102,7 +102,7 @@
 
     @media screen and (max-width: 500px) {
         font-size: 3.6vw;
-        max-width: 50%;
+        max-width: 100%;
     }
 }
 

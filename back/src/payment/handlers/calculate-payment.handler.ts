@@ -2,9 +2,9 @@
 import {CalculatePaymentQuery} from "../queries/calculate-payment.query";
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "../../user/entities/user.entity";
-import {In, Repository} from "typeorm";
-import {ICalculatePaymentData} from "../types";
+import {Repository} from "typeorm";
 import {NotFoundException} from "@nestjs/common";
+import {ELessonPrices} from "../../../../common/types";
 
 
 @QueryHandler(CalculatePaymentQuery)
@@ -32,7 +32,7 @@ export class CalculatePaymentQueryHandler implements IQueryHandler<CalculatePaym
             throw new NotFoundException("Недостаточно данных");
         }
         
-        const priceMentor = mentor.mentor_profile.level === 'base' ? 2 : 4;
+        const priceMentor = mentor.mentor_profile.level === 'base' ? ELessonPrices.BASE : ELessonPrices.PREMIUM;
         
         return {
             amount: (duration / 60) * lessonCount * priceMentor,

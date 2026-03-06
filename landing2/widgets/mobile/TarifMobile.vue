@@ -39,16 +39,17 @@ import 'swiper/css/effect-coverflow';
 import { EffectCoverflow } from 'swiper/modules';
 import TarifCard from "~/components/TarifCard.vue";
 import {ref} from "vue";
+import {ELessonPrices} from "../../../common/types";
 
 
 
-const group = ref(1800)
-const  base = ref( 2200)
-const top = ref(4000)
+const group = ref(ELessonPrices.GROUP)
+const  base = ref( ELessonPrices.BASE )
+const top = ref(ELessonPrices.PREMIUM)
 
 const cards = computed(() => [
   {
-    percent: Math.ceil(100 - 1800 / 2400 * 100),
+    percent: Math.ceil(100 - ELessonPrices.GROUP / 2400 * 100),
     title: 'Групповой',
     oldPrice: 2400,
     newPrice: group.value,
@@ -61,7 +62,7 @@ const cards = computed(() => [
     ],
   },
   {
-    percent: Math.ceil(100 - 2200 / 3600 * 100),
+    percent: Math.ceil(100 - ELessonPrices.BASE / 3600 * 100),
     title: 'Базовый',
     oldPrice: 3600,
     newPrice: base.value,
@@ -74,7 +75,7 @@ const cards = computed(() => [
     ],
   },
   {
-    percent: Math.ceil(100 - 4000 / 4500 * 100),
+    percent: Math.ceil(100 - ELessonPrices.PREMIUM / 4500 * 100),
     title: 'Продвинутый',
     oldPrice: 4500,
     newPrice: top.value,
@@ -103,5 +104,6 @@ const cards = computed(() => [
 
 .mySwiper {
   color: #2D1B4A;
+  padding: 4rem 0;
 }
 </style>

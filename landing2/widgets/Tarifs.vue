@@ -21,6 +21,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { nextTick, onMounted, ref } from 'vue';
 import TarifCard from '~/components/TarifCard.vue';
 import TarifSlider from '../widgets/TarifSlider.vue'
+import {ELessonPrices} from "../../common/types";
 gsap.registerPlugin(ScrollTrigger)
 
 const prices = ref({
@@ -59,16 +60,16 @@ onMounted(async () => {
 
 
     tl.to(group, {
-        value: 1600,
+        value: ELessonPrices.GROUP,
         snap: { value: 1 },
     }, '<')
     tl.to(base, {
-        value: 2200,
+        value: ELessonPrices.BASE,
         snap: { value: 1 },
     }, '<')
 
     tl.to(top, {
-    value: 4000,
+    value: ELessonPrices.PREMIUM,
     snap: { value: 1 },
     }, '<')
     tl.to(lines, {
@@ -90,16 +91,16 @@ onMounted(async () => {
 
 
     t2.to(group, {
-        value: 1800,
+        value: ELessonPrices.GROUP,
         snap: { value: 1 },
     }, '<')
     t2.to(base, {
-        value: 2600,
+        value: ELessonPrices.BASE,
         snap: { value: 1 },
     }, '<')
 
     t2.to(top, {
-    value: 3600,
+    value: ELessonPrices.PREMIUM,
     snap: { value: 1 },
     }, '<')
     t2.to(lines, {
@@ -110,7 +111,7 @@ onMounted(async () => {
 
 const cards = computed(() => [
   {
-    percent: Math.ceil(100 - 1800 / 2400 * 100),
+    percent: Math.ceil(100 - ELessonPrices.GROUP / 2400 * 100),
     title: 'Групповой',
     oldPrice: 2400,
     newPrice: group.value,
@@ -122,7 +123,7 @@ const cards = computed(() => [
     ],
   },
   {
-    percent: Math.ceil(100 - 2200 / 3600 * 100),
+    percent: Math.ceil(100 - ELessonPrices.BASE / 3600 * 100),
     title: 'Базовый',
     oldPrice: 3600,
     newPrice: base.value,
@@ -134,7 +135,7 @@ const cards = computed(() => [
     ],
   },
   {
-    percent: Math.ceil(100 - 4000 / 4500 * 100),
+    percent: Math.ceil(100 - ELessonPrices.PREMIUM / 4500 * 100),
     title: 'Продвинутый',
     oldPrice: 4500,
     newPrice: top.value,

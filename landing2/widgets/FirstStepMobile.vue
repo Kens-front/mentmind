@@ -7,7 +7,6 @@
                 navigation
                 class="my-swiper"
                 :effect="'cube'"
-                loop
                 :grabCursor="true"
                 :cubeEffect="{
                 shadow: true,

@@ -14,13 +14,12 @@ function onGetActiveIndex(swiper: any) {
   <div class="mobile-ev">
     <client-only>
       <Swiper
-          @slide-change="onGetActiveIndex"
+          @snapIndexChange="onGetActiveIndex"
           :modules="[EffectCube]"
           :slides-per-view="1"
           navigation
           class="my-swiper"
           centeredSlided
-          loop
           :effect="'cube'"
           :cubeEffect="{
       shadow: true,

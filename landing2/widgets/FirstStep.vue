@@ -37,22 +37,22 @@ const index = ref(0);
 const enrollmentStages = [
   {
     title: "Оставить заявку",
-    description: "Заполните короткую форму и получите <strong>консультацию по обучению</strong>",
+    description: "Заполните короткую форму, чтобы <strong>получить экспертную консультацию</strong> по вашей траектории роста",
     image: 'image1',
   },
   {
-    title: "Пробное занятие",
-    description: "Пройдите <strong> бесплатное пробное занятие</strong> и оцените наш подход к обучению",
+    title: "Первичный разбор",
+    description: "<strong>Бесплатно</strong> на встрече с ментором <strong>проведете аудит текущих знаний</strong> и определим цели",
     image: 'image2',
   },
   {
-    title: "Обсуждение цели",
-    description: "Обсудите с ментором цели обучения и <strong>составьте персональный план</strong>",
+    title: "Индивидуальный план",
+    description: "Совместно составим персональный маршрут обучения <strong>с упором на практику</strong>",
     image: 'image3',
   },
   {
-    title: "Приступить к обучению",
-    description: "<strong>Начинате обучение</strong>, выполняйте задания и двигайтесь к результату",
+    title: "Старт обучения",
+    description: "Приступайте к программе под руководством наставника <strong>и сразу применяйте знания на практике</strong>",
     image: 'image4',
   }
 ];
@@ -117,6 +117,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .steps {
     position: relative;
+    z-index: 10;
     background: url('../public/assets/noise.png');
 }
 

@@ -369,8 +369,10 @@ onMounted( async () => {
 }
 
 .image {
-    background-size: contain;
+ 
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     transform: perspective(1200px) rotateY(0deg);
     transition: .8s ease-in-out;
 
