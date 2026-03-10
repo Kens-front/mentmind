@@ -42,6 +42,7 @@ export class YoukassaService {
       },
       metadata: {
         userId: createYoukassaDto.userId,
+        lessons_count: createYoukassaDto.lesson_count
       }
     };
 
