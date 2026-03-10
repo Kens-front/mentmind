@@ -40,6 +40,9 @@ export class YoukassaService {
         type: 'redirect',
         return_url: 'https://mentmind.ru/dashboard'
       },
+      metadata: {
+        userId: createYoukassaDto.userId,
+      }
     };
 
     try {

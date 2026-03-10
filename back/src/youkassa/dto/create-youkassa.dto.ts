@@ -4,4 +4,8 @@ export class CreateYoukassaDto {
     idempotencyKey: string;
     
     totalPrice: number;
+    
+    userId: number;
+    
+    lesson_count: number;
 }

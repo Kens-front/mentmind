@@ -25,7 +25,7 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
     ) {}
 
     async execute(command: CreatePaymentCommand): Promise<any> {
-        const {idempotencyKey, totalPrice} = command
+        const {idempotencyKey, totalPrice, } = command
         const user = await this.queryBus.execute(new GetUserBy(USER_PARAMS.ID, `${command.userId}`))
 
         if (!user) {
@@ -38,6 +38,8 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
             {
                 idempotencyKey,
                 totalPrice: totalPrice,
+                userId: user.id,
+                lesson_count: command.createPaymentDto.lessons_count
             }
         )
 
