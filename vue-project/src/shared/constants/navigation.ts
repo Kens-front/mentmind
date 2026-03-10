@@ -14,5 +14,7 @@ export enum Navigation {
     CREATE_HOMEWORKS = '/homeworks/create',
     PROFILE = '/profile',
     GROUPS = '/groups',
-    PSYCHOLOGY = '/psycholoy'
+    PSYCHOLOGY = '/psychology',
+    PLANS = '/plans',
+    REQUEST = '/request',
 }

@@ -133,7 +133,24 @@ const routes: RouteRecordRaw[] = [
     meta: { requiresAuth: true },
   },
 
-
+  {
+    path: Navigation.PLANS,
+    component: Home,
+    children: [
+      { path: '', component: () => import('@/pages/plans/PlansPage.vue') },
+      { path: ':id', component: () => import('@/pages/plans/UserPlan.vue') },
+    ],
+    meta: { requiresAuth: true },
+  },
+  {
+    path: Navigation.REQUEST,
+    component: Home,
+    children: [
+      { path: '', component: () => import('@/pages/request/RequestPage.vue') },
+    ],
+    meta: { requiresAuth: true },
+  },
+    
 ];
 
 export default routes;

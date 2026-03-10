@@ -2,5 +2,5 @@
 
 
 export class GetRequestQuery {
-    constructor () {}
+    constructor (public params: any) {}
 }

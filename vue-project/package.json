@@ -19,6 +19,7 @@
     "@element-plus/icons-vue": "^2.3.2",
     "@element-plus/theme-chalk": "^2.2.16",
     "@mobilon-dev/chotto": "^0.3.41",
+    "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.13.2",
     "date-fns": "^4.1.0",
     "element-plus": "^2.12.0",

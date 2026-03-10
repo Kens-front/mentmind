@@ -19,19 +19,20 @@ import StartMobile from "~~/widgets/mobile/StartMobile.vue";
 import FormMobile from "~~/widgets/mobile/FormMobile.vue";
 import TarifMobile from "~~/widgets/mobile/TarifMobile.vue";
 import { ref } from "vue";
+import QA from "~~/widgets/QA.vue";
 
 
 const firstSlider = [
-  {title: 'Программа под вас', description: 'Мы не заставляем всех учиться по одному шаблону. Ваша программа — адаптируется под цели, уровень и стиль мышления', image: pattern},
+  {title: 'Программа под вас', description: 'Мы не заставляем всех учиться по одному шаблону. Ваша программа адаптируется под цели, уровень и стиль мышления', image: pattern},
   {title: 'Работаем с любым уровнем', description: 'Вы получите мощную прокачку навыков, вне зависимости от того, с 0 вы решили погрузиться в профессию или уже имеете определённый опыт', image: pattern4},
-  {title: 'Учим мыслить как программист', description: 'Не просто синтаксис — а фундаментальное программное мышление, которое работает в веб-разработке, геймдеве, автоматизации и даже data science.', image: pattern2},
+  {title: 'Учим мыслить как программист', description: 'Изучаем не просто синтаксис, а фундаментальное программное мышление, которое работает в веб-разработке, геймдеве, автоматизации и даже data science.', image: pattern2},
   {title: 'Бонус за вовлечённость', description: 'При покупке от 10 занятий — предоставляется одна психологическая сессия в месяц для разгруза, поддержки и повышения мотивации.', image: pattern3}
 ]
 
 const secondSlider = [
-  {title: 'Выбирайте формат', description: 'Индивидуальные занятия 👤 для полного погружения или мини‑группа 👥 до 2 человек — для идей и роста.',  image: pattern3},
-  {title: 'Всё в одном месте', description: 'Расписание, материалы, домашки, прогресс — в одном окне. Без хаоса и лишних писем.',  image: pattern4},
-  {title: 'Портфолио с первого месяца', description: 'Уже через 3–4 занятия сделаете реальные проекты: бот, мини‑игра, веб‑приложение. То, что откроет двери в профессию.',  image: pattern5}
+  {title: 'Выбирайте формат', description: 'Индивидуальные занятия 👤 для полного погружения или мини‑группа 👥 из 2 человек — для идей и роста.',  image: pattern3},
+  {title: 'Предлагаем широкий спектр', description: 'Готовим к собеседованиям, тестим знания, оттачиваем необходимые темы',  image: pattern4},
+  {title: 'Делаем Вас конкурентными на рынке', description: 'Никакой ИИ и близко не заменит Вас',  image: pattern5}
 ]
 
 const secondSliderRef = ref<HTMLElement | null>(null)
@@ -129,9 +130,11 @@ onMounted(async () => {
      </div>
 
 
-      <TarifMobile/>
+    <TarifMobile/>
+    
+    <QA :is-desktop="false"/>
 
-     <FormMobile/>
+    <FormMobile/>
   </div>
  
 </template>

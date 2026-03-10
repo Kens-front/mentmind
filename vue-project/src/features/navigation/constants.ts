@@ -19,4 +19,6 @@ export const NAVIGATION_LINKS = [
     { label: 'Домашние занятия', href: Navigation.HOMEWORKS, roles: [], icon: Reading },
     { label: 'Создание домашнего занятия', href: Navigation.CREATE_HOMEWORKS, roles: [RoleList.MENTOR], icon: DocumentAdd },
     { label: 'Психологические сессии', href: Navigation.PSYCHOLOGY, roles: [RoleList.ADMIN, RoleList.STUDENT], icon: DocumentAdd },
+    { label: 'Индивидуальные планы', href: Navigation.PLANS, roles: [RoleList.ADMIN, RoleList.MENTOR], icon: DocumentAdd },
+    { label: 'Заявки', href: Navigation.REQUEST, roles: [RoleList.ADMIN], icon: DocumentAdd },
 ];

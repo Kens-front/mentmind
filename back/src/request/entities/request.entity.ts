@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity({name: 'request'})
 export class Request {
@@ -16,4 +16,10 @@ export class Request {
 
     @Column()
     text: string
+    
+    @Column({default: 'open'})
+    status: 'open' | 'closed'
+
+    @CreateDateColumn({type: 'date'})
+    createAt: Date
 }

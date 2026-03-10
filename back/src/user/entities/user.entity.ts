@@ -11,6 +11,7 @@ import { LessonParticipant } from "src/lesson-participant/entities/lesson-partic
 import { LessonPackage } from "src/lesson-package/entities/lesson-package.entity";
 import {PsychologyPack} from "../../psychology-pack/entities/psychology-pack.entity";
 import {PsychologySession} from "../../psychology-session/entities/psychology-session.entity";
+import {Plan} from "../../plan/entities/plan.entity";
 
 
 @Entity({ name: 'users' })
@@ -92,6 +93,9 @@ export class User {
     
     @OneToMany(() => PsychologySession, (session) => session.user)
     psychologySessions: PsychologySession[]
+    
+    @OneToOne(() => Plan, (plan) => plan.user)
+    plan: Plan
  
     @BeforeUpdate()
     updateFullname() {

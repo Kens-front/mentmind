@@ -33,6 +33,7 @@ import {ConfigModule} from "@nestjs/config";
 import { YoukassaModule } from './youkassa/youkassa.module';
 import { PsychologyPackModule } from './psychology-pack/psychology-pack.module';
 import { PsychologySessionModule } from './psychology-session/psychology-session.module';
+import { PlanModule } from './plan/plan.module';
 
 @Module({
   imports: [
@@ -49,7 +50,7 @@ import { PsychologySessionModule } from './psychology-session/psychology-session
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
-    }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule, YoukassaModule, PsychologyPackModule, PsychologySessionModule],
+    }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule, YoukassaModule, PsychologyPackModule, PsychologySessionModule, PlanModule],
   controllers: [AppController],
   providers: [AppService],
 

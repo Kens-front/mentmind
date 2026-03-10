@@ -1,6 +1,7 @@
 import type { LESSON_TYPES } from "@/features/lessons/types"
 import type { TProfile } from "../api"
 import type { IMentorProfile, IStudentProfile } from "../store/store"
+import type {IPlan} from "@/features/plan/types";
 
 export enum RoleList {
     MENTOR = 'mentor',
@@ -25,6 +26,7 @@ export enum USER_LEVEL {
 export interface IUser {
     id: number
 
+    plan: IPlan
 
     first_name: string
 

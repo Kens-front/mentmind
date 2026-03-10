@@ -5,11 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Request } from './entities/request.entity';
 import { GetRequestHandler } from './handlers/get-requests.handler';
 import { CreateRequestHandler } from './handlers/create-request.handler';
+import {UpdateRequestHandler} from "./handlers/update-request.handler";
 
 
 const handlers = [
   GetRequestHandler,
   CreateRequestHandler,
+  UpdateRequestHandler,
 ];
 
 @Module({

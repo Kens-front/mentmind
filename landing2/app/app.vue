@@ -33,6 +33,9 @@
 		<section id="tarifs" class="section overlap vertical">
 			<Tarifs/>
 		</section>
+    <section class="section overlap vertical">
+      <QA :is-desktop="true" :is-visible="true"/>
+    </section>
 		<section class="section overlap vertical">
 			<CodePallete/>
 		</section>
@@ -77,6 +80,7 @@ import pattern5 from '../public/assets/pattern5.png'
 import { useProductStore } from './store';
 import { metrikaApi } from './features/api';
 import Mobile from "~~/widgets/Mobile.vue";
+import QA from "~~/widgets/QA.vue";
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
