@@ -64,8 +64,6 @@ onMounted(() => {
 
 <template>
   <section>
-    
-    <div @click="changeItem" v-html="fullPlane"/>
     <el-form @submit.prevent="addItem" label-position="top">
       <el-form-item label="Название модуля">
         <el-input v-model="title" placeholder="Синтаксис языка"/>

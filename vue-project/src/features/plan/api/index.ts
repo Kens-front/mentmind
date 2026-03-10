@@ -4,7 +4,7 @@ import {axiosInstance} from "@/shared/config/axios.ts";
 
 
 interface IApi {
-    getOne: (userId: number) => Promise<AxiosResponse<IPlan>>
+    getOne: (userId: number) => Promise<AxiosResponse<{id: number, items: string}>>
     create: (dto: ICreatePlanDto) => Promise<AxiosResponse<IPlan>>
     update: (dto: IUpdatePlanDto) => Promise<AxiosResponse<IPlan>>
 }
