@@ -41,9 +41,7 @@ export class FirstLessonCompletedByMentor implements IEventHandler<LessonComplet
                 lessonParticipations: true
             }
         });
-
-        console.log('userIds', userIds);
-        console.log('users', users.map(user => user));
+        
         const firstLessonUsers = users.filter(user => user.lessonParticipations.length === 1);
 
  

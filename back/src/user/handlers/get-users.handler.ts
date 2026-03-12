@@ -27,6 +27,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
         .createQueryBuilder('user')
         .leftJoinAndSelect('user.student_profile', 'student_profile')
         .leftJoinAndSelect('user.mentor_profile', 'mentor_profile')
+        .leftJoinAndSelect('user.plan', 'plan')
         .leftJoinAndSelect('user.lessonParticipations', 'lesson_participants')
         .leftJoinAndSelect('user.chats', 'chats')
         .addSelect(
@@ -67,6 +68,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
         .addGroupBy('student_profile.id')
         .addGroupBy('mentor_profile.id')
         .addGroupBy('chats.id')
+        .addGroupBy('plan.id')
         .addGroupBy('lesson_participants.id');
 
 

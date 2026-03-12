@@ -6,9 +6,7 @@ export interface IPlan {
     
     user: TUserFull
     
-    title: string
-    
-    description: string
+    items: string
 }
 
 export interface ICreatePlanDto {

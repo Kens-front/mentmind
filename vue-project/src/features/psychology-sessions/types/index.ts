@@ -17,3 +17,6 @@ export interface IPsychologySession {
 
     status: 'open' | 'close';
 }
+
+
+export interface IUpdatePsychologySessionDto extends Partial<IPsychologySession> {}  

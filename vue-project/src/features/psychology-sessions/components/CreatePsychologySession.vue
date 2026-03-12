@@ -11,6 +11,7 @@ const students = ref<TUserFull []>([])
 
 const sessionData = reactive({
   date: '',
+  link: '',
   userId: null,
 })
 
@@ -79,6 +80,10 @@ onMounted(() => {
               :value="student.id"
           />
         </el-select>
+      </el-form-item>
+      
+      <el-form-item label="Ссылка">
+        <el-input v-model="sessionData.link" placeholder="http://telemost.ru"/>
       </el-form-item>
       
       <el-button @click="createSession">

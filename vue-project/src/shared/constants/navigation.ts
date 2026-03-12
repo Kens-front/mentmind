@@ -16,5 +16,6 @@ export enum Navigation {
     GROUPS = '/groups',
     PSYCHOLOGY = '/psychology',
     PLANS = '/plans',
+    PLAN = '/plan',
     REQUEST = '/request',
 }

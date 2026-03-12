@@ -2,7 +2,7 @@
 import {CreatePsychologySessionCommand} from "../create-psychology-session.command";
 import {InjectRepository} from "@nestjs/typeorm";
 import {PsychologySession} from "../entities/psychology-session.entity";
-import {Repository} from "typeorm";
+import {Equal, Repository} from "typeorm";
 import {HttpException} from "@nestjs/common";
 import {GetUserBy} from "../../user/queries/get-user-by.query";
 import {USER_PARAMS} from "../../auth/constants";
@@ -24,6 +24,7 @@ export class CreatePsychologySessionHandler implements ICommandHandler<CreatePsy
                 user: {
                     id: command.dto.userId,
                 },
+ 
                 status: 'active'
             }
         })
@@ -34,11 +35,6 @@ export class CreatePsychologySessionHandler implements ICommandHandler<CreatePsy
         }
         
         if (!pack) {
-            throw new HttpException('Нет досутпных пакетов', 404)
-        }
-        
-        if (pack.used_count >= pack.available_count) {
-            pack.status = 'inactive';
             throw new HttpException('Нет досутпных пакетов', 404)
         }
         

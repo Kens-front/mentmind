@@ -143,6 +143,14 @@ const routes: RouteRecordRaw[] = [
     meta: { requiresAuth: true },
   },
   {
+    path: Navigation.PLAN,
+    component: Home,
+    children: [
+      { path: '', component: () => import('@/pages/plans/PlanPage.vue') },
+    ],
+    meta: { requiresAuth: true },
+  },
+  {
     path: Navigation.REQUEST,
     component: Home,
     children: [

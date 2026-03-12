@@ -5,6 +5,7 @@ import {axiosInstance} from "@/shared/config/axios.ts";
 
 interface IApi {
     getOne: (userId: number) => Promise<AxiosResponse<{id: number, items: string}>>
+    getByMe:() => Promise<AxiosResponse<IPlan>>
     create: (dto: ICreatePlanDto) => Promise<AxiosResponse<IPlan>>
     update: (dto: IUpdatePlanDto) => Promise<AxiosResponse<IPlan>>
 }
@@ -17,6 +18,10 @@ export const planApi: IApi = {
     
     getOne(userId: number) {
         return axiosInstance.get(`/plan/${userId}`)
+    },
+    
+    getByMe() {
+        return axiosInstance.get('/plan/user/me')
     },
     
     update(dto) {

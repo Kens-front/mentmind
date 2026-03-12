@@ -28,7 +28,12 @@ async function getPlan(){
 
 
 async function savePlan(){
-  await planApi.create({items: JSON.stringify(items.value), userId})
+  try {
+    await planApi.create({items: JSON.stringify(items.value), userId})
+    notifySuccess('Подпункты созданы')
+  } catch {
+    
+  }
 }
 async function addItem() {
   try {
@@ -82,7 +87,7 @@ onMounted(() => {
       >
         <QuillEditor  
             v-model:content="item.description"
-            content-type="html"
+            content-type="text"
             theme="snow" 
             @blur="savePlan"
         />
