@@ -16,7 +16,7 @@ export class UpdatePlanCommandHandler implements ICommandHandler<UpdatePlanComma
     ) {}
 
     async execute(command: UpdatePlanCommand): Promise<Plan> {
-        const {id, items} = command.updatePlanDto
+        const {id, text} = command.updatePlanDto
     
         const plan = await this.plan.findOne({
             where: {
@@ -28,7 +28,7 @@ export class UpdatePlanCommandHandler implements ICommandHandler<UpdatePlanComma
             throw new NotFoundException("Planr not found");
         }
 
-        Object.assign(plan, { items});
+        Object.assign(plan, { text});
 
         return this.plan.save(plan);
     }

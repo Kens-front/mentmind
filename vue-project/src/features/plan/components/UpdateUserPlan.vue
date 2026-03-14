@@ -1,67 +1,35 @@
 ﻿<script setup lang="ts">
-import {computed, onMounted, ref} from "vue";
+import { onMounted, ref} from "vue";
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import {notifySuccess} from "@/shared/config/notifications.ts";
 import {planApi} from "@/features/plan/api";
-
+import Markdown from "@/shared/ui/Markdown.vue";
+ 
 interface IProps {
   userId: number
 }
 
-const {userId} = defineProps<IProps>()
-const activeNames = ref<string[]>([])
-
-const items = ref<{title: string, description: string} []>([])
-const title = ref<string>('')
-
  
-const fullPlane = computed(() => {
-  return items.value.reduce((acc, item) => {
-    return acc + `<h2>${item.title}</h2>${item.description}</h2>`
-  }, ``)
-})
+
+const {userId} = defineProps<IProps>()
+const text = ref<string>( ``)
+ 
  
 async function getPlan(){
   const {data} = await planApi.getOne(userId)
-  items.value = JSON.parse(data.items)
+  text.value = data.text
 }
 
 
 async function savePlan(){
   try {
-    await planApi.create({items: JSON.stringify(items.value), userId})
+    await planApi.create({text: text.value, userId})
     notifySuccess('Подпункты созданы')
   } catch {
     
   }
 }
-async function addItem() {
-  try {
-    items.value.push({title: title.value, description: ''})
 
-    title.value = ''
-
-    await savePlan()
-    notifySuccess('Пункт создан')    
-  } catch {
-    
-  }
- 
-}
-
-function changeItem($event: any) {
-  const target = $event.target
-  if (target.tagName === 'STRONG') {
-    const targeTextContent = target.textContent;
-    const targetParent = target.parentElement
-
-    targetParent.textContent = targeTextContent
-  } 
-  else {
-    const targeTextContent = target.textContent;
-    target.innerHTML = `<strong>${targeTextContent}</strong>`
-  }
-}
 onMounted(() => {
   getPlan()
 })
@@ -69,33 +37,23 @@ onMounted(() => {
 
 <template>
   <section>
-    <el-form @submit.prevent="addItem" label-position="top">
-      <el-form-item label="Название модуля">
-        <el-input v-model="title" placeholder="Синтаксис языка"/>
-      </el-form-item>
-      <el-button native-type="submit">
-        Добавить
-      </el-button>
-    </el-form>
-    
-    
-    <el-collapse v-model="activeNames">
-      <el-collapse-item 
-          v-for="(item, index) of items" 
-          :title="item.title" 
-          :name="index.toString()"
+    <el-collapse>
+      <el-collapse-item title="Текстовый редактор"
       >
         <QuillEditor  
-            v-model:content="item.description"
+            v-model:content="text"
             content-type="text"
-            theme="snow" 
-            @blur="savePlan"
+            theme="snow"
         />
+        
+        <el-button @click="savePlan">Сохранить</el-button>
       </el-collapse-item>
     </el-collapse>
+    
+     <Markdown :text="text"></Markdown>/
   </section>
 </template>
 
-<style scoped lang="scss">
-
+<style lang="scss">
+ 
 </style>

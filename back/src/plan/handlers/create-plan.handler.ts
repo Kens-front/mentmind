@@ -16,7 +16,7 @@ export class CreatePlanCommandHandler implements ICommandHandler<CreatePlanComma
     ) {}
     
     async execute(command: CreatePlanCommand): Promise<Plan> {
-        const {userId, items} = command.createPlanDto
+        const {userId, text} = command.createPlanDto
         const user = await this.queryBus.execute(new GetUserBy(USER_PARAMS.ID,`${userId}`));
         
         if (!user) {
@@ -34,15 +34,13 @@ export class CreatePlanCommandHandler implements ICommandHandler<CreatePlanComma
         if (plan) {
             console.log('plan', command.createPlanDto);
             
-            plan.items = items;
+            plan.text = text;
         } 
         else {
-            plan = this.plan.create({items, user}); 
+            plan = this.plan.create({text, user}); 
         }
         
  
         return this.plan.save(plan);
-        
-        
     }
 }

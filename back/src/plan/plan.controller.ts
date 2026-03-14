@@ -21,7 +21,7 @@ export class PlanController {
 
   @Post()
   create(@Body() createPlanDto: CreatePlanDto) {
-    console.log('createPlanDto', Array.isArray(createPlanDto.items[0]));
+
     return this.commandBus.execute(new CreatePlanCommand(createPlanDto));
   }
 

@@ -6,8 +6,8 @@ export class Plan {
     @PrimaryGeneratedColumn()
     id: number;
     
-    @Column({type: 'json', nullable: true, default: []})
-    items: { title: string; description: string }[]
+    @Column({nullable: true})
+    text: string;
     
     @OneToOne(type => User, (user) => user.plan)
     @JoinColumn({name: 'userId'})

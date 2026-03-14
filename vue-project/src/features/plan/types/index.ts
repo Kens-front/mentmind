@@ -6,11 +6,11 @@ export interface IPlan {
     
     user: TUserFull
     
-    items: string
+    text: string
 }
 
 export interface ICreatePlanDto {
-    items: string;
+    text: string;
 
     userId: number;
 }

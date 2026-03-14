@@ -223,4 +223,22 @@ body .el-switch__label.is-active {
     color: var(--gold-primary);
 }
 
- 
+
+.markdown {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem 0;
+    color: var(--text-heading);
+
+    & h1 {
+        font-size: 4rem;
+    }
+    & h2 {
+        font-size: 3rem;
+    }
+
+    & ul {
+        display: grid;
+        gap: 1rem;
+    }
+}
