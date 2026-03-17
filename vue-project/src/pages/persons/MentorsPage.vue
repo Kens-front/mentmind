@@ -8,6 +8,7 @@
             </div>
         </CreateUserForm>
         
+      <GetUsersBySkills/>
         <GetAllUsers :role="RoleList.MENTOR" :columns="MENTORS_TABLE_COLUMNS">
             <template #link="props">
                 <OpenUserPage :link="props.link"/>
@@ -25,6 +26,7 @@ import { MENTORS_TABLE_COLUMNS } from '@/features/users/constants/mentors-table-
 import { RoleList } from '@/features/users/types';
 import { useLearnDirectionStore } from '@/features/learnDirections/store';
 import { onMounted } from 'vue';
+import GetUsersBySkills from "@/features/users/components/GetUsersBySkills.vue";
 
 
 const learnDirectionStore = useLearnDirectionStore();

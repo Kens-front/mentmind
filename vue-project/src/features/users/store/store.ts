@@ -126,6 +126,11 @@ export const useUserStore = defineStore('users', () => {
 
         return userApi.update(id, { user, profile })
     }
+    
+     async function getUsersBySkill(tag: string) {
+        const {data} = await userApi.getBySkill(tag);
+         users.value = data.map((user, index) => ({ ...user, index: index + 1 }));
+     }
 
     /**
      * Обновление профиля пользователя
@@ -202,5 +207,6 @@ export const useUserStore = defineStore('users', () => {
         getProfile,
         theme,
         updateProfile,
+        getUsersBySkill,
     }
 })

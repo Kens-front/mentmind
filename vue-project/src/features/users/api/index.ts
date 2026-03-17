@@ -22,6 +22,7 @@ export type TProfile = IMentor & IStudentProfile
 interface IUserApi {
     create: (user: IUserForm & (IMentor | IStudentProfile)) => Promise<AxiosResponse<{ user: IUser, profile: TProfile }>>
     getAll: (query: any) => Promise<AxiosResponse<TUserFull[]>>
+    getBySkill: (tag: string) => Promise<AxiosResponse<TUserFull[]>>
     update: (id: number, payload: IUpdateUserFull) => Promise<AxiosResponse<{ isOk: true }>>
     getOne: (id: number) => Promise<AxiosResponse<IUserFull>>
     getProfile: () => Promise<AxiosResponse<IUserFull>>
@@ -37,6 +38,11 @@ export const userApi: IUserApi = {
     getAll(query) {
         return axiosInstance.get('/user', { params: query })
     },
+    
+    getBySkill(tag) {
+        return axiosInstance.get('/user/tags/', { params: {tag} })
+    },
+    
     update(id, payload) {
         return axiosInstance.patch(`/user/full/${id}`, payload)
     },

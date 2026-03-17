@@ -21,6 +21,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { UpdateAvatarCommand } from './commands/update-avatar.command';
+import {GetUsersBySkillsQuery} from "./queries/get-users-by-skills.query";
 
 
 @Controller('user')
@@ -60,6 +61,12 @@ export class UserController {
   @Get('/full/:id')
   getOneFull(@Param('id') id: string) {
     return this.queryBus.execute(new GetUserFullQuery(+id))
+  }
+  
+  @Get('/tags')
+  getUsersBySkill(@Query('tag') tag: string) {
+    console.log('tag', tag);
+    return this.queryBus.execute(new GetUsersBySkillsQuery(tag))
   }
 
 

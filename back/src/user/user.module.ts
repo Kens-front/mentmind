@@ -14,6 +14,7 @@ import { GetUserFullHandler } from './handlers/get-user-full.handler';
 import { UpdateUserFullHandler } from './handlers/update-user-full.handler';
 import { UpdateAvatarHandler } from './handlers/update-avatar.handler';
 import {LessonPackage} from "../lesson-package/entities/lesson-package.entity";
+import {GetUsersBySkillsHandler} from "./handlers/get-users-by-skills.handler";
 
 const handlers = [
   GetUsersHandler,
@@ -22,7 +23,8 @@ const handlers = [
   UpdateUserFullHandler,
   UpdateUserHandler,
   GetStudentProfilesByMentorIdHandler,
-  UpdateAvatarHandler
+  UpdateAvatarHandler,
+  GetUsersBySkillsHandler
 ]
 @Module({
   imports: [TypeOrmModule.forFeature([User, MentorProfile, StudentProfile, LearnDirection, LessonPackage])],
