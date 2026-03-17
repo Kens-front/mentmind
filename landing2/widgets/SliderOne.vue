@@ -192,6 +192,9 @@ const THEMES_CSS = {
 }
 
 .button {
+  align-items: center;
+  justify-content: center;
+  display: flex;
   background: #2d1b4a;
   color: #fff;
   padding: 1rem 2rem;

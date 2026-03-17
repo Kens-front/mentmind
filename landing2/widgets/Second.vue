@@ -85,6 +85,7 @@ onMounted(() => {
 .descriptions {
     display: grid;
     grid-template-columns: 50% 50%;
+    gap: 3rem;
     color: #CBD5E1;
     
     & p {

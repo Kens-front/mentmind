@@ -81,6 +81,7 @@ import { useProductStore } from './store';
 import { metrikaApi } from './features/api';
 import Mobile from "~~/widgets/Mobile.vue";
 import QA from "~~/widgets/QA.vue";
+import {faqLdJson, mainLdJson} from "~/constnats/ldjson.ts";
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
@@ -203,9 +204,22 @@ useHead({
 		{ name: 'yandexbot', content: 'index, follow' },
 	],
 	link: [
-		{rel: 'stylesheet', href: 'devicon.min.css'}
-	]
+		{rel: 'stylesheet', href: 'devicon.min.css'},
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon2.png' },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon2.png' },
+	],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(mainLdJson)
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(faqLdJson)
+    }
+  ]
 })
+ 
 </script>
 
 <style lang="scss" scoped>

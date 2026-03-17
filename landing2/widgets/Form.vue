@@ -91,11 +91,11 @@ const rules = {
   ],
   
   VK: [
-    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{4,31}$/) || 'Введите корректный никнейм'
+    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{2,31}$/) || 'Введите корректный никнейм'
   ],
 
   Telegram: [
-    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{4,31}$/) || 'Введите корректный никнейм'
+    (val:string) => val.match(/^@[a-zA-Z_][a-zA-Z0-9_]{2,31}$/) || 'Введите корректный никнейм'
   ],
   
   
@@ -189,9 +189,10 @@ async function onSubmit() {
         name: '',
         method: 'Email',
         checkbox: true,
-        callbackMethod: ''
+        callbackMethod: '',
       });
 
+      text.value = ''
       nameRef.value.resetValidation()
       methodCallbackRef.value.resetValidation()
     } catch(e) {
