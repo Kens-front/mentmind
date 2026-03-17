@@ -15,7 +15,7 @@ const app = createApp(App)
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import {QuillEditor} from "@vueup/vue-quill"; // Тёмная тема
-import Markdown from 'vue3-markdown-it';
+ 
 import 'highlight.js/styles/monokai.css';
 app.use(createPinia())
 app.use(router)
