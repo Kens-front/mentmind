@@ -1,5 +1,5 @@
 import { ILoginData } from "../types";
 
 export class LoginUserCommand {
-    constructor(public user: ILoginData) {}
+    constructor(public user: ILoginData) {} 
 }

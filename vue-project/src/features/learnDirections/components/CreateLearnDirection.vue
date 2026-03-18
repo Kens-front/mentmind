@@ -20,6 +20,7 @@
                 native-type="submit" 
                 data-testid="learn-direction-submit"
                 :style="{width: '100%'}"
+                :disabled="!form.title"
             >
                 Создать
             </el-button>
@@ -53,6 +54,10 @@ const rules: FormRules = reactive({
 async function create() {
     if (!formRef.value) {
         return
+    }
+    
+    if (!form.title) {
+      return;
     }
 
     await formRef.value.validate(async valid => {

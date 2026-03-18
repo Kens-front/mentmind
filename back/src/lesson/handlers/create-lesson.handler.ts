@@ -58,7 +58,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
     const usersId = [mentorId, ...studentIds];
 
     const { foundUsers, students, mentor, mentorProfile } = await this.getUsers(usersId);
-
+ 
     // ------------------------------------------------
     // 3) Длительность и end_time
     // ------------------------------------------------
@@ -80,7 +80,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
             type: LESSON_TYPES.GROUP
           },
         });
-      console.log('lessonPackages', lessonPackages)
+
         if (!lessonPackages.length) {
           throw new HttpException('Нет доступного', 404);
         }
@@ -92,14 +92,15 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
         where: { userId: In(studentIds) },
       });
 
-      console.log('lessonPackages', lessonPackages);
+ 
+ 
       if (!lessonPackages.length) {
         throw new HttpException('Нет доступного', 404);
       }
 
       lessonDuration = lessonPackages[0].duration
     }
-
+ 
     const end_time = addMinutesToTime(start_time, lessonDuration);
 
     const startDateTime = formatDateToISO(date, start_time);
@@ -208,16 +209,16 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
 
       lesson.price = this.getLessonPrice(lesson.lessonType, lesson.duration)
       // Опционально: проставляем связь lesson -> lessonCredit (у тебя она есть)
-
+      console.log('lesson.price ', lesson.lessonType )
       await Promise.all([
         await em.save(LessonParticipant, participants),
         await em.save(LessonSlots, slot),
         await em.save(Lesson, lesson),
       ])
 
-
+    
       this.eventBus.publish(new LessonCompleteEvent(usersId))
-
+ 
       // Вернём lesson (при желании можно загрузить relations)
       return lesson;
     });
@@ -225,7 +226,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
 
 
   getLessonPrice(type: LESSON_TYPES, duration: LESSON_DURATION) {
-    const priceForHour = ELessonPrices[type];
+    const priceForHour = ELessonPrices[type.toUpperCase()];
     return priceForHour * (duration / 60);
   }
 

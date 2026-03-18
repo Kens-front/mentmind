@@ -383,6 +383,7 @@ watch(userStore.updateUser, async () => {
 
     &-wrapper {
         display: grid;
+        align-items: center;
         grid-template-rows: 100%;
         height: 100%;
     }

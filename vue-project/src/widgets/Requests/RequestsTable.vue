@@ -30,7 +30,7 @@ const emits = defineEmits(['click:close'])
       <template #default="props">
         <div v-if="props.row.status === 'open'" class="actions">
           <el-popconfirm
-              title="Подтвердить оплату?"
+              title="Завершить заявку?"
               placement="top"
               @confirm="emits('click:close', props.row.id)"
           >
@@ -42,7 +42,7 @@ const emits = defineEmits(['click:close'])
       </template>
     </el-table-column>
   </el-table>
-</template>
+</template> 
 
 <style scoped lang="scss">
 
