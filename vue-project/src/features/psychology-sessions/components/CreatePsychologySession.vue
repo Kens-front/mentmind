@@ -23,6 +23,7 @@ const sessionDto = computed(() => {
     return {
       date,
       time,
+      link: sessionData.link,
       userId: sessionData.userId,
     }
 })

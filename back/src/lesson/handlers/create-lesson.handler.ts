@@ -1,24 +1,20 @@
 import {CommandHandler, EventBus, ICommandHandler} from "@nestjs/cqrs";
-import { CreateLessonCommand } from "../commands/create-lesson.command";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Lesson, LESSON_STATUS, LESSON_TYPES } from "../entities/lesson.entity";
-import { Equal, In, LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
-import { StudentProfile } from "src/student_profile/entities/student_profile.entity";
-import { MentorProfile } from "src/mentor_profile/entities/mentor_profile.entity";
-import { MentorAvailability } from "src/mentor-availability/entities/mentor-availability.entity";
-import { BadRequestException, NotFoundException, ConflictException, HttpException } from "@nestjs/common";
-import { addMinutesToTime, formatDateToISO } from "src/common";
-import { LESSON_DURATION } from "src/payment/types";
-import { User } from "src/user/entities/user.entity";
-import { LessonSlots } from "src/lesson-slots/entities/lesson-slot.entity";
-import { LessonSlotStatus } from "src/lesson-slots/types";
-import { LessonParticipant } from "src/lesson-participant/entities/lesson-participant.entity";
-import { UserService } from "src/user/user.service";
-import { RoleList } from "src/user/types";
-import { LessonCreditsService } from "src/lesson-slots/lesson-slot.service";
-import { LessonParticipantService } from "src/lesson-participant/lesson-participant.service";
-import { ELessonPrices} from "../types";
-import { LessonPackage } from "src/lesson-package/entities/lesson-package.entity";
+import {CreateLessonCommand} from "../commands/create-lesson.command";
+import {InjectRepository} from "@nestjs/typeorm";
+import {Lesson, LESSON_STATUS, LESSON_TYPES} from "../entities/lesson.entity";
+import {In, LessThanOrEqual, MoreThanOrEqual, Repository} from "typeorm";
+import {MentorProfile} from "src/mentor_profile/entities/mentor_profile.entity";
+import {MentorAvailability} from "src/mentor-availability/entities/mentor-availability.entity";
+import {ConflictException, HttpException, NotFoundException} from "@nestjs/common";
+import {addMinutesToTime, formatDateToISO} from "src/common";
+import {LESSON_DURATION} from "src/payment/types";
+import {LessonSlots} from "src/lesson-slots/entities/lesson-slot.entity";
+import {LessonSlotStatus} from "src/lesson-slots/types";
+import {LessonParticipant} from "src/lesson-participant/entities/lesson-participant.entity";
+import {UserService} from "src/user/user.service";
+import {RoleList} from "src/user/types";
+import {ELessonPrices} from "../types";
+import {LessonPackage} from "src/lesson-package/entities/lesson-package.entity";
 import {LessonCompleteEvent} from "../events/lesson-completed.event";
 
 @CommandHandler(CreateLessonCommand)
@@ -161,12 +157,13 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
       await em.delete(MentorAvailability, { id: availSlot.id });
 
       // --- 1) создаём Lesson
+      //@ts-ignore
       const lesson = em.create(Lesson, {
         date,
         start_time,
         end_time,
         duration: lessonDuration,
-        lessonType: kind,
+        lessonType: kind === LESSON_TYPES.TRIAL ? kind : mentorProfile.level,
         status: LESSON_STATUS.PLANNED,
         notes,
         lessonLink,

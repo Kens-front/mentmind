@@ -9,7 +9,7 @@
         >
 
         <template #modal>
-            <open-modal v-if="filter.mentorId" :modal-component="UpdateMentorPayouts" :modal-props="modalData">
+            <open-modal v-if="filter.mentorId && setVisibleElement([RoleList.ADMIN])" :modal-component="UpdateMentorPayouts" :modal-props="modalData">
                 <el-button>Провести оплату</el-button>
             </open-modal>
         </template>
@@ -27,23 +27,23 @@
 
 
 <script setup lang="ts">
-import { useFilter } from '@/features/common/composables/use-filter';
+import {useFilter} from '@/features/common/composables/use-filter';
 import EntitiesFilter from '@/features/common/EntitiesFilter.vue';
-import { useMentorPayoutStore } from '@/features/mentor-payouts/store';
-import { userApi } from '@/features/users/api';
-import { RoleList, type TUserFull } from '@/features/users/types';
+import {useMentorPayoutStore} from '@/features/mentor-payouts/store';
+import {userApi} from '@/features/users/api';
+import {RoleList, type TUserFull} from '@/features/users/types';
 import MentorPayoutsTable from '@/widgets/MentorPayoutsTable.vue';
-import MentorPayoutFilter from '@/widgets/payouts/MentorPayoutFilter.vue';
 import OpenModal from '@/features/common/OpenModal.vue';
 import UpdateMentorPayouts from '@/features/mentor-payouts/components/UpdateMentorPayouts.vue';
-import { computed, ref } from 'vue';
+import {computed, ref} from 'vue';
 import {useAuthStore} from "@/features/auth/store";
 import {format} from "date-fns";
+import {useSetVisibleElement} from "@/features/common/composables/set-visible-element.ts";
 
 const authStore = useAuthStore();
 const user = authStore.userData?.user;
 
-
+const {setVisibleElement} = useSetVisibleElement()
 const mentorPayoutFilter = computed(() => ({
   mentorId: user?.role === RoleList.MENTOR ? user?.id : null,
   start_date: new Date(new Date().setDate(1)),

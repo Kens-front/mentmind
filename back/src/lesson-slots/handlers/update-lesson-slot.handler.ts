@@ -423,7 +423,7 @@ export class UpdateLessonSlotHandler implements ICommandHandler<UpdateLessonSlot
             [MENTOR_TYPES.JUNIOR]: 0.4,
             [MENTOR_TYPES.MIDDLE]: 0.5,
             [MENTOR_TYPES.SENIOR]: 0.6,
-            [MENTOR_TYPES.BASE]: 0.65,
+            [MENTOR_TYPES.BASE]: 0.5,
             [MENTOR_TYPES.PREMIUM]: 0.75,
         };
 

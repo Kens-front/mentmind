@@ -22,7 +22,7 @@
                     <div class="actions">
                         <OpenCreateLessonModal  
                             kind="group" 
-                            :student-ids="groupStore.groups[$index]?.studentIds?.map(student => student) || []" 
+                            :student-ids="groupStore.groups[$index]?.students?.map(student => student.id) || []" 
                             :mentor-id="mentorId"
                         >
                             <el-tooltip placement="bottom" content="Создать занятие">

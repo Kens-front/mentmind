@@ -1,4 +1,5 @@
 import {User} from "../../user/entities/user.entity";
+import {LESSON_TYPES} from "../../lesson/entities/lesson.entity";
 
 export enum PAYMENT_STATUS {
     PENDING = 'pending',
@@ -13,7 +14,7 @@ export enum LESSON_DURATION {
     MAX = 120,
 }
 
-export interface ICalculatePaymentData  { duration: number, lessonCount: number, user: User}
+export interface ICalculatePaymentData  { duration: number, lessonCount: number, user: User, lessonType: LESSON_TYPES}
 
 
 

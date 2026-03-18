@@ -30,6 +30,7 @@ import {YoukassaService} from "../youkassa/youkassa.service";
 import {PAYMENT_STATUS, YookassaWebhookPayload} from "./types";
 import {CapturePaymentCommand} from "./commands/capture-payment.command";
 import {PaymentPaid} from "./events/payment-paid.event";
+import {LESSON_TYPES} from "../lesson/entities/lesson.entity";
 
 @Controller('payment')
 export class PaymentController {
@@ -48,13 +49,13 @@ export class PaymentController {
       @Body() createPaymentDto: CreatePaymentDto,
       @Headers('idempotency-key') idempotencyKey?: string,
   ) {
-    const {lesson_duration, lessons_count} = createPaymentDto;
+    const {lesson_duration, lessons_count, lessonType} = createPaymentDto;
     
     if (!idempotencyKey) {
       throw new HttpException('idempotency-key', HttpStatus.NOT_FOUND);
     }
     
-    const totalPrice = await this.queryBus.execute(new CalculatePaymentQuery({duration: lesson_duration, lessonCount: lessons_count, user}))
+    const totalPrice = await this.queryBus.execute(new CalculatePaymentQuery({duration: lesson_duration, lessonCount: lessons_count, user, lessonType}))
     
  
     return this.commandBus.execute(new CreatePaymentCommand(Number(user.id), {...createPaymentDto}, totalPrice.amount, idempotencyKey))
@@ -94,9 +95,10 @@ export class PaymentController {
   calculatePayment(
       @Query('duration') duration: string,
       @Query('lessonCount') lessonCount: string,
+      @Query('lessonType') lessonType: LESSON_TYPES,
       @CurrentUser() user: User
   ) {
-    return this.queryBus.execute(new CalculatePaymentQuery({duration: Number(duration), lessonCount: Number(lessonCount), user}));
+    return this.queryBus.execute(new CalculatePaymentQuery({duration: Number(duration), lessonCount: Number(lessonCount), user, lessonType}));
   }
 
   @Get(':id')
