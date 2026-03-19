@@ -40,6 +40,7 @@ export class YoukassaService {
         type: 'redirect',
         return_url: 'https://mentmind.ru/dashboard'
       },
+      capture: true,
       metadata: {
         userId: createYoukassaDto.userId,
         lessons_count: createYoukassaDto.lesson_count
