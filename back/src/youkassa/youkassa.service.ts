@@ -34,7 +34,7 @@ export class YoukassaService {
         currency: 'RUB'
       },
       payment_method_data: {
-        type: 'bank_card'
+        type: 'sbp'
       },
       confirmation: {
         type: 'redirect',
