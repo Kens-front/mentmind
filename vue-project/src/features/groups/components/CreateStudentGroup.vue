@@ -61,6 +61,7 @@ const groupData = reactive<ICreateGroupDto>({
 	description: '',
 	mentorId: null,
 	studentIds: [],
+	students: []
 });
 
 async function getUsers() {

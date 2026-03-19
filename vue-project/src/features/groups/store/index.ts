@@ -23,10 +23,16 @@ export const useGroupStore = defineStore('group', () => {
         groups.value.push(data)
     }
 
+    async function deleteOne(id: number) {
+        const {data} = await groupApi.delete(id)
+        groups.value = groups.value.filter(d => d.id !== id)
+    }
+
     return {
         groups,
         getOne,
         create,
-        getAll
+        getAll,
+        deleteOne
     }
 })

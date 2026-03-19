@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, Query} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards} from '@nestjs/common';
 import { RequestService } from './request.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
@@ -6,6 +6,8 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetRequestQuery } from './queries/get-requests.query';
 import { CreateRequestCommand } from './commands/create-request.command';
 import {UpdateRequestCommand} from "./commands/update-request.command";
+import {AuthGuard} from "../common/decorators/auth-guard";
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('request')
 export class RequestController {
@@ -21,16 +23,22 @@ export class RequestController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
+  @Roles( 'admin')
   findAll(@Query() query: any) {
     return this.queryBus.execute(new GetRequestQuery(query))
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
+  @Roles( 'admin')
   findOne(@Param('id') id: string) {
     return this.requestService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
+  @Roles( 'admin')
   update(@Param('id') id: string, @Body() updateRequestDto: UpdateRequestDto) {
     return this.commandBus.execute(new UpdateRequestCommand({...updateRequestDto, id: Number(id)}));
   }

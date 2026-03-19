@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/common/decorators/auth-guard';
 import { UpdateMentorPayoutCommand } from './commands/update-mentor-payout.command';
 import { UpdateMentorPayoutsDto } from './dto/update-mentor-payouts.dto';
 import { UpdateMentorPayoutsCommand } from './commands/update-mentor-payouts.command';
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('mentor-payout')
 export class MentorPayoutController {
@@ -25,6 +26,7 @@ export class MentorPayoutController {
 
   @Get()
   @UseGuards(AuthGuard)
+  @Roles('mentor', 'admin')
   findAll(
     @Req() req,
     @Query() query
@@ -33,21 +35,29 @@ export class MentorPayoutController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
+  @Roles('mentor', 'admin')
   findOne(@Param('id') id: string) {
     return this.mentorPayoutService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
+  @Roles('admin')
   update(@Param('id') id: string, @Body() updateMentorPayoutDto: UpdateMentorPayoutDto) {
     return this.commandBus.execute(new UpdateMentorPayoutCommand({id: Number(id), ...updateMentorPayoutDto}))
   }
 
   @Patch()
+  @UseGuards(AuthGuard)
+  @Roles('admin')
   updateSome(@Body() updateMentorPayoutDto: UpdateMentorPayoutsDto) {
     return this.commandBus.execute(new UpdateMentorPayoutsCommand({ ...updateMentorPayoutDto, mentorId: Number(updateMentorPayoutDto.mentorId)}))
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
+  @Roles( 'admin')
   remove(@Param('id') id: string) {
     return this.mentorPayoutService.remove(+id);
   }

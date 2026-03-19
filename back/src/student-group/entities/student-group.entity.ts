@@ -20,7 +20,7 @@ export class StudentGroup {
   mentorId: number;
 
   // Студенты в группе
-  @ManyToMany(() => User, { cascade: false })
+  @ManyToMany(() => User, { cascade: true })
   @JoinTable({
     name: 'student_group_members',
     joinColumn: { name: 'groupId', referencedColumnName: 'id' },

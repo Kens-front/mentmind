@@ -13,6 +13,7 @@ import { CreateLessonCommand } from './commands/create-lesson.command';
 import { CreateTrialLessonCommand } from './commands/create-trial-lesson.command';
 import { LESSON_STATUS } from './entities/lesson.entity';
 import { AuthGuard } from 'src/common/decorators/auth-guard';
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('lesson')
 export class LessonController {
@@ -23,6 +24,8 @@ export class LessonController {
   ) {}
 
   @Post()
+  @UseGuards(AuthGuard)
+  @Roles('admin', 'mentor')
   create(@Body() createLessonDto: CreateLessonDto) {
     return this.lessonService.create(createLessonDto);
   }
@@ -39,17 +42,21 @@ export class LessonController {
   }
 
   @Get('available-lesson/:userId')
+  @UseGuards(AuthGuard)
   findAvailables(@Param('userId') userId: string) {
     return this.queryBus.execute(new GetAvailableLessonsQuery(+userId));
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.queryBus.execute(new GetLessonQuery(+id));
   }
 
 
   @Patch('/planned')
+  @UseGuards(AuthGuard)
+  @Roles('admin', 'mentor')
   createPlanned(@Body() updateLessonDto: CreateLessonDto) {
     return this.commandBus.execute(new CreateLessonCommand({...updateLessonDto}))
   }

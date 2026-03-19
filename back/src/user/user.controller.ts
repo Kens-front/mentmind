@@ -22,6 +22,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { UpdateAvatarCommand } from './commands/update-avatar.command';
 import {GetUsersBySkillsQuery} from "./queries/get-users-by-skills.query";
+import {Roles} from "../common/decorators/roles.decorator";
 
 
 @Controller('user')
@@ -59,11 +60,13 @@ export class UserController {
   }
 
   @Get('/full/:id')
+  @UseGuards(AuthGuard)
   getOneFull(@Param('id') id: string) {
     return this.queryBus.execute(new GetUserFullQuery(+id))
   }
   
   @Get('/tags')
+  @UseGuards(AuthGuard)
   getUsersBySkill(@Query('tag') tag: string) {
     console.log('tag', tag);
     return this.queryBus.execute(new GetUsersBySkillsQuery(tag))
@@ -82,24 +85,28 @@ export class UserController {
   }
 
   @Get('with-relations')
+  @UseGuards(AuthGuard)
   findAllWithRelations() {
     // Альтернативный метод с явным указанием отношений
     return this.userService.findAllWithRelations();
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     // Теперь автоматически загружает связанные профили благодаря eager: true
     return this.queryBus.execute(new GetUserBy(USER_PARAMS.ID, id))
   }
 
   @Get(':id/with-relations')
+  @UseGuards(AuthGuard)
   findOneWithRelations(@Param('id') id: string) {
     // Альтернативный метод с явным указанием отношений
     return this.userService.findOneWithRelations(parseInt(id));
   }
 
   @Patch("full/:id")
+  @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('avatar', {
     storage: diskStorage({
       destination: './uploads',

@@ -45,7 +45,7 @@ export class GetMentorPayoutsHandler implements IQueryHandler<GetMentorPayoutsQu
             return this.payout.findAndCount({
                 where: {
                     mentor: { userId: params.mentorId ?? null },
-                    createAt: And(MoreThanOrEqual(params.start_date), LessThanOrEqual(params.end_date)),
+                    createAt: And(MoreThanOrEqual(params.start_date), LessThanOrEqual(params.end_date)), 
                 }, relations: { lesson: true, mentor: { user: true } },
                 take: params.take ?? 5,
                 skip: params.skip ?? 0

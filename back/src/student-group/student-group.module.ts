@@ -9,8 +9,9 @@ import { GetStudentGroupsHandler } from './handlers/get-student-groups.handler';
 import { GetStudentGroupsByMentorHandler } from './handlers/get-student-groups-by-mentor.handler';
 import { User } from 'src/user/entities/user.entity';
 import { LessonPackage } from 'src/lesson-package/entities/lesson-package.entity';
+import {DeleteGroupHandler} from "./handlers/delete-group.handler";
 
-const CommandHandlers = [CreateStudentGroupHandler];
+const CommandHandlers = [CreateStudentGroupHandler, DeleteGroupHandler];
 const QueryHandlers = [GetStudentGroupHandler, GetStudentGroupsByMentorHandler, GetStudentGroupsHandler];
 
 @Module({

@@ -7,6 +7,7 @@ interface IGroupApi {
     getOne: (groupId: number) => Promise<AxiosResponse<IGroup>>
     create: (dto: ICreateGroupDto) => Promise<AxiosResponse<IGroup>>
     getAll: () => Promise<AxiosResponse<IGroup []>>
+    delete: (groupId: number) => Promise<AxiosResponse<IGroup>>
 }
 
 
@@ -20,5 +21,10 @@ export const groupApi: IGroupApi = {
 
     getAll() {
         return axiosInstance.get('/student-groups')
+    },
+    
+    delete(id) {
+        console.log('id', id)
+        return axiosInstance.delete(`/student-groups/${id}`)
     }
 }

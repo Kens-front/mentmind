@@ -8,6 +8,7 @@ import { UpdateHomeWorkCommand } from './commands/update-homework.command';
 import { GetHomeWorksQuery } from './queries/get-homeworks.query';
 import { GetHomeworkQuery } from './queries/get-homework.query';
 import { AuthGuard } from 'src/common/decorators/auth-guard';
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('homework')
 export class HomeworkController {
@@ -18,17 +19,21 @@ export class HomeworkController {
   ) {}
 
   @Post()
+  @UseGuards(AuthGuard)
+  @Roles('mentor')
   create(@Body() createHomeworkDto: CreateHomeworkDto) {
     return this.commandBus.execute(new CreateHomeWorkCommand(createHomeworkDto))
   }
 
   @Get()
   @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   findAll(@Req() req) {
     return this.queryBus.execute(new GetHomeWorksQuery(req.user));
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.queryBus.execute(new GetHomeworkQuery(+id))
   }
@@ -39,11 +44,13 @@ export class HomeworkController {
   // }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(@Param('id') id: string, @Body() updateHomeworkDto: UpdateHomeworkDto) {
     return this.commandBus.execute(new UpdateHomeWorkCommand(+id, updateHomeworkDto))
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.homeworkService.remove(+id);
   }

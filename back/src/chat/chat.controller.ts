@@ -8,6 +8,7 @@ import { GetChatQuery } from './queries/get-chats.query';
 import { GetChatsByUserId } from './queries/get-chats-by-user-id.query';
 import { AuthGuard } from 'src/common/decorators/auth-guard';
 import { User } from 'src/user/entities/user.entity';
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('chat')
 export class ChatController {
@@ -17,13 +18,14 @@ export class ChatController {
     private readonly queryBus: QueryBus,
   ) {}
 
-  @Post()
-  create(@Body() createChatDto: CreateChatDto) {
-    return this.commandBus.execute(new CreateChatCommand(createChatDto));
-  }
+  // @Post()
+  // create(@Body() createChatDto: CreateChatDto) {
+  //   return this.commandBus.execute(new CreateChatCommand(createChatDto));
+  // }
 
   @Get()
   @UseGuards(AuthGuard)
+  @Roles('admin', 'student', 'mentor')
   findAllByUserId(@Req() request) {
     const user: User | null = request?.user ?? null;
     return this.queryBus.execute(new GetChatsByUserId(user));

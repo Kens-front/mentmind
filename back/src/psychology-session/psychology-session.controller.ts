@@ -40,6 +40,8 @@ export class PsychologySessionController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
+  @Roles( 'admin')
   update(@Param('id') id: string, @Body() updatePsychologySessionDto: UpdatePsychologySessionDto) {
     return this.commandBus.execute(new UpdatePsychologySessionCommand({...updatePsychologySessionDto, id: Number(id)}));
   }

@@ -7,6 +7,7 @@ import { CreateMentorAvailabilityCommand } from './commands/create-mentor-availa
 import { GetMentorAvailabiltiessQuery } from './queries/get-mentor-availabilty.query';
 import { GetMentorAvailabiltiesByUserIdQuery } from './queries/get-mentor-ability-by-user-id.query';
 import { AuthGuard } from 'src/common/decorators/auth-guard';
+import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('mentor-availability')
 export class MentorAvailabilityController {
@@ -18,6 +19,7 @@ export class MentorAvailabilityController {
 
   @Post()
   @UseGuards(AuthGuard)
+  @Roles('mentor')
   create(@Body() createMentorAvailabilityDto: { slots: CreateMentorAvailabilityDto [], period: {start: string, end: string}}, @Req() req) {
     return this.commandBus.execute(new CreateMentorAvailabilityCommand({...createMentorAvailabilityDto, userId: +req.user.id}))
   }
@@ -36,6 +38,7 @@ export class MentorAvailabilityController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(@Param('id') id: string, @Body() updateMentorAvailabilityDto: UpdateMentorAvailabilityDto) {
     return this.mentorAvailabilityService.update(+id, updateMentorAvailabilityDto);
   }
