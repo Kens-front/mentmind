@@ -43,6 +43,22 @@ export class YoukassaService {
       metadata: {
         userId: createYoukassaDto.userId,
         lessons_count: createYoukassaDto.lesson_count
+      },
+      "receipt": {
+    "customer": {
+      "email": createYoukassaDto.email
+    },
+    "items": [
+          {
+            "description": `Оплата консультаций (${createYoukassaDto.lesson_count} единиц)`,
+            "quantity": `1`,
+            "amount": { "value": `${createYoukassaDto.totalPrice}`, "currency": "RUB" },
+            "vat_code": 1,
+            "payment_mode": "full_payment",
+            "payment_subject": "service"
+          }
+        ],
+        "tax_system_code": 2
       }
     };
 

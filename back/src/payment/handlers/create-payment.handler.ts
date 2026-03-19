@@ -39,7 +39,8 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
                 idempotencyKey,
                 totalPrice: totalPrice,
                 userId: user.id,
-                lesson_count: command.createPaymentDto.lessons_count
+                lesson_count: command.createPaymentDto.lessons_count,
+                email: user.email
             }
         )
 

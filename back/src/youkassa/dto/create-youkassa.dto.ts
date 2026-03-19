@@ -8,4 +8,6 @@ export class CreateYoukassaDto {
     userId: number;
     
     lesson_count: number;
+
+    email: string
 }
