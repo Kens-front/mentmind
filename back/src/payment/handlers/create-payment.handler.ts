@@ -43,6 +43,9 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
             }
         )
 
+        if (!youkassaPayment) {
+            throw new HttpException("Не получилось создать оплату", 401)
+        }
   
         payment.externalPaymentId = youkassaPayment.id;
         payment.user = user;
