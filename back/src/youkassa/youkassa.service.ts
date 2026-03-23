@@ -34,13 +34,14 @@ export class YoukassaService {
         currency: 'RUB'
       },
       payment_method_data: {
-        type: 'sbp'
+        type: 'sbp',
       },
       confirmation: {
         type: 'redirect',
         return_url: 'https://mentmind.ru/dashboard'
       },
       capture: true,
+      description: `Оплата консультаций (${createYoukassaDto.lesson_count} единиц)`,
       metadata: {
         userId: createYoukassaDto.userId,
         lessons_count: createYoukassaDto.lesson_count
@@ -53,7 +54,7 @@ export class YoukassaService {
           {
             "description": `Оплата консультаций (${createYoukassaDto.lesson_count} единиц)`,
             "quantity": `1`,
-            "amount": { "value": `${createYoukassaDto.totalPrice}`, "currency": "RUB" },
+            "amount": { "value": `${createYoukassaDto.totalPrice}.00`, "currency": "RUB" },
             "vat_code": 1,
             "payment_mode": "full_payment",
             "payment_subject": "service"

@@ -1,5 +1,5 @@
 import type { AxiosResponse } from "axios";
-import type { IUpdateUserFull, IUser, IUserForm, IUserFull, TUserFull, USER_LEVEL } from "../types";
+import type {IFreeMentorTrialDto, IUpdateUserFull, IUser, IUserForm, IUserFull, TUserFull, USER_LEVEL} from "../types";
 import { axiosInstance } from "@/shared/config/axios";
 import type { LESSON_TYPES } from "@/features/lessons/types";
 
@@ -22,7 +22,7 @@ export type TProfile = IMentor & IStudentProfile
 interface IUserApi {
     create: (user: IUserForm & (IMentor | IStudentProfile)) => Promise<AxiosResponse<{ user: IUser, profile: TProfile }>>
     getAll: (query: any) => Promise<AxiosResponse<TUserFull[]>>
-    getBySkill: (tag: string) => Promise<AxiosResponse<TUserFull[]>>
+    getBySkill: (dto: IFreeMentorTrialDto) => Promise<AxiosResponse<TUserFull[]>>
     update: (id: number, payload: IUpdateUserFull) => Promise<AxiosResponse<{ isOk: true }>>
     getOne: (id: number) => Promise<AxiosResponse<IUserFull>>
     getProfile: () => Promise<AxiosResponse<IUserFull>>
@@ -39,8 +39,8 @@ export const userApi: IUserApi = {
         return axiosInstance.get('/user', { params: query })
     },
     
-    getBySkill(tag) {
-        return axiosInstance.get('/user/tags/', { params: {tag} })
+    getBySkill(dto) {
+        return axiosInstance.get('/user/tags/', { params: dto })
     },
     
     update(id, payload) {

@@ -67,9 +67,17 @@ export class UserController {
   
   @Get('/tags')
   @UseGuards(AuthGuard)
-  getUsersBySkill(@Query('tag') tag: string) {
-    console.log('tag', tag);
-    return this.queryBus.execute(new GetUsersBySkillsQuery(tag))
+  getUsersBySkill(
+      @Query('tag') tag: string,
+      @Query('start') start: string,
+      @Query('end') end: string,
+      @Query('date') date: string,
+  ) {
+    console.log(tag);
+    console.log(start);
+    console.log(end);
+    console.log(date);
+    return this.queryBus.execute(new GetUsersBySkillsQuery(tag, start, end, date))
   }
 
 

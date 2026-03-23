@@ -33,6 +33,18 @@ export class CalculatePaymentQueryHandler implements IQueryHandler<CalculatePaym
             throw new NotFoundException("Недостаточно данных");
         }
         
+        if (user.last_name === 'Казаков') {
+            return {
+                amount: 1200 * (duration / 60) * lessonCount ,
+                description: `
+                <h4>Цена складывается из:</h4>
+                <p>Ставка ментора: ${1200}</p>
+                <p>Кол-во занятий: ${lessonCount}</p>
+                <p>Длительность занятий: ${duration}</p>
+            `
+            };   
+        }
+        
         let priceMentor = mentor.mentor_profile.level === 'base' ? ELessonPrices.BASE : ELessonPrices.PREMIUM;
         let amount = 18;
  

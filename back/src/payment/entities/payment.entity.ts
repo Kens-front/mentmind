@@ -16,6 +16,9 @@ export class Payment {
 
   @Column()
   userId: number
+  
+  @Column({nullable:true})
+  agreement: string
 
   @Column()
   amount: number;

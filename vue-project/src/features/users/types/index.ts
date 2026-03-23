@@ -118,3 +118,11 @@ export interface IUserUpdateForm {
     mentorId: number,
     tags: string[]
 }
+
+
+export interface IFreeMentorTrialDto {
+    tag: string,
+    date: string
+    start: string
+    end: string
+}

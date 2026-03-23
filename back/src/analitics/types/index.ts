@@ -1,5 +1,6 @@
 // analytics.types.ts
 import {User} from "../../user/entities/user.entity";
+import {Lesson} from "../../lesson/entities/lesson.entity";
 
 export type UserRole = 'admin' | 'mentor' | 'student';
 
@@ -26,7 +27,7 @@ export type StudentAnalytics = {
 export type AnalyticsSummaryResponse =
   | { role: 'admin'; data: AdminAnalytics }
   | { role: 'mentor'; data: MentorAnalytics }
-  | { role: 'student'; data: StudentAnalytics };
+  | { role: 'student'; data: Promise<[Lesson [], number]> };
 
 export interface AnalyticData {
   upcomingLessons: number

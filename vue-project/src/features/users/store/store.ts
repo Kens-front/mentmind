@@ -1,6 +1,18 @@
 import { defineStore } from "pinia";
 import {computed, reactive, ref, type Reactive, watch} from "vue";
-import { RoleList, USER_LEVEL, USER_STATUSES, type IUpdateUserFull, type IUser, type IUserForm, type IUserFull, type IUserUpdateForm, type TUserFull, type TUserFullSpread } from "../types";
+import {
+    RoleList,
+    USER_LEVEL,
+    USER_STATUSES,
+    type IUpdateUserFull,
+    type IUser,
+    type IUserForm,
+    type IUserFull,
+    type IUserUpdateForm,
+    type TUserFull,
+    type TUserFullSpread,
+    type IFreeMentorTrialDto
+} from "../types";
 import { userApi, type TProfile } from "../api";
 import type { LESSON_TYPES } from "@/features/lessons/types";
 import {useAuthStore} from "@/features/auth/store";
@@ -127,8 +139,8 @@ export const useUserStore = defineStore('users', () => {
         return userApi.update(id, { user, profile })
     }
     
-     async function getUsersBySkill(tag: string) {
-        const {data} = await userApi.getBySkill(tag);
+     async function getUsersBySkill(dto: IFreeMentorTrialDto) {
+        const {data} = await userApi.getBySkill(dto);
          users.value = data.map((user, index) => ({ ...user, index: index + 1 }));
      }
 

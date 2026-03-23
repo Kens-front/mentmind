@@ -10,6 +10,7 @@ import { LessonPackage } from "src/lesson-package/entities/lesson-package.entity
 import {CalculatePaymentQuery} from "../queries/calculate-payment.query";
 import {YoukassaService} from "../../youkassa/youkassa.service";
 import {PaymentPaid} from "../events/payment-paid.event";
+import {PdfService} from "../../pdf/pdf.service";
 
 
 
@@ -21,11 +22,11 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
         @InjectRepository(LessonPackage) private readonly lessonPackage: Repository<LessonPackage>,
         private youkassaService: YoukassaService,
         private queryBus: QueryBus,
-        private eventBus: EventBus,
+        private pdfService: PdfService,
     ) {}
 
     async execute(command: CreatePaymentCommand): Promise<any> {
-        const {idempotencyKey, totalPrice, } = command
+        const {idempotencyKey, totalPrice, createPaymentDto } = command
         const user = await this.queryBus.execute(new GetUserBy(USER_PARAMS.ID, `${command.userId}`))
 
         if (!user) {
@@ -50,7 +51,19 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
   
         payment.externalPaymentId = youkassaPayment.id;
         payment.user = user;
+
+ 
         
+        const newPayment = await this.payment.save(payment)
+
+        const agreement = await this.pdfService.create({
+            paymentId: newPayment.id,
+            user,
+            totalAmount: totalPrice,
+            date: new Date(),
+            lesson_count: command.createPaymentDto.lessons_count,
+            lesson_type:createPaymentDto.lessonType
+        })
         return {
             payment: await this.payment.save(payment),
             youkassaPayment

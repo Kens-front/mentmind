@@ -8,7 +8,7 @@
                         {{ title }}
                         <el-tooltip
                             effect="dark"
-                            content="Number of users who logged into the product in one day"
+                            content="Количество ваших занятий сегодня"
                             placement="top"
                         >
                             <el-icon style="margin-left: 4px" :size="12">

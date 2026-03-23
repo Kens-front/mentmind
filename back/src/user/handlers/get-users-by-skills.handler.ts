@@ -2,7 +2,7 @@
 import {GetUsersBySkillsQuery} from "../queries/get-users-by-skills.query";
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "../entities/user.entity";
-import {Repository} from "typeorm";
+import {And, LessThanOrEqual, MoreThanOrEqual, Repository} from "typeorm";
 import {RoleList} from "../types";
 
 
@@ -14,9 +14,18 @@ export class GetUsersBySkillsHandler implements IQueryHandler<GetUsersBySkillsQu
         if (!query.skill) {
             return this.userRepository.find({where: {role: RoleList.MENTOR}});
         }
-        
         const users = await this.userRepository.find({
-            where: { role: RoleList.MENTOR,  },
+            where: {
+                role: RoleList.MENTOR,
+                mentor_profile: {
+                    availability_slots: {
+                        date: query.date,
+                        // ⚠️ TypeORM может не корректно обработать эти условия:
+                        start: LessThanOrEqual(query.start),
+                        end: MoreThanOrEqual(query.end),
+                    }
+                }
+            },
             relations: ['mentor_profile'],
         });
  

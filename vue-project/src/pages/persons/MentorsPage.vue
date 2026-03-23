@@ -9,11 +9,12 @@
         </CreateUserForm>
         
       <GetUsersBySkills/>
-        <GetAllUsers :role="RoleList.MENTOR" :columns="MENTORS_TABLE_COLUMNS">
-            <template #link="props">
-                <OpenUserPage :link="props.link"/>
-            </template>
-        </GetAllUsers>
+      
+      <GetAllUsers :role="RoleList.MENTOR" :columns="MENTORS_TABLE_COLUMNS">
+          <template #link="props">
+              <OpenUserPage :link="props.link"/>
+          </template>
+      </GetAllUsers>
     </div>
 </template>
 

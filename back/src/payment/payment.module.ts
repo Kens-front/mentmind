@@ -14,6 +14,7 @@ import {CalculatePaymentQueryHandler} from "./handlers/calculate-payment.handler
 import {User} from "../user/entities/user.entity";
 import {YoukassaService} from "../youkassa/youkassa.service";
 import { CapturePaymentHandler } from './handlers/capture-payment.handler';
+import {PdfService} from "../pdf/pdf.service";
 
 
 const handlers = [
@@ -27,6 +28,6 @@ const handlers = [
 @Module({
   imports: [TypeOrmModule.forFeature([Payment, Lesson, StudentProfile, LessonSlots, LessonPackage, User])],
   controllers: [PaymentController],
-  providers: [PaymentService, YoukassaService, ...handlers],
+  providers: [PaymentService, YoukassaService, ...handlers, PdfService],
 })
 export class PaymentModule {}

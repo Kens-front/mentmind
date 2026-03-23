@@ -1,47 +1,13 @@
 <template>
     <div class="grid">
-        <StatisticCard 
-            v-if="analytics.data?.total !== undefined"
-            title="Все занятия"     
-            :value="analytics.data.total" 
-        />
-
-        <StatisticCard 
-            v-if="analytics.data?.completed !== undefined"
-            title="Все завершенные занятия"     
-            :value="analytics.data.completed" 
-        />
-
-        <StatisticCard 
-            v-if="analytics.data?.closer !== undefined"
-            title="Все ближайшие занятия"     
-            :value="analytics.data.closer" 
-        />
-
         
-        <StatisticCard 
-            v-if="analytics.data?.cancelled !== undefined"
-            title="Все отменные занятия"     
-            :value="analytics.data.cancelled" 
-        />
       
         <StatisticCard 
-            v-if="analytics.data?.totalRevenue !== undefined"
-            title="Все оплаченные занятия"     
-            :value="Number(analytics.data.totalRevenue)" 
+ 
+            title="Занятия сегодня"     
+            :value="Number(analytics[1])" 
         />
-
-      <StatisticCard
-          v-if="analytics.data?.upcomingSum !== undefined"
-          title="Оплаты в ближайшие 7 дней"
-          :value="Number(analytics.data.upcomingSum)"
-      />
-
-      <StatisticCard
-          v-if="analytics.data?.averageLessonCount !== undefined"
-          title="Среднее количество занятий"
-          :value="Number(analytics.data.averageLessonCount)"
-      />
+ 
     </div>
 </template>
 
@@ -49,9 +15,10 @@
 import StatisticCard from '@/entities/common/StatisticCard.vue';
 import { analyticApi, type IAnalytic } from '@/features/analytics/api';
 import { onMounted, reactive } from 'vue';
+import type {ILesson} from "@/features/lessons/types";
 
 
-const analytics = reactive({}) as IAnalytic;
+const analytics = reactive([[], 0]) as [ILesson[], number];
 async function getAnalytics() {
     try {
         const {data} = await analyticApi.get();
