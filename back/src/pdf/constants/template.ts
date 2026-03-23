@@ -149,7 +149,7 @@ export const template = (data: PDFData) => `<!DOCTYPE html>
   <!-- Информация о договоре -->
   <div class="contract-info">
     <div>
-      <p><span class="highlight">${data.date.getDate()} ${data.date.getMonth() + 1}  ${data.date.getFullYear()}г.</span></p>
+      <p><span class="highlight">${data.date.getDate()}.${data.date.getMonth() + 1}.${data.date.getFullYear()}г.</span></p>
     </div>
     <div>
       <p>Договор № <span class="highlight">${data.paymentId}</span></p>
@@ -217,7 +217,7 @@ export const template = (data: PDFData) => `<!DOCTYPE html>
         </tr>
         <tr>
           <td>Дата оплаты</td>
-          <td>${data.date.getDate()} ${data.date.getMonth() + 1}  ${data.date.getFullYear()}г.</td>
+          <td>${data.date.getDate()}.${data.date.getMonth() + 1}.${data.date.getFullYear()}г.</td>
         </tr>
         <tr>
           <td>ID платежа</td>
