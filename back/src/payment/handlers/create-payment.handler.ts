@@ -64,6 +64,8 @@ export class CreatePaymentHandler implements ICommandHandler<CreatePaymentComman
             lesson_count: command.createPaymentDto.lessons_count,
             lesson_type:createPaymentDto.lessonType
         })
+
+        payment.agreement = agreement
         return {
             payment: await this.payment.save(payment),
             youkassaPayment
