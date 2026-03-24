@@ -35,7 +35,7 @@ export class CalculatePaymentQueryHandler implements IQueryHandler<CalculatePaym
         
         if (user.last_name === 'Казаков') {
             return {
-                amount: 1200 * (duration / 60) * lessonCount ,
+                amount: 1320 * (duration / 60) * lessonCount ,
                 description: `
                 <h4>Цена складывается из:</h4>
                 <p>Ставка ментора: ${1200}</p>

@@ -1,7 +1,7 @@
 ﻿export enum ELessonPrices {
-    BASE = 2400,
+    BASE = 2600,
     GROUP = 1800,
-    PREMIUM = 3400
+    PREMIUM = 3600
 }
 
 

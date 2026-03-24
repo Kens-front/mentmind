@@ -4,6 +4,7 @@ import {computed, reactive, watch} from "vue";
 import {studentPaymentApi} from "@/features/payments/api";
 import StartPayment from "@/features/payments/components/StartPayment.vue";
 import {LESSON_TYPES} from "@/features/lessons/types";
+
 interface IProps {
   title: string;
 }
@@ -16,7 +17,7 @@ interface IData {
 const data: IData = {
   duration: null,
   lessonCount: null,
-  lessonType: null,
+  lessonType: LESSON_TYPES.BASE,
 }
 
 const durations = [LESSON_DURATION.MIN, LESSON_DURATION.AVERAGE, LESSON_DURATION.MAX];
