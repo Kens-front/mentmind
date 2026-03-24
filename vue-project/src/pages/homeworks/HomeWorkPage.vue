@@ -19,7 +19,7 @@
                             <el-step title="Проверено" />
                         </el-steps>
 
-                        <el-form label-position="top">
+                        <el-form class="form" label-position="top">
                             <el-form-item label="Название темы">
                                 {{ homeworkStore.homework.title }}
                             </el-form-item>
@@ -125,5 +125,9 @@ onMounted(() => {
 .info {
     display: grid;
     row-gap: 3rem;
+}
+
+.form {
+    color: var(--text-heading);
 }
 </style>
