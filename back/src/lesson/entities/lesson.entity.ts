@@ -68,7 +68,7 @@ export class Lesson {
   lessonType: LESSON_TYPES;
 
   /** Цена занятия в копейках */
-  @Column({ type: 'int', default: 5 })
+  @Column({ type: 'numeric', default: 5 })
   price: number;
 
 

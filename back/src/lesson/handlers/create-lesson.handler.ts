@@ -224,7 +224,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
 
   getLessonPrice(type: LESSON_TYPES, duration: LESSON_DURATION) {
     const priceForHour = ELessonPrices[type.toUpperCase()];
-    return priceForHour * (duration / 60);
+    return Number((priceForHour * (duration / 60)).toFixed(2));
   }
 
   private async getUsers(usersId: number[]) {
