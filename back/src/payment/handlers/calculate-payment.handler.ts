@@ -38,7 +38,7 @@ export class CalculatePaymentQueryHandler implements IQueryHandler<CalculatePaym
                 amount: 1320 * (duration / 60) * lessonCount ,
                 description: `
                 <h4>Цена складывается из:</h4>
-                <p>Ставка ментора: ${1200}</p>
+                <p>Ставка ментора: ${1320}</p>
                 <p>Кол-во занятий: ${lessonCount}</p>
                 <p>Длительность занятий: ${duration}</p>
             `
