@@ -33,6 +33,9 @@
                         v-bind="directives"
                     />
                     <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
+                  
+  
+                    <q-input class="grid-input-big" v-model="lessonCount" name="lesson_count" placeholder="Количество занятий"/>
                     <div class="checkbox">
                         <q-item class="item" tag="label" v-ripple>
                             <q-checkbox v-model="formData.checkbox" checked-icon="task_alt"
@@ -100,6 +103,8 @@ const rules = {
   
   
 }
+
+const lessonCount = ref('')
 const text = ref('');
 const options = [
     'Телефон',
@@ -146,6 +151,10 @@ function onClick() {
 }
 async function onSubmit() {
     try {
+      
+      if (lessonCount.value) {
+        throw new Error(`Ошибка капчи`)
+      }
       
       if(!nameRef.value || !methodCallbackRef.value) {
         $q.notify({
@@ -370,7 +379,8 @@ onMounted( async () => {
 }
 
 .image {
- 
+    position: relative;
+    z-index: 123;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -485,6 +495,13 @@ h3 {
     padding: 8px 0;
     font-size: 1.4rem;
   }
+}
+
+.grid-input-big {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  z-index: -1;
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
