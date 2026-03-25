@@ -194,8 +194,8 @@ onMounted(() => {
 useHead({
 	title: 'MentMind - менторский центр',
 	meta: [
-		{ name: 'description', content: 'MentMind - менторский центр' },
-		{ name: 'keywords', content: 'MentMind, менторский центр, обучение, программирование, IT, развитие' },
+		{ name: 'description', content: 'Индивидуальное менторство по программированию: JavaScript, Python, Go, Unity. Помощь в освоении навыков, подготовке к собеседованиям и карьерном росте. Первый урок бесплатно.' },
+		{ name: 'keywords', content: 'ментор по программированию, онлайн обучение коду, персональные уроки программирования, наставник IT, менторство JavaScript, Python ментор, карьера в программировании' },
 		{ name: 'author', content: 'MentMind' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
 		{ name: 'robots', content: 'index, follow' },
@@ -207,6 +207,8 @@ useHead({
 		{rel: 'stylesheet', href: 'devicon.min.css'},
     { rel: 'icon', type: 'image/x-icon', href: '/favicon2.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon2.png' },
+    { rel: 'canonical', content: 'https://mentmind.ru/'},
+    { rel: 'language', content: 'ru'}
 	],
   script: [
     {

@@ -44,7 +44,7 @@ const languages = ref([
   {label: 'Vue', value: 'vue'},
 ])
 
-const language = ref(languages.value[2])
+const language = ref('javascript')
 const editorOptions = {
   fontSize: 14,
   minimap: { enabled: false },
