@@ -202,6 +202,7 @@ useHead({
 		{ name: 'googlebot', content: 'index, follow' },
 		{ name: 'bingbot', content: 'index, follow' },
 		{ name: 'yandexbot', content: 'index, follow' },
+		{ name: 'google-site-verification', content: '-q0VcwHFVeNhkePb0sCm38WmKLGXXPcuhTWA2ZijCJo' },
 	],
 	link: [
 		{rel: 'stylesheet', href: 'devicon.min.css'},
