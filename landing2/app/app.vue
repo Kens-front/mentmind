@@ -178,6 +178,10 @@ onMounted(() => {
 		},
 	})
 
+	  const config = useRuntimeConfig()
+
+	  console.log('config', config)
+
 	const sessionId = localStorage.getItem('sessionId')
 
 	if (sessionId) {

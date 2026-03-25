@@ -33,9 +33,11 @@ export default defineNuxtConfig({
       diffEditor: 'MonacoDiffEditor'
     }
   },
+  plugins: ['~/plugins/yandex-metrika.client.ts'],
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_API_URL || 'http://localhost:5000',
+      yandexMetrikaId: process.env.NUXT_PUBLIC_YANDEX_METRIKA_ID  
     }
   }
 })
