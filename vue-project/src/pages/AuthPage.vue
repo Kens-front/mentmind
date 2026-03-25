@@ -16,6 +16,11 @@ import AuthForm from '@/widgets/AuthForm.vue';
     align-items: center;
     justify-content: center;
     height: 100%;
+  
+    @media screen and (max-width: 1024px) {
+      overflow: hidden;
+      grid-template-columns: 80%;
+    }
 }
 
 </style>

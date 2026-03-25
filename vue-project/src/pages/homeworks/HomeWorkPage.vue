@@ -39,6 +39,36 @@
                 </el-splitter-panel>
             </el-splitter>
         </div>
+      
+      <div class="wrap_mobile">
+        <div class="info">
+          <el-steps
+              style="max-width: 600px"
+              :space="500"
+              :active="activeStep"
+              finish-status="success"
+          >
+            <el-step title="Начало" />
+            <el-step title="Проверка" />
+            <el-step title="Проверено" />
+          </el-steps>
+
+          <el-form class="form" label-position="top">
+            <el-form-item label="Название темы">
+              {{ homeworkStore.homework.title }}
+            </el-form-item>
+
+            <el-form-item label="Название темы">
+              {{ homeworkStore.homework.description}}
+            </el-form-item>
+
+            <el-button v-if="setVisibleElement([RoleList.STUDENT]) && homeworkStore.homework.status !== EHomeworkStatus.COMPLETED" @click="onClick">Отправить на проверку</el-button>
+            <el-button v-if="setVisibleElement([RoleList.MENTOR])" @click="checkHomeWork">Проверить</el-button>
+          </el-form>
+        </div>
+
+        <CodeEditor v-model="homeworkStore.homework.initialCode" />
+      </div>
  
     </div>
 </template>
@@ -119,6 +149,19 @@ onMounted(() => {
   
   & .el-scrollbar__view {
     height: 100%;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+  
+  &_mobile {
+    display: none;
+    row-gap: 5rem;
+    
+    @media screen and (max-width: 1024px) {
+      display: grid;
+    }
   }
 }
 
