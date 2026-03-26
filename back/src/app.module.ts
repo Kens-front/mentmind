@@ -29,17 +29,38 @@ import { LessonParticipantModule } from './lesson-participant/lesson-participant
 import { LessonPackageModule } from './lesson-package/lesson-package.module';
 import { MetrikaModule } from './metrika/metrika.module';
 import { StudentGroupModule } from './student-group/student-group.module';
-import {ConfigModule} from "@nestjs/config";
+import {ConfigModule, ConfigService} from "@nestjs/config";
 import { YoukassaModule } from './youkassa/youkassa.module';
 import { PsychologyPackModule } from './psychology-pack/psychology-pack.module';
 import { PsychologySessionModule } from './psychology-session/psychology-session.module';
 import { PlanModule } from './plan/plan.module';
 import { PdfModule } from './pdf/pdf.module';
+import { NodemailerModule } from './nodemailer/nodemailer.module';
+import {MailerModule} from "@nestjs-modules/mailer";
+import {getMailConfig} from "./config/nodemailer";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,  // Настроим для глобального использования
+    }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        transport: {
+          host: 'smtp.yandex.com',
+          port: 465,
+          secure: true,
+          auth: {
+            user: configService.get('MAIL_USER'),
+            pass: configService.get('MAIL_PASS'),
+          },
+        },
+        defaults: {
+          from: configService.get('MAIL_USER'),
+        },
+      }),
+      inject: [ConfigService],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -51,7 +72,7 @@ import { PdfModule } from './pdf/pdf.module';
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
-    }), GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule, YoukassaModule, PsychologyPackModule, PsychologySessionModule, PlanModule, PdfModule],
+    }), NodemailerModule, GatewyModul, UserModule, AuthModule, AdminModule, CqrsModule.forRoot(), MentorPayoutModule, LearnDirectionModule, StudentProfileModule, MentorProfileModule, PaymentModule, LessonModule, MentorAvailabilityModule, AchieveModule, RequestModule, HomeworkModule, ChatModule, MessagesModule, AnaliticsModule, LessonSlotsModule, LessonParticipantModule, LessonPackageModule, MetrikaModule, StudentGroupModule, YoukassaModule, PsychologyPackModule, PsychologySessionModule, PlanModule, PdfModule, NodemailerModule],
   controllers: [AppController],
   providers: [AppService],
 
