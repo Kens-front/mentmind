@@ -11,7 +11,7 @@
             <div class="video"></div>
 
             <div class="descriptions">
-                <p>Оттачиваем Ваши навыки на примере создания реальных приложений</p>
+                <p>Улучшайте Ваши навыки <br/> 1-на-1 с профессиональным ментором на каждом занятии</p>
                 <p>Помогаем повысить грейд как новичкам, так и тем, у кого есть опыт.</p>
             </div>
         </div>
@@ -90,7 +90,7 @@ onMounted(() => {
     
     & p {
         overflow: hidden;
-        height: 10rem;
+        height: 12rem;
 
         @media screen and (max-width: 1024px){
             height: max-content;

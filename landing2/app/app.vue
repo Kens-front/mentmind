@@ -137,7 +137,15 @@ function onTouchStart(e) {
 
 	console.log(delta)
   }
-onBeforeMount(() => 	document.body.style.overflow = 'hidden')
+onBeforeMount(async () => 	{
+	window.scrollTo({
+		top: 0,
+		behavior: 'instant'
+	});
+ 
+	document.body.style.overflow = 'hidden'
+ 
+})
 onMounted(() => {
  
  

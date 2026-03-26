@@ -32,6 +32,8 @@ interface IProps {
     modelValue: string
 }
 
+
+
 const {} = defineProps<IProps>()
 const emits = defineEmits(['update:model-value'])
  
@@ -41,14 +43,21 @@ const languages = ref([
   {label: 'CSS', value: 'css'},
   {label: 'Javascript', value: 'javascript'},
   {label: 'Typescript', value: 'typescript'},
-  {label: 'Vue', value: 'vue'},
+  {label: 'Vue', value: 'html'},
 ])
 
 const language = ref('javascript')
 const editorOptions = {
   fontSize: 14,
   minimap: { enabled: false },
-  automaticLayout: true
+  automaticLayout: true,
+  languages: ['vue', 'typescript'],
+  suggest: {
+    showKeywords: true,
+    showSnippets: true
+  },
+  formatOnPaste: true,
+  tabSize: 11
 };
 </script>
 

@@ -380,7 +380,7 @@ onMounted( async () => {
 
 .image {
     position: relative;
-    z-index: 123;
+    z-index: 9;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
