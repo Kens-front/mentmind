@@ -74,7 +74,7 @@ import {
         // Обновление ментора, если передан mentorId
         if (updateStudentProfileDto.mentorId) {
           mentorProfile = await manager.getRepository(MentorProfile).findOne({
-            where: { id: updateStudentProfileDto.mentorId },
+            where: { userId: updateStudentProfileDto.mentorId },
           });
   
           if (!mentorProfile) {
