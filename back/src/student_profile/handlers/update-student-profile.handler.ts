@@ -73,9 +73,9 @@ import {
   
         // Обновление ментора, если передан mentorId
         if (updateStudentProfileDto.mentorId) {
-          mentorProfile = await this.queryBus.execute<GetMentorProfileQuery, MentorProfile | null>(
-            new GetMentorProfileQuery(updateStudentProfileDto.mentorId),
-          );
+          mentorProfile = await manager.getRepository(MentorProfile).findOne({
+            where: { id: updateStudentProfileDto.mentorId },
+          });
   
           if (!mentorProfile) {
             throw new NotFoundException('Профиль ментора не найден');
