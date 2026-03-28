@@ -21,7 +21,7 @@ const data: IData = {
 }
 
 const durations = [LESSON_DURATION.MIN, LESSON_DURATION.AVERAGE, LESSON_DURATION.MAX];
-const lessonCount = [1, 5, 10, 15, 20];
+const lessonCount = [1, 2, 5, 10, 15, 20];
 const lessonTypes = [{label: 'Базовый', value: LESSON_TYPES.BASE}, {label: 'Групповой', value: LESSON_TYPES.GROUP}];
 const paymentData = reactive({...data})
 
