@@ -3,7 +3,16 @@ import { LESSON_TYPES } from "src/lesson/entities/lesson.entity";
 import { Payment } from "src/payment/entities/payment.entity";
 import { LESSON_DURATION } from "src/payment/types";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, ManyToOne, JoinColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    OneToOne,
+    ManyToOne,
+    JoinColumn,
+    AfterUpdate, BeforeUpdate
+} from "typeorm";
 
 @Entity({name: 'lesson-package'})
 export class LessonPackage {
@@ -40,4 +49,15 @@ export class LessonPackage {
 
     @CreateDateColumn() 
     createAt: Date
+    
+    @BeforeUpdate()
+    updateStatus(qwe) {
+        console.log(`updateStatus`, qwe)
+        console.log('update', this.totalCount - this.usedCount <= 0)
+        if(this.totalCount - this.usedCount <= 0){
+            this.status = 'exhausted'
+        } else {
+            this.status = 'active'
+        }
+    }
 }
