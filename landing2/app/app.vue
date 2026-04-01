@@ -186,19 +186,7 @@ onMounted(() => {
 		},
 	})
 
-	  const config = useRuntimeConfig()
-
-	  console.log('config', config)
-
-	const sessionId = localStorage.getItem('sessionId')
-
-	if (sessionId) {
-		return
-	}
-
-	metrikaApi.create({event: 'pageView'}).then(data => {
-		localStorage.setItem('sessionId', data.id)
-	}).catch(e => console.log(e))
+ 
  
 })
 
@@ -231,7 +219,8 @@ useHead({
     {
       type: 'application/ld+json',
       children: JSON.stringify(faqLdJson)
-    }
+    },
+ 
   ]
 })
  

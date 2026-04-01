@@ -117,7 +117,6 @@ onMounted(() => {
 		justify-content: start;
 		position: relative;
 		width: 100%;
-		overflow: hidden;
 		z-index: 10;
 	}
 

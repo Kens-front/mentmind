@@ -198,6 +198,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(10px);
 }
 
 @keyframes aura-color {

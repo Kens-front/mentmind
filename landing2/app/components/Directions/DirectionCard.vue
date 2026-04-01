@@ -1,22 +1,25 @@
 <template>
-    <div class="card">
-        <div class="top">
-            <div>
-                <i :class="item.class"></i>
-            </div>
-            <span class="title">{{ item.title  }}</span>
+  <div class="wrap" :class="{active: item.available !== false}">
+    <div v-if="item.available === false" class="backdrop description title">Направление развивается</div>
+    <div class="card"  >
+      <div class="top">
+        <div>
+          <i :class="item.class"></i>
         </div>
- 
-        <div class="description">
-            {{ item?.description }}
-        </div>
+        <span class="title">{{ item.title  }}</span>
+      </div>
+
+      <div class="description">
+        {{ item?.description }}
+      </div>
 
 
-        <div class="chip">
-            {{ item.label }}
-        </div>
- 
+      <div class="chip">
+        {{ item.label }}
+      </div>
+
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -31,6 +34,8 @@
     position: relative;
     z-index: 10;
 }
+
+ 
 .card {
     position: relative;
     padding: 2rem;
@@ -39,7 +44,9 @@
     display: grid;
     grid-template-rows: max-content max-content 1fr;
     align-items: self-end;
-
+    filter: blur(3px);
+    opacity: 0.5;
+  
     &:before {
         position: absolute;
         right: 0;
@@ -141,6 +148,32 @@
     }
 }
 
+.active {
+  & .card {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.backdrop {
+  display: grid;
+  grid-template-columns: 70%;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 123;
+  text-align: center;
+}
+
+.wrap {
+  position: relative;
+  height: 100%;
+  display: grid;
+}
 @keyframes chipGradient {
   0% {
     background-position: 0% 50%;

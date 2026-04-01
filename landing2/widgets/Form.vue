@@ -256,17 +256,7 @@ onMounted( async () => {
 
 
     function onSetMetrik(entries: IntersectionObserverEntry []) {
-        if (entries[0]?.isIntersecting) {
-            const sessionId = localStorage.getItem('sessionId')
-            const dto = {
-                event: 'formView',
-                id: sessionId
-            }
-        
-            metrikaApi.create(dto).then(() => {
-                observer.unobserve(section!)
-            }) 
-        }
+
     }
 })
 </script>
