@@ -175,6 +175,7 @@ const cards = computed(() => [
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     height: 100%;
     column-gap: 4rem;
+  
 }
 
 .wrap {

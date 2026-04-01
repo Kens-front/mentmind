@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     'nuxt-quasar-ui',
     'nuxt-monaco-editor',
     'nuxt-swiper',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+ 
   ],
   gsap: {
     extraPlugins: {

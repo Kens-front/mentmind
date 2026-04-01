@@ -91,7 +91,7 @@ const cards = computed(() => [
 
 <style lang="scss" scoped>
 .tarif-mobile {
-  padding: 2rem 2rem 8rem;
+  padding: 6rem 2rem 8rem;
 }
 
 .title {

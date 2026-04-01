@@ -148,11 +148,7 @@ export class UpdateLessonSlotHandler implements ICommandHandler<UpdateLessonSlot
             if (lessonPackage) {
                 // Для групповых занятий также списываем 1 занятие
                 lessonPackage.usedCount = (lessonPackage.usedCount || 0) + 1;
-                console.log(`lessonPackage usedCount: ${lessonPackage.usedCount}`);
-                if (lessonPackage.totalCount - lessonPackage.usedCount <=0) {
-                    console.log(`lessonPackage total: ${lessonPackage.totalCount}`);
-                    lessonPackage.status = 'exhausted';
-                }
+ 
                 
                 await entityManager.save(LessonPackage, lessonPackage);
             }
@@ -190,12 +186,7 @@ export class UpdateLessonSlotHandler implements ICommandHandler<UpdateLessonSlot
             case LESSON_STATUS_CHANGE_REASON.COMPLETED_SUCCESSFULLY:
                 // Занятие проведено успешно
                 // Ментор получает полную оплату (с учетом штрафа, если есть)
-                if (lessonPackage && (lessonPackage.totalCount - lessonPackage.usedCount <=0)) {
-                    console.log(`lessonPackage total: ${lessonPackage.totalCount}`);
-                    lessonPackage.status = 'exhausted';
-                    
-                    await entityManager.save(LessonPackage, lessonPackage);
-                }
+ 
 
                 
                 await this.createMentorPayout(

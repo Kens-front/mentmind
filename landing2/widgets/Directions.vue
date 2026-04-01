@@ -41,10 +41,10 @@ gsap.registerPlugin(ScrollTrigger)
 const title = ref(null)
 
 const frontendSkills = ref([
-    {title: 'Vue', description: 'Лёгкий старт и быстрая разработка', label: 'Подходит новичкам', class: 'devicon-vuejs-plain'},
-    {title: 'React',  description: 'База для крупных компаний', label: 'Фаворит на рынке', class: 'devicon-react-original colored' },
-    {title: 'Typescript',  description: 'Контроль типов = меньше багов', label: 'Must-have в 2026', class: 'devicon-typescript-plain colored' },
-    {title: 'Javascript',  description: 'Основа всего фронтенда', label: 'Это база', class:  'devicon-javascript-plain colored',  },
+    {title: 'Vue', description: 'Лёгкий старт и быстрая разработка', label: 'Подходит новичкам', class: 'devicon-vuejs-plain', available: true},
+    {title: 'React',  description: 'База для крупных компаний', label: 'Фаворит на рынке', class: 'devicon-react-original colored',available: false },
+    {title: 'Typescript',  description: 'Контроль типов = меньше багов', label: 'Must-have в 2026', class: 'devicon-typescript-plain colored', available: true },
+    {title: 'Javascript',  description: 'Основа всего фронтенда', label: 'Это база', class:  'devicon-javascript-plain colored', available: true  },
  
 ])
 
@@ -61,25 +61,29 @@ const contentsBack = ref([
         title: 'Node.js',
         description: 'Высокая скорость и масштабируемость',
         label: 'Де-факто стандарт',
-        class: 'devicon-nodejs-plain colored'
+        class: 'devicon-nodejs-plain colored',
+        available: true
     },
     {
         title: 'NestJS',
         description: 'Архитектура и порядок из коробки',
         label: 'Выбор для продакшена',
-        class: 'devicon-nestjs-plain colored'
+        class: 'devicon-nestjs-plain colored',
+        available: true
     },
     {
         title: 'Python',
         description: 'Быстрая разработка и аналитика',
         label: 'Любимчик data-команд',
-        class: 'devicon-python-plain colored'
+        class: 'devicon-python-plain colored',
+        available: false
     },
     {
         title: 'FastAPI',
         description: 'Асинхронность и высокая производительность',
         label: 'Тренд 2026',
-        class: 'devicon-fastapi-plain colored'
+        class: 'devicon-fastapi-plain colored',
+       available: false
     },
 ])
 
@@ -88,22 +92,26 @@ const backendAchievments = ref([
     {
         title: 'Проектировать и писать API',
         label: 'Основа бэкенда',
-        class: 'devicon-nodejs-plain colored'
+        class: 'devicon-nodejs-plain colored',
+        available: true
     },
     {
         title: 'Реализовывать бизнес-логику',
         label: 'Ценность продукта',
-        class: 'devicon-nestjs-plain colored'
+        class: 'devicon-nestjs-plain colored',
+        available: true
     },
     {
         title: 'Обеспечивать безопасность и авторизацию',
         label: 'Обязательный навык',
-        class: 'devicon-lock-plain'
+        class: 'devicon-lock-plain',
+        available: true
     },
     {
         title: 'Готовить сервис к продакшену',
         label: 'Реальный мир',
-        class: 'devicon-docker-plain colored'
+        class: 'devicon-docker-plain colored',
+        available: true
     }
 ])
 
@@ -113,26 +121,30 @@ const contentsArch = ref([
         title: 'MVVM',
         description: 'Удобная работа с состоянием и UI',
         label: 'Популярен во фронтенде',
-        class: 'devicon-bazel-plain colored'
+        class: 'devicon-bazel-plain colored',
+        available: false
     },
  
     {
         title: 'CQRS',
         description: 'Разделение команд и запросов',
         label: 'Для сложной бизнес-логики',
-        class: 'devicon-ionic-original colored'
+        class: 'devicon-ionic-original colored',
+        available: true
     },
     {
         title: 'FSD',
         description: 'Feature-Sliced подход к структуре фронтенда',
         label: 'Стандарт современного UI',
-        class: 'devicon-detaspace-line colored'
+        class: 'devicon-detaspace-line colored',
+        available: true
     },
     {
         title: 'Microservices',
         description: 'Независимые сервисы и масштабирование',
         label: 'Enterprise-уровень',
-        class: 'devicon-cloudflare-plain colored'
+        class: 'devicon-cloudflare-plain colored',
+        available: false
     }, 
 ])
 
@@ -140,22 +152,26 @@ const architectureAchievments = ref([
     {
         title: 'Выбирать архитектуру под задачу',
         label: 'Инженерное мышление',
-        class: 'devicon-architecture-line'
+        class: 'devicon-architecture-line',
+        available: true
     },
     {
         title: 'Разделять ответственность в коде',
         label: 'Поддерживаемость',
-        class: 'devicon-architecture-line'
+        class: 'devicon-architecture-line',
+        available: true
     },
     {
         title: 'Структурировать фронтенд по FSD',
         label: 'Современный стандарт',
-        class: 'devicon-architecture-line'
+        class: 'devicon-architecture-line',
+        available: true
     },
     {
         title: 'Масштабировать приложение без переписывания',
         label: 'Взгляд в будущее',
-        class: 'devicon-architecture-line'
+        class: 'devicon-architecture-line',
+        available: true
     }
 ])
 onMounted(async () => {

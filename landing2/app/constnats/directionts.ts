@@ -10,10 +10,10 @@ export const archTitle = `Архитектура и паттерны в веб-�
 
 
 export const frontendSkills = ref([
-    {title: 'Vue', description: 'Лёгкий старт и быстрая разработка', label: 'Подходит новичкам', class: 'devicon-vuejs-plain'},
-    {title: 'React',  description: 'База для крупных компаний', label: 'Фаворит на рынке', class: 'devicon-react-original colored' },
-    {title: 'Typescript',  description: 'Контроль типов = меньше багов', label: 'Must-have в 2026', class: 'devicon-typescript-plain colored' },
-    {title: 'Javascript',  description: 'Основа всего фронтенда', label: 'Это база', class:  'devicon-javascript-plain colored',  },
+    {title: 'Vue', description: 'Лёгкий старт и быстрая разработка', label: 'Подходит новичкам', class: 'devicon-vuejs-plain', available: true},
+    {title: 'React',  description: 'База для крупных компаний', label: 'Фаворит на рынке', class: 'devicon-react-original colored', available: false },
+    {title: 'Typescript',  description: 'Контроль типов = меньше багов', label: 'Must-have в 2026', class: 'devicon-typescript-plain colored', available: true },
+    {title: 'Javascript',  description: 'Основа всего фронтенда', label: 'Это база', class:  'devicon-javascript-plain colored', available: true  },
 
 ])
 
@@ -30,25 +30,25 @@ export const contentsBack = ref([
         title: 'Node.js',
         description: 'Высокая скорость и масштабируемость',
         label: 'Де-факто стандарт',
-        class: 'devicon-nodejs-plain colored'
+        class: 'devicon-nodejs-plain colored', available: true
     },
     {
         title: 'NestJS',
         description: 'Архитектура и порядок из коробки',
         label: 'Выбор для продакшена',
-        class: 'devicon-nestjs-plain colored'
+        class: 'devicon-nestjs-plain colored', available: true
     },
     {
         title: 'Python',
         description: 'Быстрая разработка и аналитика',
         label: 'Любимчик data-команд',
-        class: 'devicon-python-plain colored'
+        class: 'devicon-python-plain colored', available: false
     },
     {
         title: 'FastAPI',
         description: 'Асинхронность и высокая производительность',
         label: 'Тренд 2026',
-        class: 'devicon-fastapi-plain colored'
+        class: 'devicon-fastapi-plain colored', available: false
     },
 ])
 
@@ -82,26 +82,26 @@ export const contentsArch = ref([
         title: 'MVVM',
         description: 'Удобная работа с состоянием и UI',
         label: 'Популярен во фронтенде',
-        class: 'devicon-bazel-plain colored'
+        class: 'devicon-bazel-plain colored', available: false
     },
 
     {
         title: 'CQRS',
         description: 'Разделение команд и запросов',
         label: 'Для сложной бизнес-логики',
-        class: 'devicon-ionic-original colored'
+        class: 'devicon-ionic-original colored', available: true
     },
     {
         title: 'FSD',
         description: 'Feature-Sliced подход к структуре фронтенда',
         label: 'Стандарт современного UI',
-        class: 'devicon-detaspace-line colored'
+        class: 'devicon-detaspace-line colored', available: true
     },
     {
         title: 'Microservices',
         description: 'Независимые сервисы и масштабирование',
         label: 'Enterprise-уровень',
-        class: 'devicon-cloudflare-plain colored'
+        class: 'devicon-cloudflare-plain colored', available: false
     },
 ])
 

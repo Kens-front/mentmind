@@ -13,7 +13,10 @@
             </div>
         </div>
 
-        <MonacoEditor v-model="text" lang="typescript" :options="editorOptions" />
+      <client-only>
+        <MonacoEditor v-model="text" lang="typescript" :options="editorOptions" />     
+      </client-only>
+ 
     </section>
 </template>
 
