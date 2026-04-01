@@ -73,7 +73,8 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
         lessonPackages = await this.lessonPackageRepo.find({
           where: { 
             userId: In(studentIds),
-            type: LESSON_TYPES.GROUP
+            type: LESSON_TYPES.GROUP,
+            status: 'active'
           },
         });
 
@@ -85,7 +86,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
       // Тут твоя исходная логика: берём один AVAILABLE слот
       // (если по факту у тебя non-trial может быть только один студент — это идеально)
       lessonPackages = await this.lessonPackageRepo.find({
-        where: { userId: In(studentIds) },
+        where: { userId: In(studentIds), status: 'active' },
       });
 
  
