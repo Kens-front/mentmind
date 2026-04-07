@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import {EffectCube, Pagination} from "swiper/modules";
+import {EffectCube, EffectFlip} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/vue";
  
  
@@ -16,18 +16,14 @@ function onGetActiveIndex(swiper: any) {
     <client-only>
       <Swiper
           @snapIndexChange="onGetActiveIndex"
-          :modules="[EffectCube]"
+          :modules="[EffectFlip]"
           :slides-per-view="1"
           navigation
           class="my-swiper"
           centeredSlided
-          :effect="'cube'"
+          :effect="'flip'"
           :preloadImages="false"
-          :speed="300"
-          :cubeEffect="{
-      shadow: false,
-      slideShadows: true,
-    }"
+          :speed="1000"
       >
       <slot/>
       </Swiper>

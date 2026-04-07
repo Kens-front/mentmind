@@ -1,5 +1,6 @@
 ﻿<script setup lang="ts">
 import gsap from 'gsap';
+import Loader from "~/components/Loader.vue";
 
 const leftWord = 'MENT';
 const rightWord = 'MIND';
@@ -7,9 +8,10 @@ const rightWord = 'MIND';
 const flap = ref(null);
 const left = ref<HTMLElement | null>(null);
 const right = ref<HTMLElement | null>(null);
-onMounted(() => {
+const isLoaded = ref(false);
+onMounted(async () => {
   const tl = gsap.timeline()
-  
+  await new Promise(resolve => setTimeout(resolve, 1000))
   if (!left.value || !right.value) {
     return;
   }
@@ -31,7 +33,7 @@ onMounted(() => {
       tl.fromTo(l, {opacity: 0}, {opacity: 1});
     }
   })
-
+  isLoaded.value = true;
   rightLetters.forEach(l => {
     if (l) {
       tl.fromTo(l, {opacity: 0}, {opacity: 1});
@@ -47,13 +49,19 @@ onMounted(() => {
 </script>
 
 <template>
+  <transition name="fade" mode="out-in">
+    <div v-if="!isLoaded" :key="`${isLoaded}`" class="load">
+      <Loader/>
+    </div>
+  </transition>
+ 
   <div ref="flap" class="flap">
     <div ref="left" class="left">
       <div class="left_image">
         <span v-for="word of leftWord">{{word}}</span>
       </div>
     </div>
-    <div ref="right" class="right">
+    <div  ref="right" class="right">
       <div class="right_image">
         <span v-for="word of rightWord">{{word}}</span>
       </div>
@@ -122,5 +130,15 @@ onMounted(() => {
     animation: float 4s ease-in-out infinite;
   }
 
+}
+
+.load {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  height: 100vh;
+  width: 100%;
 }
 </style>

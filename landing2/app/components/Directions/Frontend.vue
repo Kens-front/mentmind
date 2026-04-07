@@ -90,6 +90,7 @@ defineProps<IProps>();
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         gap: 3rem;
+      background: unset;
     }
 }
  

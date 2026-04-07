@@ -7,7 +7,13 @@
 			<AsideItem v-for="item in items" :key="item.text" :text="item.text" :href="item.href" :hovered-text="item.hoveredText"/>
 			<a class="button" href="#form"><span>Связаться</span></a>
 		</aside>
-		
+
+    <transition name="fade">
+      <div v-if="!isLoaded" :key="`${isLoaded}`" class="load">
+        <Loader/>
+      </div> 
+    </transition>
+ 
 		<div id="intro" class="horizontal-container intro" ref="horizontalContainer">
 			<div class="sections-container" ref="sectionsContainer">
 				<section class="section hero pin">
@@ -374,5 +380,15 @@ useHead({
   50% {
     filter: blur(18px) hue-rotate(25deg);
   }
+}
+
+.load {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  height: 100vh;
+  width: 100%;
 }
 </style>
