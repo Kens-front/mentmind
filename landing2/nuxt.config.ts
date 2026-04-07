@@ -12,11 +12,16 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
  
   ],
+  image: {
+    format: ['webp', 'avif', 'png', 'jpg'],
+    quality: 80
+  },
   gsap: {
     extraPlugins: {
       scrollTrigger: true
     }
   },
+ 
   build: {
     transpile: ['gsap'],
   },

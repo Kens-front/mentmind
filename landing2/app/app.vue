@@ -72,16 +72,12 @@ import SliderOne from '../widgets/SliderOne.vue'
 import AsideItem from './components/AsideItem.vue';
 import Tarifs from '../widgets/Tarifs.vue'
 import TheHeader from './components/TheHeader.vue';
-import pattern from '../public/assets/паттерн.png'
-import pattern2 from '../public/assets/pattern2.png'
-import pattern3 from '../public/assets/pattern3.png'
-import pattern4 from '../public/assets/pattern4.png'
-import pattern5 from '../public/assets/pattern5.png'
 import { useProductStore } from './store';
 import { metrikaApi } from './features/api';
 import Mobile from "~~/widgets/Mobile.vue";
 import QA from "~~/widgets/QA.vue";
 import {faqLdJson, mainLdJson} from "~/constnats/ldjson.ts";
+ 
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
@@ -95,16 +91,16 @@ const productStore = useProductStore();
 const isLoaded = ref(false)
 
 const firstSlider = [
-	{title: 'Программа под вас', description: 'Мы не заставляем всех учиться по одному шаблону. Ваша программа адаптируется под цели, уровень и стиль мышления', image: pattern},
-  {title: 'Работаем с любым уровнем', description: 'Вы получите мощную прокачку навыков, вне зависимости от того, с 0 вы решили погрузиться в профессию или уже имеете определённый опыт', image: pattern4},
-	{title: 'Учим мыслить как программист', description: 'Изучаем не просто синтаксис, а фундаментальное программное мышление, которое работает в веб-разработке, геймдеве, автоматизации и даже data science.', image: pattern2},
-	{title: 'Бонус за вовлечённость', description: 'При покупке от 10 занятий — предоставляется одна коуч-сессия в месяц для разгруза, поддержки и повышения мотивации.', image: pattern3}
+	{title: 'Программа под вас', description: 'Мы не заставляем всех учиться по одному шаблону. Ваша программа адаптируется под цели, уровень и стиль мышления', image: '/assets/паттерн.png'},
+  {title: 'Работаем с любым уровнем', description: 'Вы получите мощную прокачку навыков, вне зависимости от того, с 0 вы решили погрузиться в профессию или уже имеете определённый опыт', image: '/assets/pattern4.png'},
+	{title: 'Учим мыслить как программист', description: 'Изучаем не просто синтаксис, а фундаментальное программное мышление, которое работает в веб-разработке, геймдеве, автоматизации и даже data science.', image: '/assets/pattern2.png'},
+	{title: 'Бонус за вовлечённость', description: 'При покупке от 10 занятий — предоставляется одна коуч-сессия в месяц для разгруза, поддержки и повышения мотивации.', image: '/assets/pattern3.png'}
 ]
 
 const secondSlider = [
-	{title: 'Выбирайте формат', description: 'Индивидуальные занятия 👤 для полного погружения или мини‑группа 👥 из 2 человек — для идей и роста.',  image: pattern3},
-	{title: 'Предлагаем широкий спектр', description: 'Готовим к собеседованиям, тестим знания, оттачиваем необходимые темы',  image: pattern4},
-	{title: 'Делаем Вас конкурентными на рынке', description: 'Никакой ИИ и близко не заменит Вас',  image: pattern5}
+	{title: 'Выбирайте формат', description: 'Индивидуальные занятия 👤 для полного погружения или мини‑группа 👥 из 2 человек — для идей и роста.',  image: '/assets/pattern3.png'},
+	{title: 'Предлагаем широкий спектр', description: 'Готовим к собеседованиям, тестим знания, оттачиваем необходимые темы',  image: '/assets/pattern4.png'},
+	{title: 'Делаем Вас конкурентными на рынке', description: 'Никакой ИИ и близко не заменит Вас',  image: '/assets/pattern5.png'}
 ]
 
 const items = [

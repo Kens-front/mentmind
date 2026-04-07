@@ -38,7 +38,7 @@ const THEMES_CSS = {
       <SwiperSlide v-for="slide of slider" :key="slide.title">
         <div class="wrap" :class="type">
           <div class="image" :class="{invert: type === 'light'}">
-            <img :src="slide.image" alt="">
+            <NuxtImg :src="slide.image" alt="" format="png" loading="lazy" />
           </div>
           <div class="slide">
             <h3 class="title">{{ slide.title }}</h3>

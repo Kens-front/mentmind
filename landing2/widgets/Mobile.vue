@@ -3,11 +3,11 @@ import {EffectCube, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/vue";
  
 import PromoMobile from "~~/widgets/mobile/PromoMobile.vue";
-import AboutMobile from "~~/widgets/mobile/AboutMobile.vue";
+ 
 import StepMobilt from "~~/widgets/mobile/StepMobilt.vue";
-import SecondMobile from "~~/widgets/mobile/SecondMobile.vue";
-import Advantages from "~~/widgets/mobile/Advantages.vue";
-import CubeSlider from "~~/widgets/mobile/CubeSlider.vue";
+ 
+ 
+ 
 import pattern from "~~/public/assets/паттерн.png";
 import pattern2 from "~~/public/assets/pattern2.png";
 import pattern3 from "~~/public/assets/pattern3.png";
@@ -15,12 +15,43 @@ import pattern4 from "~~/public/assets/pattern4.png";
 import pattern5 from "~~/public/assets/pattern5.png";
 import DirectionMobile from "~~/widgets/mobile/DirectionMobile.vue";
 import StartMobile from "~~/widgets/mobile/StartMobile.vue";
+
  
-import FormMobile from "~~/widgets/mobile/FormMobile.vue";
-import TarifMobile from "~~/widgets/mobile/TarifMobile.vue";
 import { ref } from "vue";
 import QA from "~~/widgets/QA.vue";
 
+const TarifMobile = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/TarifMobile.vue'),
+  delay: 200,
+  timeout: 1000
+})
+
+const FormMobile = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/FormMobile.vue'),
+  delay: 200,
+  timeout: 1000
+})
+
+const Advantages = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/Advantages.vue'),
+  delay: 200,
+  timeout: 1000
+})
+const SecondMobile = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/SecondMobile.vue'),
+  delay: 200,
+  timeout: 1000
+})
+const AboutMobile = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/AboutMobile.vue'),
+  delay: 200,
+  timeout: 1000
+})
+const CubeSlider = defineAsyncComponent({
+  loader: () => import('~~/widgets/mobile/CubeSlider.vue'),
+  delay: 200,
+  timeout: 1000
+})
 
 const firstSlider = [
   {title: 'Программа под вас', description: 'Мы не заставляем всех учиться по одному шаблону. Ваша программа адаптируется под цели, уровень и стиль мышления', image: pattern},
