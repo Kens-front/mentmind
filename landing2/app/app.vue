@@ -207,7 +207,6 @@ useHead({
 		{ name: 'google-site-verification', content: '-q0VcwHFVeNhkePb0sCm38WmKLGXXPcuhTWA2ZijCJo' },
 	],
 	link: [
-		{rel: 'stylesheet', href: 'devicon.min.css'},
     { rel: 'icon', type: 'image/x-icon', href: '/favicon2.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon2.png' },
     { rel: 'canonical', content: 'https://mentmind.ru/'},
