@@ -376,6 +376,8 @@ onMounted( async () => {
     background-position: center;
     transform: perspective(1200px) rotateY(0deg);
     transition: .8s ease-in-out;
+  border-radius: 10px;
+  
 
     @media screen and (max-width: 1024px) {
         display: none;

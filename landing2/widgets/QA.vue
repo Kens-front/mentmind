@@ -108,6 +108,8 @@ function onClick(index: number, item: IQA) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr max-content;
     padding: 2rem;
+    background: unset;
+    height: 80dvh;
   }
 }
 

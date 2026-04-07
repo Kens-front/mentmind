@@ -11,7 +11,7 @@ const right = ref<HTMLElement | null>(null);
 const isLoaded = ref(false);
 onMounted(async () => {
   const tl = gsap.timeline()
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  await new Promise(resolve => setTimeout(resolve, 2000))
   if (!left.value || !right.value) {
     return;
   }

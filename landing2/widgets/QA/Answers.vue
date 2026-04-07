@@ -25,6 +25,10 @@ const {list} = defineProps<IProps>()
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
+  
+  @media screen and (max-width: 1024px) {
+    background: url("../../public/assets/bg.png") no-repeat center center fixed;
+  }
 }
 
 .content {
