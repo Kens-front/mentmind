@@ -11,7 +11,7 @@ async function bootstrap() {
       app.useStaticAssets(join(__dirname, '..', 'uploads'), {
         prefix: '/uploads/',
       })
-          app.enableCors({ origin: true, credentials: true, });
+      app.enableCors({ origin: ['https://mentmind.ru', 'https://mentmind.ru'], credentials: true, });
       app.use(cookieParser());
     app.set('trust proxy', true);
     app.useGlobalFilters(new AllExceptionsFilter());    

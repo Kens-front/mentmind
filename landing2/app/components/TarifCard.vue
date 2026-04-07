@@ -306,6 +306,10 @@ function onClick() {
   box-shadow: 
     0 0 60px rgba(139, 92, 246, 0.3),
     inset 0 0 60px rgba(139, 92, 246, 0.1);
+  
+  @media screen and (max-width: 1024px) {
+    box-shadow: unset;
+  }
 }
 
 /* --- Внутренняя карточка (тёмная) --- */

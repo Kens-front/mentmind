@@ -35,6 +35,14 @@ export class ReadMessagesHandler implements ICommandHandler<ReadMessagesCommand>
 
         // ⚠️ WebSocket — отдельно от бизнес-логики
         try {
+            await this.message.createQueryBuilder()
+                .update(Message)
+                .set({ readAt })
+                .where('chatId = :chatId', { chatId })
+                .andWhere('id <= :lastMessageId', { lastMessageId })
+                .andWhere('senderId != :userId', { userId })
+                .andWhere('readAt IS NULL')
+                .execute();
 
             const chat = await this.chat.findOne({
                 where: { id: chatId },

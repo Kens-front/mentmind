@@ -1,7 +1,7 @@
 ﻿<script setup lang="ts">
 import {EffectCube, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/vue";
-import Arrow from "../../app/components/Arrow.vue";
+ 
  
 const emits = defineEmits(['change']);
 function onGetActiveIndex(swiper: any) {
@@ -12,6 +12,7 @@ function onGetActiveIndex(swiper: any) {
 
 <template>
   <div class="mobile-ev">
+ 
     <client-only>
       <Swiper
           @snapIndexChange="onGetActiveIndex"
@@ -21,11 +22,11 @@ function onGetActiveIndex(swiper: any) {
           class="my-swiper"
           centeredSlided
           :effect="'cube'"
+          :preloadImages="false"
+          :speed="300"
           :cubeEffect="{
-      shadow: true,
+      shadow: false,
       slideShadows: true,
-      shadowOffset: 20,
-      shadowScale: 0.94,
     }"
       >
       <slot/>
@@ -51,6 +52,33 @@ function onGetActiveIndex(swiper: any) {
   & .swiper {
     width: 100%;
   }
+  
+  & .swiper {
+    // ✅ Принудительное использование GPU
+    transform: translateZ(0);
+    will-change: transform;  // Подсказка браузеру [[13]]
+
+    .swiper-slide {
+      // ✅ Оптимизация слайдов
+      backface-visibility: hidden;  // Скрыть обратную сторону
+      -webkit-backface-visibility: hidden;
+
+      // ✅ Избегайте сложных стилей внутри слайда
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // ✅ Предотвращение перерисовки
+        transform: translateZ(0);
+        will-change: transform;
+      }
+    }
+
+    // ❌ Удалите или замените тяжёлые тени
+    .swiper-cube-shadow {
+      display: none !important;  // Полностью отключаем тень куба
+    }
+  }
 }
 
 .wrap {
@@ -61,5 +89,6 @@ function onGetActiveIndex(swiper: any) {
   align-items: center;
   justify-content: center;
 }
+
  
 </style>

@@ -18,7 +18,7 @@
         <el-scrollbar>
           <ul>
             <li v-for="value of navigation" class="link" @click="emits('click:close-aside', false)">
-                <RouterLink v-if="value.href !== Navigation.CHATS || !chatStore.unreadMessagesCount" active-class="active" :to="value.href">
+                <RouterLink v-if="value.href !== Navigation.CHATS  || !chatStore.unreadMessagesCount" active-class="active" :to="value.href">
                   <el-icon><component :is="value.icon"/></el-icon>
                   <span>{{ value.label }}</span>
                 </RouterLink>
@@ -26,7 +26,7 @@
                 <RouterLink v-else active-class="active" :to="value.href">
                   <el-icon><ChatLineRound /></el-icon>
 
-                  <el-badge :is-dot ="chatStore.unreadMessagesCount" class="item">
+                  <el-badge :is-dot="isDot" class="item">
                     <RouterLink active-class="active" class="badge" :to="value.href">{{ value.label }}</RouterLink>
                   </el-badge>
                 </RouterLink>
@@ -62,6 +62,7 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { ChatLineRound } from '@element-plus/icons-vue';
 import {useUserStore} from "@/features/users/store/store.ts";
+import { useMessageStore } from '@/features/messages/store';
 
 interface IProps {
   theme: boolean
@@ -72,9 +73,10 @@ const router = useRouter();
 const authStore = useAuthStore()
 const chatStore = useChatStore()
 const userStore = useUserStore()
+const messageStore = useMessageStore()
  
 const avatar = computed(() => authStore.userData.user?.avatar ? generateImageUrl(authStore.userData.user.avatar) : '');
-
+const isDot = computed(() => Boolean(messageStore.countUnreadMessage || chatStore.unreadMessagesCount))
 const emits = defineEmits(['click:close-aside']);
  
 const navigation = computed(() => {

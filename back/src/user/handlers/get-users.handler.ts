@@ -7,15 +7,14 @@ import { RoleList } from "../types";
 
 import { GetMentorProfileQuery } from "src/mentor_profile/queries/get-mentor-profile.query";
 import { MentorProfile } from "src/mentor_profile/entities/mentor_profile.entity";
-import {LessonPackage} from "../../lesson-package/entities/lesson-package.entity";
-
+import { LessonPackage } from "../../lesson-package/entities/lesson-package.entity";
 
 @QueryHandler(GetUsersQuery)
 export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
   constructor(
-      @InjectRepository(User) private readonly userRepo: Repository<User >,
-      @InjectRepository(LessonPackage) private readonly lessonPackage: Repository<LessonPackage >,
-      private readonly queryBus: QueryBus,
+    @InjectRepository(User) private readonly userRepo: Repository<User>,
+    @InjectRepository(LessonPackage) private readonly lessonPackageRepo: Repository<LessonPackage>,
+    private readonly queryBus: QueryBus,
   ) {}
 
   async execute(query: GetUsersQuery): Promise<any[]> {
@@ -24,59 +23,47 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
 
     // Базовый query builder
     const qb = this.userRepo
-        .createQueryBuilder('user')
-        .leftJoinAndSelect('user.student_profile', 'student_profile')
-        .leftJoinAndSelect('user.mentor_profile', 'mentor_profile')
-        .leftJoinAndSelect('user.plan', 'plan')
-        .leftJoinAndSelect('user.lessonParticipations', 'lesson_participants')
-        .leftJoinAndSelect('user.chats', 'chats')
-        .addSelect(
-            `(SELECT COUNT(*) 
-        FROM "student-profile" 
-        WHERE "mentorId" = mentor_profile.id)`,
-            'studentsCount'
-        )
-        // payments пользователя (только paid)
-        .leftJoin(
-            'user.payments',
-            'payment',
-            'payment.status = :paid',
-            { paid: 'paid' },
-        )
-
-        // lesson packages из платежей (только active)
-        .leftJoin(
-            'payment.lessonPackage',
-            'lesson_package',
-            'lesson_package.status = :active',
-            { active: 'active' },
-        )
-
-        // 🔑 считаем разницу
-        .addSelect(
-            `
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.student_profile', 'student_profile')
+      .leftJoinAndSelect('user.mentor_profile', 'mentor_profile')
+      .leftJoinAndSelect('user.plan', 'plan')
+      .leftJoinAndSelect('user.lessonParticipations', 'lesson_participants')
+      .leftJoinAndSelect('user.chats', 'chats')
+      // payments пользователя (только paid)
+      .leftJoin(
+        'user.payments',
+        'payment',
+        'payment.status = :paid',
+        { paid: 'paid' },
+      )
+      // lesson packages из платежей (только active)
+      .leftJoin(
+        'payment.lessonPackage',
+        'lesson_package',
+        'lesson_package.status = :active',
+        { active: 'active' },
+      )
+      // 🔑 считаем разницу
+      .addSelect(
+        `
       COALESCE(
         SUM(lesson_package.totalCount - lesson_package.usedCount),
         0
       )
       `,
-            'available_lessons',
-        )
-
-        // ОБЯЗАТЕЛЬНО
-        .groupBy('user.id')
-        .addGroupBy('student_profile.id')
-        .addGroupBy('mentor_profile.id')
-        .addGroupBy('chats.id')
-        .addGroupBy('plan.id')
-        .addGroupBy('lesson_participants.id');
-
-
+        'available_lessons',
+      )
+      // ОБЯЗАТЕЛЬНО
+      .groupBy('user.id')
+      .addGroupBy('student_profile.id')
+      .addGroupBy('mentor_profile.id')
+      .addGroupBy('chats.id')
+      .addGroupBy('plan.id')
+      .addGroupBy('lesson_participants.id');
 
     // ---------- Ролевое ограничение доступа ----------
     switch (requester.role) {
       case RoleList.ADMIN:
- 
         break;
 
       case RoleList.MENTOR: {
@@ -84,7 +71,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
 
         // Получаем профиль ментора по userId
         const mentorProfile = await this.queryBus.execute<GetMentorProfileQuery, MentorProfile>(
-            new GetMentorProfileQuery(requester.id),
+          new GetMentorProfileQuery(requester.id),
         );
 
         if (!mentorProfile) {
@@ -93,9 +80,9 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
         }
 
         qb.innerJoin('user.student_profile', 'sp_for_scope')
-            .andWhere('sp_for_scope.mentorId = :mentorIdScope', {
-              mentorIdScope: mentorProfile.id,
-            })
+          .andWhere('sp_for_scope.mentorId = :mentorIdScope', {
+            mentorIdScope: mentorProfile.id,
+          });
 
         if (Number(params.onlyGroup)) {
           qb.andWhere('sp_for_scope.lessonFormat != :groupFormat', {
@@ -107,7 +94,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
       }
 
       case RoleList.STUDENT:
-        // Студент видит только себя, игнорируем внешние фильтры по id
+        // Студент видит только себя, игнорируемльтры по id
         qb.andWhere('user.id = :currentUserId', { currentUserId: requester.id });
         break;
 
@@ -140,34 +127,62 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
       });
     }
 
-    // Здесь можно добавить пагинацию:
-    // if (params.limit) qb.take(params.limit);
-    // if (params.offset) qb.skip(params.offset);
     const { entities, raw } = await qb.getRawAndEntities();
 
     const users = entities.map((user, index) => ({
       ...user,
-      studentsCount: Number(raw[index].studentsCount) || 0, // Добавлено новое поле
+      studentsCount: Number(raw[index].studentsCount) || 0, // старое поле, может быть неточным
     }));
 
-    const packages = await this.lessonPackage.find({
+    // 🔑 НОВАЯ ЛОГИКА: отдельный запрос для подсчёта студентов у менторов
+    const mentorIds = users
+      .filter(user => user.role === RoleList.MENTOR && user.mentor_profile?.id)
+      .map(user => user.mentor_profile.id);
+
+    let mentorStudentCounts = [];
+
+    if (mentorIds.length > 0) {
+      mentorStudentCounts = await this.userRepo
+        .createQueryBuilder('user')
+        .select('sp.mentorId', 'mentorId')
+        .addSelect('COUNT(user.id)::int', 'count')
+        .innerJoin('user.student_profile', 'sp')
+        .where('sp.mentorId IN (:...mentorIds)', { mentorIds })
+        .groupBy('sp.mentorId')
+        .getRawMany();
+    }
+
+    const countMap = mentorStudentCounts.reduce((acc, item) => {
+      acc[item.mentorId] = parseInt(item.count, 10);
+      return acc;
+    }, {});
+
+    // Обновляем поле studentsCount у менторов
+    users.forEach(user => {
+      if (user.role === RoleList.MENTOR && user.mentor_profile) {
+        user.studentsCount = countMap[user.mentor_profile.id] || 0;
+      }
+    });
+
+    // Получаем активные пакеты у пользователей
+    const packages = await this.lessonPackageRepo.find({
       where: {
         userId: In(users.map(user => user.id)),
         status: 'active'
       }
-    })
-    
+    });
+
     return users.map(user => {
-      const p =  packages.find(p => p.userId === user.id);
+      const p = packages.find(p => p.userId === user.id);
       let diff = 0;
       if (p) {
         diff = p.totalCount - p.usedCount;
       }
-      
+
       return {
         ...user,
         availableLessons: diff,
-      }
+      };
     });
   }
 }

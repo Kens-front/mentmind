@@ -84,6 +84,7 @@ onMounted(async () => {
       <CubeSlider @change="onChange">
         <SwiperSlide>
           <div class="wrap">
+            <Arrow/>
             <PromoMobile/>
           </div>
         </SwiperSlide>
@@ -111,13 +112,11 @@ onMounted(async () => {
        <CubeSlider>
          <SwiperSlide>
            <div class="wrap">
-             <Advantages :slides="secondSlider"/>
-           </div>
-         </SwiperSlide>
+               <div class="wrap-arrow">
+                 <Arrow/>
+              </div>
  
-         <SwiperSlide>
-           <div class="wrap">
-             <StepMobilt/>
+             <Advantages :slides="secondSlider"/>
            </div>
          </SwiperSlide>
  
@@ -208,5 +207,11 @@ onMounted(async () => {
   50% {
     filter: blur(18px) hue-rotate(25deg);
   }
+}
+
+.wrap-arrow {
+  position: absolute;
+  width: 100%;
+  top: 0;
 }
 </style>

@@ -127,6 +127,10 @@ export default {
 .text__wrap {
   padding: 6rem;
   height: 100%;
+  
+  @media screen and (max-width: 1024px) {
+    padding: 0;
+  }
 }
 
 </style>

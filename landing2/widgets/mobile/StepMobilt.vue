@@ -1,6 +1,7 @@
 ﻿<template>
   <transition name="fade" mode="out-in" >
     <div  v-if="enrollmentStages.length" :key="enrollmentStages.length" class="slide">
+      <h2>Первые шаги</h2>
       <client-only>
         <div class="slide-wrap">
           <Swiper
@@ -118,13 +119,12 @@ const setThumbsSwiper = (swiper: any) => {
 
 .slide {
   display: grid;
-  grid-template-rows: 7fr 1fr;
+  grid-template-rows: min-content 1fr max-content;
   row-gap: 4rem;
   align-items: center;
   justify-content: center;
   max-width: 100%;
   height: 90%;
-  box-shadow: 0px 3px 30px #67287f;
   border-radius: 3rem;
 }
 

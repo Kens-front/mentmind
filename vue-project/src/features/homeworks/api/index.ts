@@ -5,7 +5,7 @@ import { axiosInstance } from "@/shared/config/axios";
 
 
 interface IHomeworkApi {
-    get: () => Promise<AxiosResponse<IHomework []>>
+    get: (query?: {student: number}) => Promise<AxiosResponse<IHomework []>>
     getOne: (homeworkId: number) => Promise<AxiosResponse<IHomework>>
     create: (dto: ICreateHomeworkDto) => Promise<AxiosResponse<IHomework>>
     update: (id: number, dto: Partial<ICreateHomeworkDto>) => Promise<AxiosResponse<IHomework>>
@@ -16,8 +16,8 @@ export const homeworkApi: IHomeworkApi = {
         return axiosInstance.post('/homework', dto)
     },
 
-    get() {
-        return axiosInstance.get('/homework')
+    get(query) {
+        return axiosInstance.get('/homework',{params: query})
     },
 
     getOne(homeworkId) {

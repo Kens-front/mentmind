@@ -95,7 +95,8 @@ export class GetChatsByUserIdHandler implements IQueryHandler<GetChatsByUserId> 
         SUM(
           CASE
             WHEN message.status = :status
-             AND message.senderId != :userId
+             AND message.readAt is null
+              AND message.sender.id != :userId
             THEN 1
             ELSE 0
           END

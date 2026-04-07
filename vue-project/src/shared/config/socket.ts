@@ -39,6 +39,7 @@ export const useSocketStore = defineStore('socket', {
       if (this.socket) return;
 
       const messageStore = useMessageStore();
+      const chatStore = useChatStore()
       const authStore = useAuthStore()
 
       this.socket = io(url, {
@@ -63,6 +64,7 @@ export const useSocketStore = defineStore('socket', {
       this.socket.on('message', (payload: IMessage) => {
           const id = authStore.userData.user?.id || 0
           messageStore.addMessage(id, payload)
+          chatStore.changeUnreadCountMessage(payload.chatId)
       });
 
       this.socket.on('achieve', (payload: IMessage) => {

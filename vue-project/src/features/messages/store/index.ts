@@ -8,7 +8,7 @@ import { createMessageTime, normalizeMessage } from "@/shared/helpers";
 
 export const useMessageStore = defineStore('message', () => {
     const messages = ref<IMessage[]>([])
- 
+    const countUnreadMessage = ref(0)
 
 
     async function getAll(id: number) {
@@ -31,11 +31,17 @@ export const useMessageStore = defineStore('message', () => {
         messages.value.push(message)
     }
 
+    function changeUnreadMessageCount(value: number) {
+        countUnreadMessage.value += value
+    }
+
     return {
         messages, 
+        countUnreadMessage,
         getAll,
         create,
         addMessage,
-        readMessages
+        readMessages,
+        changeUnreadMessageCount
     }
 })

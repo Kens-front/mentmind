@@ -20,7 +20,7 @@ export class GetHomeWorksHandler implements IQueryHandler<GetHomeWorksQuery> {
     async execute(query: GetHomeWorksQuery): Promise<Homework []> {
         
 
-        const {user} = query
+        const {user, student} = query
         if (user.role === RoleList.ADMIN) {
             return this.homework.find();
         }
@@ -29,13 +29,17 @@ export class GetHomeWorksHandler implements IQueryHandler<GetHomeWorksQuery> {
         if (user.role === RoleList.MENTOR) {
             const mentorPropfile = await this.mentor.findOne({where: {userId: user.id}, relations: ['students']})
 
- 
-            return this.homework.find({where: {studentId: In(mentorPropfile?.students?.map(student => student.id))},  relations: {student: {user: true}}})
+            const students = [...mentorPropfile?.students?.map(student => student.id)]
+            return this.homework.find({where: {
+                studentId: In(student >=0 ? [student] : students)
+            },  
+                relations: {student: {user: true}}
+            })
         }
 
-        const student = await this.student.findOne({where: {userId: user.id}})
+        const foundStudent = await this.student.findOne({where: {userId: user.id}})
 
  
-        return  this.homework.find({where: {studentId: student.id}, relations: {student: {user: true}}})
+        return  this.homework.find({where: {studentId: foundStudent.id}, relations: {student: {user: true}}})
     }
 }

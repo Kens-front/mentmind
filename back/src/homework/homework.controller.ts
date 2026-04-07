@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query } from '@nestjs/common';
 import { HomeworkService } from './homework.service';
 import { CreateHomeworkDto } from './dto/create-homework.dto';
 import { UpdateHomeworkDto } from './dto/update-homework.dto';
@@ -27,9 +27,11 @@ export class HomeworkController {
 
   @Get()
   @UseGuards(AuthGuard)
-  @UseGuards(AuthGuard)
-  findAll(@Req() req) {
-    return this.queryBus.execute(new GetHomeWorksQuery(req.user));
+  findAll(
+    @Query('student') student: string,
+    @Req() req
+  ) {
+    return this.queryBus.execute(new GetHomeWorksQuery(req.user, Number(student)));
   }
 
   @Get(':id')

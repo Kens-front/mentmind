@@ -75,7 +75,7 @@ const isOwn = (messageId: number) => {
 const { register, unobserveAll } = useMessageReadObserver(sendRead, {
   root: scrollRoot.value, // ВАЖНО: сначала будет null (см. onMounted ниже)
   threshold: 1,
-  rootMargin: "0px 0px 15% 0px",
+  rootMargin: "0px 0px 0px 0px",
   debounceMs: 250,
   isOwnMessage: isOwn,
 });
