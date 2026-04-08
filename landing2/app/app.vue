@@ -162,7 +162,7 @@ onMounted(() => {
 	const container = horizontalContainer.value
 
 	gsap.to(aside.value, {x: 0, delay: 4})
-  gsap.to(isVisibleModal, {value: true, delay: 6});
+  gsap.to(isVisibleModal, {value: true, delay: 9});
 	gsap.fromTo('body', {overflow: 'hidden'}, {overflow: 'visible', delay: 4})
 	// Горизонтальная анимация для первых трех секций
 	gsap.to(sections, {
