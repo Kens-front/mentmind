@@ -1,6 +1,7 @@
 ﻿<script setup lang="ts">
 import {EffectCube, EffectFlip} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/vue";
+import Loader from "../../app/components/Loader.vue";
  
  
 const emits = defineEmits(['change']);
@@ -12,6 +13,9 @@ function onGetActiveIndex(swiper: any) {
 
 <template>
   <div class="mobile-ev">
+    <div class="loader">
+      <Loader/>  
+    </div>
  
     <client-only>
       <Swiper
@@ -86,5 +90,11 @@ function onGetActiveIndex(swiper: any) {
   justify-content: center;
 }
 
- 
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+  filter: brightness(0.5);
+}
 </style>

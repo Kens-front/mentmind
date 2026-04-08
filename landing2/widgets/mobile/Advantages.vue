@@ -105,6 +105,7 @@ export default {
   background-size: cover;
   background-position: center;
   opacity: 0.1;
+  filter: brightness(0.5);
 }
 
 .swiper-slide .title {
