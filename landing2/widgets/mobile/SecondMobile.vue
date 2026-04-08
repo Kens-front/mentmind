@@ -1,7 +1,7 @@
 ﻿<template>
   <section class="about" ref="about">
     <h2 class="about_title">
-      <span class="label">NEW MISSON</span>
+      <span class="label">NEW MISSION</span>
       <span class="text">
                 {{ TITLE }}
             </span>
@@ -11,8 +11,8 @@
       <div class="video"></div>
 
       <div class="descriptions">
-        <p>Оттачиваем Ваши навыки на примере создания реальных приложений</p>
-        <p>Повышаем скиллы как молодным новобранцам, так и опытным разработчикам.</p>
+        <p>Помогаем перейти на новый грейд, выстроив индивидуальный план развития под Ваши задачи</p>
+        <p>Занятия исключительно с ментором — от прокачки навыков до подготовки к собеседованию</p>
       </div>
     </div>
   </section>
@@ -23,7 +23,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
-const TITLE = 'Разрабатываем под вас индвидуальную программу обучения и доводим по ней до желанной цели'
+const TITLE = 'Скорость и качество обучения увеличивается до 78%* вместе с ментором'
 
 
 

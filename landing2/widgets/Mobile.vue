@@ -243,6 +243,6 @@ onMounted(async () => {
 .wrap-arrow {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 10px;
 }
 </style>

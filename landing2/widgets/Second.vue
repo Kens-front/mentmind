@@ -1,7 +1,7 @@
 <template>
     <section class="about" ref="about">
         <h2 class="about_title">
-            <span class="label">NEW MISSON</span>
+            <span class="label">NEW MISSION</span>
             <span class="text">
                 {{ TITLE }}
             </span>
@@ -11,8 +11,8 @@
             <div class="video"></div>
 
             <div class="descriptions">
-                <p>Улучшайте Ваши навыки <br/> один-на-один с профессиональным ментором на каждом занятии</p>
-                <p>Помогаем повысить грейд как новичкам, так и тем, у кого есть опыт.</p>
+                <p>Помогаем перейти на новый грейд, выстроив индивидуальный план развития под Ваши задачи</p>
+                <p>Занятия исключительно с ментором — от прокачки навыков до подготовки к собеседованию и освоения новых технологий</p>
             </div>
         </div>
     </section>
@@ -23,7 +23,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
  
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
-const TITLE = 'Разрабатываем под вас индвидуальную программу обучения и доводим по ней до желанной цели'
+const TITLE = 'Скорость и качество обучения увеличивается до 78%* вместе с ментором'
     
 const words = TITLE.split(' ');
 const about = ref<HTMLDivElement | null>(null);
@@ -84,14 +84,13 @@ onMounted(() => {
 
 .descriptions {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 3rem;
     color: #CBD5E1;
     
     & p {
         overflow: hidden;
-        height: 12rem;
-
+      
         @media screen and (max-width: 1024px){
             height: max-content;
 
@@ -118,7 +117,7 @@ onMounted(() => {
 
 .bottom {
     display: grid;
-    grid-template-columns: 30rem 54rem;
+    grid-template-columns: 30rem 90rem;
     align-items: center;
     justify-content: space-between;
     height: 100%;
