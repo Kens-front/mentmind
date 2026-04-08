@@ -94,7 +94,7 @@ function onGetActiveIndex(swiper: any) {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(3);
+  transform: translate(-50%, -50%) scale(2);
   filter: brightness(0.5);
 }
 </style>

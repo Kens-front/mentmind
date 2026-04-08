@@ -1,6 +1,10 @@
 <template>
 	<div class="landing">
 		<TheHeader :class="{ hide: hideHeader }"/>
+    
+    <Quiz v-model="isVisibleModal"/>
+    
+    <FixedCTA/>
 		<!-- десктопная версия -->
 		<aside class="aside" ref="aside">
 			<a class="item">MentMind</a>
@@ -83,6 +87,8 @@ import { metrikaApi } from './features/api';
 import Mobile from "~~/widgets/Mobile.vue";
 import QA from "~~/widgets/QA.vue";
 import {faqLdJson, mainLdJson} from "~/constnats/ldjson.ts";
+import Quiz from "~~/widgets/Quiz.vue";
+import FixedCTA from "~~/widgets/FixedCTA.vue";
  
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
@@ -121,7 +127,7 @@ const items = [
 const startY= ref(0)
 const lastY= ref(0)
 const hideHeader= ref(false)
-
+const isVisibleModal = ref(false);
 
 function onTouchStart(e) {
     startY.value = e.touches[0].clientY;
@@ -155,7 +161,8 @@ onMounted(() => {
 	const sections = gsap.utils.toArray('.sections-container .pin')
 	const container = horizontalContainer.value
 
-	gsap.to(aside.value, {x: 0, delay: 4});
+	gsap.to(aside.value, {x: 0, delay: 4})
+  gsap.to(isVisibleModal, {value: true, delay: 6});
 	gsap.fromTo('body', {overflow: 'hidden'}, {overflow: 'visible', delay: 4})
 	// Горизонтальная анимация для первых трех секций
 	gsap.to(sections, {
