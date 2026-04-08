@@ -194,7 +194,7 @@ onMounted(() => {
 
 
 useHead({
-	title: 'MentMind - менторский центр | MentMind — индивидуальное обучение JavaScript, Python, Go',
+	title: 'MentMind - менторский центр',
 	meta: [
 		{ name: 'description', content: 'Индивидуальное менторство по программированию: JavaScript, Python, Go, Unity. Помощь в освоении навыков, подготовке к собеседованиям и карьерном росте. Первый урок бесплатно.' },
 		{ name: 'keywords', content: 'ментор по программированию, онлайн обучение коду, персональные уроки программирования, наставник IT, менторство JavaScript, Python ментор, карьера в программировании' },
@@ -205,10 +205,6 @@ useHead({
 		{ name: 'bingbot', content: 'index, follow' },
 		{ name: 'yandexbot', content: 'index, follow' },
 		{ name: 'google-site-verification', content: '-q0VcwHFVeNhkePb0sCm38WmKLGXXPcuhTWA2ZijCJo' },
-    {property: 'og:title', content: 'MentMind — менторство по программированию' },
-    {property: 'og:description', content: 'Индивидуальная программа под ваш уровень и цели. От новичка до Middle+.' },
-    {property: 'og:type', content: 'website' },
-    {property: 'og:url', content: 'https://mentmind.ru/' },
 	],
 	link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon2.png' },

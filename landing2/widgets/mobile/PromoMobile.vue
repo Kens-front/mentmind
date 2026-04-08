@@ -3,10 +3,10 @@
     <div class="text">
       <span class="subtitle" ref="subtitle">MentMinde</span>
       <h1 class="title" ref="title">
-        <span class="word" ref="word1">Менторы</span>
-        <span class="word" ref="word2"><span ref="label">By MentMind</span>Для</span>
-        <span class="word" ref="word3">Вашего</span>
-        <span class="word" ref="word4">Успеха</span>
+        <span class="word" ref="word1">Узнавай</span>
+        <span class="word" ref="word2"><span ref="label">By MentMind</span>Понимай</span>
+        <span class="word" ref="word3">Расти</span>
+        <span class="word" ref="word4">Вместе</span>
       </h1>
     </div>
   </div>
@@ -62,7 +62,6 @@ const props = defineProps(['aside'])
 
   @media screen and (max-width: 500px) {
     font-size: 12rem;
-    padding: 2rem 0;
   }
 }
 

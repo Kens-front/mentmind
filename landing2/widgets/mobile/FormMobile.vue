@@ -7,7 +7,7 @@
 
       <transition>
         <div v-if="status === 'pending'" class="inputs">
-          <h2 class="title-main">Запишитесь на бесплатное пробное занятие!</h2>
+          <h2 class="title-main">Свяжемся с Вами в ближайшее время</h2>
           <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white" />
           <q-select v-model="formData.method" label="Предпочтительный способ связи" :options="options" behavior="menu"/>
           <q-input 
@@ -18,13 +18,7 @@
               color="white"
               v-bind="directives"
           />
-          <q-input 
-              v-model="text"
-              label="Ваш комментарий"
-              type="textarea" 
-              color="white"
-              placeholder="Например: подготовка к собеседованию, изучение Vue 3, переход на Middl"
-          />
+          <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
           <div class="checkbox">
             <q-item class="item" tag="label" v-ripple>
               <q-checkbox v-model="formData.checkbox" checked-icon="task_alt"
@@ -35,7 +29,7 @@
               </q-item-section>
             </q-item>
           </div>
-          <button  type="submit" class="btn">Получить план обучения</button>
+          <button  type="submit" class="btn">Связаться</button>
         </div>
       </transition>
 
@@ -95,7 +89,7 @@ const PLACEHOLDERS: Record<string, {label: string, placeholder: string}> = {
     placeholder: '@exemaple'
   },
   'Email': {
-    label: 'Ваш email',
+    label: 'Ваш емайл',
     placeholder: 'exemaple@mail.ru'
   }
 }

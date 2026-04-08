@@ -34,7 +34,7 @@
           </ul>
 
           <!-- Кнопка -->
-          <button @click="onClick" class="cta-button">Забронировать место</button>
+          <button @click="onClick" class="cta-button">Связаться</button>
 
         </div>
       </div>
@@ -564,7 +564,7 @@ function onClick() {
 
   .cta-button {
     padding: 14px 20px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 </style>
