@@ -19,7 +19,7 @@
             
             <transition>
                 <div v-if="status === 'pending'" class="inputs">
-                    <h2>Свяжемся с Вами в ближайшее время</h2>
+                    <h2>Запишитесь на бесплатное пробное занятие!</h2>
                     <q-input v-model="formData.name" ref="nameRef" label="Ваше имя" color="white"  lazy-rules  :rules="[val => val.length > 3 || 'Имя должно быть больше 2 символов']"/>
                     <q-select v-model="formData.method" label="Предпочтительный способ связи" :options="options" behavior="menu"/>
                     <q-input 
@@ -32,7 +32,13 @@
                         color="white"
                         v-bind="directives"
                     />
-                    <q-input v-model="text" label="Ваш комметарий" type="textarea" color="white"/>
+                    <q-input 
+                        v-model="text"
+                        label="Ваш комментарий"
+                        type="textarea" 
+                        color="white"
+                        placeholder="Например: подготовка к собеседованию, изучение Vue 3, переход на Middl"
+                    />
                   
   
                     <q-input class="grid-input-big" v-model="lessonCount" name="lesson_count" placeholder="Количество занятий"/>
@@ -46,7 +52,7 @@
                             </q-item-section>
                         </q-item>
                     </div>
-                    <button  type="submit" class="btn">Связаться</button>
+                    <button  type="submit" class="btn">Получить план обучения</button>
                 </div>
             </transition>
 
@@ -127,7 +133,7 @@ const PLACEHOLDERS: Record<string, {label: string, placeholder: string}> = {
         placeholder: '@exemaple'
     },
     'Email': {
-        label: 'Ваш емайл',
+        label: 'Ваш email',
         placeholder: 'exemaple@mail.ru'
     }
 }
