@@ -67,30 +67,10 @@ const secondSlider = [
   {title: 'Делаем Вас конкурентными на рынке', description: 'Никакой ИИ и близко не заменит Вас',  image: pattern5}
 ]
 
-const secondSliderRef = ref<HTMLElement | null>(null)
-const observer = ref<IntersectionObserver | null>(null)
-const isSecondSliderVisible = ref(false)
-const isLight = ref(false);
-const callback = (entries, observer) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      console.log('Пользователь почти докрутил до картинки!')
-      isLight.value = true;
-    }
-    else {
-      console.log('вернулся обратно!')
-      isLight.value = false;
-    }
  
-  })
-}
-
-const options = {
-  // root: по умолчанию window,
-  // но можно задать любой элемент-контейнер
-  rootMargin: '0px 0px 75px 0px',
-  threshold: 0.5,
-}
+const isLight = ref(false);
+ 
+ 
 
 
 const activeSlideIndex = ref(0)
@@ -100,13 +80,7 @@ function onChange(index: number) {
 }
  
 
-onMounted(async () => {
-  await nextTick(async () => {})
-  observer.value = new IntersectionObserver(callback, options)
  
-  observer.value.observe(secondSliderRef.value)
-  console.log(secondSliderRef.value);
-})
 </script>
 
 <template>

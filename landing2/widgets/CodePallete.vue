@@ -14,7 +14,14 @@
         </div>
 
       <client-only>
-        <MonacoEditor v-model="text" lang="typescript" :options="editorOptions" />     
+<!--        <MonacoEditor v-model="text" lang="typescript" :options="editorOptions" />     -->
+        <MonacoLazy
+  
+            v-model="text"
+            language="typescript"
+            height="500px"
+ 
+        />
       </client-only>
  
     </section>
@@ -25,7 +32,7 @@ import { nextTick, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { codetext } from '~/constnats/code-text';
-
+import MonacoLazy from "~~/widgets/MonacoLazy.vue";
 gsap.registerPlugin(ScrollTrigger)
 const number = ref(0)
  

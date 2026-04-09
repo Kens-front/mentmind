@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
     'nuxt-quasar-ui',
-    'nuxt-monaco-editor',
     'nuxt-swiper',
     '@pinia/nuxt',
   ],
@@ -30,14 +29,7 @@ export default defineNuxtConfig({
     },
     plugins: ['Notify'],
   },
-  monacoEditor: {
-    // These are default values:
-    locale: 'en',
-    componentName: {
-      codeEditor: 'MonacoEditor',
-      diffEditor: 'MonacoDiffEditor'
-    }
-  },
+ 
   plugins: ['~/plugins/yandex-metrika.client.ts'],
   runtimeConfig: {
     public: {
