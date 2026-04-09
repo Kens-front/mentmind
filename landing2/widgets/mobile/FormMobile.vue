@@ -1,5 +1,5 @@
 ﻿<template>
-  <div id="form-mobile" class="form_wrap">
+  <div id="form" class="form_wrap">
     <form @submit.prevent.stop="onSubmit" class="form">
       <div class="image" :style="{backgroundImage: `url(${image})`}">
 
@@ -54,7 +54,7 @@
 import gsap from 'gsap';
 import { QSelect } from 'quasar';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import image from '../public/assets/4.png';
+import image from '../public/assets/4.webp';
 import MentMind from '../public/assets/mentmind.png';
 import { QInput } from 'quasar';
 import { ref } from 'vue';

@@ -38,22 +38,22 @@ const enrollmentStages = [
   {
     title: "Оставить заявку",
     description: "Заполните короткую форму, чтобы <strong>получить экспертную консультацию</strong> по вашей траектории роста",
-    image: 'image1',
+    image: '/assets/1.webp',
   },
   {
     title: "Первичный разбор",
     description: "<strong>Бесплатно</strong> на встрече с ментором <strong>проведете аудит текущих знаний</strong> и определим цели",
-    image: 'image2',
+    image: '/assets/2.webp',
   },
   {
     title: "Индивидуальный план",
     description: "Совместно составим персональный маршрут обучения <strong>с упором на практику</strong>",
-    image: 'image3',
+    image: '/assets/3.webp',
   },
   {
     title: "Старт обучения",
     description: "Приступайте к программе под руководством наставника <strong>и сразу применяйте знания на практике</strong>",
-    image: 'image4',
+    image: '/assets/4.webp',
   }
 ];
 onMounted(async () => {

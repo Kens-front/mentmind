@@ -697,6 +697,7 @@ function handleEnroll() {
 
 .quiz-start__title {
   font-size: 28px;
+  line-height: 100%;
   font-weight: 700;
   margin: 0 0 12px;
   background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);

@@ -9,7 +9,7 @@
 		<aside class="aside" ref="aside">
 			<a class="item">MentMind</a>
 			<AsideItem v-for="item in items" :key="item.text" :text="item.text" :href="item.href" :hovered-text="item.hoveredText"/>
-			<a class="button" href="#form"><span>Связаться</span></a>
+			<button @click="scroll" class="button"><span>Начать обучение</span></button>
 		</aside>
 
     <transition name="fade">
@@ -31,15 +31,18 @@
 		<section id="about" class="section overlap qwe">
 			<About/>
 		</section>
+    <section class="section overlap proofs">
+      <Proofs/>
+    </section> 
 		<section id="utp-dark" class="section overlap slider">
 			<SliderOne :slider="firstSlider" type="dark"/>
 		</section>
 		<section id="utp-light" class="section overlap slider">
 			<SliderOne :slider="secondSlider" type="light"/>
 		</section>
-		<section id="learn" class="section overlap vertical">
-			<Directions/>
-		</section>
+<!--		<section id="learn" class="section overlap vertical">-->
+<!--			<Directions/>-->
+<!--		</section>-->
 		<section id="tarifs" class="section overlap vertical">
 			<Tarifs/>
 		</section>
@@ -52,16 +55,13 @@
 		<section id="steps" class="section overlap vertical desktop">
 			<FirstStep/>
 		</section>
-
-		<section id="steps2" class="section overlap vertical mobile">
-			<FirstStepMobile/>
-		</section>
+ 
 		<section id="form" class="section overlap vertical contacts_section">
 			<Form/>
 		</section>
 	</div>
 
-	<div class="mobile">
+	<div  class="mobile">
 		<Mobile/>
 	</div>
 </template>
@@ -76,7 +76,6 @@ import About from '../widgets/About.vue'
 import Directions from '../widgets/Directions.vue'
 import FirstStep from '../widgets/FirstStep.vue'
 import FirstStepMobile from '../widgets/FirstStepMobile.vue'
-import Form from '../widgets/Form.vue'
 import CodePallete from '../widgets/CodePallete.vue'
 import SliderOne from '../widgets/SliderOne.vue'
 import AsideItem from './components/AsideItem.vue';
@@ -87,12 +86,14 @@ import { metrikaApi } from './features/api';
 import Mobile from "~~/widgets/Mobile.vue";
 import QA from "~~/widgets/QA.vue";
 import {faqLdJson, mainLdJson} from "~/constnats/ldjson.ts";
-import Quiz from "~~/widgets/Quiz.vue";
 import FixedCTA from "~~/widgets/FixedCTA.vue";
+import Proofs from "~~/widgets/Proofs.vue";
  
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
+const Quiz = defineAsyncComponent( () => import('~~/widgets/Quiz.vue'))
+const Form = defineAsyncComponent( () => import('~~/widgets/Form.vue'))
 const horizontalContainer = ref(null)
 const sectionsContainer = ref(null)
 const features = ref(['Функция 1', 'Функция 2', 'Функция 3'])
@@ -124,6 +125,7 @@ const items = [
 	{text: '6', hoveredText: 'связь', href: '#form'},
 ]
 
+const {scroll} = useAutoScrollOnCycle()
 const startY= ref(0)
 const lastY= ref(0)
 const hideHeader= ref(false)
@@ -322,11 +324,18 @@ useHead({
     width: 100%;
 	padding: 5rem 0;
     background: #40E0C0;
-	color: #E0D6FF;
+  color: #1d0d4f;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
 
 	& span {
 		writing-mode: sideways-rl;
 	}
+  
+  &:hover {
+    background: #9feadb;
+  }
 }
 
 .vertical {
@@ -400,5 +409,10 @@ useHead({
   z-index: 100;
   height: 100vh;
   width: 100%;
+}
+
+.proofs {
+  display: grid;
+  grid-template-columns: 100%;
 }
 </style>

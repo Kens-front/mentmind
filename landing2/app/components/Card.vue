@@ -1,5 +1,9 @@
 <template>
-    <div class="card" :style="{backgroundImage: `url(${background})`}">
+    <div class="card">
+      <div style="position: absolute;">
+        <NuxtImg :src="image" format="webp"/>
+      </div>
+ 
         <div class="content">
             <h4 class="title">{{ title }}</h4>
         </div>
@@ -22,14 +26,7 @@ interface IProps {
 }
 const {title, description, image} = defineProps<IProps>()
 
-const IMAGES: Record<string, string> = {
-    image1,
-    image2,
-    image3,
-    image4
-};
-
-const background = computed(() => IMAGES[image])
+ 
 </script>
 
 <style lang="scss" scoped>

@@ -30,13 +30,13 @@ onMounted(async () => {
   
   leftLetters.forEach(l => {
     if (l) {
-      tl.fromTo(l, {opacity: 0}, {opacity: 1});
+      tl.fromTo(l, {opacity: 0}, {opacity: 1, duration: .3});
     }
   })
   isLoaded.value = true;
   rightLetters.forEach(l => {
     if (l) {
-      tl.fromTo(l, {opacity: 0}, {opacity: 1});
+      tl.fromTo(l, {opacity: 0}, {opacity: 1,  duration: .3});
     }
   })
   tl
@@ -81,6 +81,7 @@ onMounted(async () => {
   height: 100dvh;
   background: transparent;
   color: #E2E8F0;
+  z-index: 123;
 
   
   &:after {
@@ -140,5 +141,6 @@ onMounted(async () => {
   z-index: 100;
   height: 100vh;
   width: 100%;
+  z-index: 124;
 }
 </style>

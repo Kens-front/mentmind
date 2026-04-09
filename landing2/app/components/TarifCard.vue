@@ -77,12 +77,10 @@ interface IProps {
 }
 
 const {tarif } = defineProps<IProps>()
+const {scroll} = useAutoScrollOnCycle()
 const router = useRouter()
 function onClick() {
-  const form = document.querySelector('#form')
-  const formMobile = document.querySelector('#form-mobile')
-  const y = form?.offsetTop || formMobile?.offsetTop;
-  scrollTo(0, y);
+  scroll()
 }
 </script>
 

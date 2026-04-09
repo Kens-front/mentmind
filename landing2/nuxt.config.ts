@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  css: ['./css/default.css',     'devicon/devicon.min.css'],
+  css: ['./css/default.css',      ],
   modules: [
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     'nuxt-monaco-editor',
     'nuxt-swiper',
     '@pinia/nuxt',
- 
   ],
   image: {
     format: ['webp', 'avif', 'png', 'jpg'],

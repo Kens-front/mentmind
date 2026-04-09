@@ -74,7 +74,7 @@
 import gsap from 'gsap';
 import { QSelect } from 'quasar';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import image from '../public/assets/4.png';
+import image from '../public/assets/4.webp';
 import MentMind from '../public/assets/mentmind.png';
 import { QInput } from 'quasar';
 import { ref } from 'vue';

@@ -2,7 +2,7 @@
 <template>
   <Transition name="cta-slide" appear>
     <div v-if="isVisible" class="fixed-cta" :class="`fixed-cta--${position}`">
-      <nuxt-link
+      <button
           class="fixed-cta__btn"
           :aria-label="label"
           @click="handleClick"
@@ -11,7 +11,7 @@
         <span class="fixed-cta__icon">🎓</span>
         <span class="fixed-cta__text">{{ label }}</span>
         <span class="fixed-cta__pulse" />
-      </nuxt-link>
+      </button>
     </div>
   </Transition>
 </template>

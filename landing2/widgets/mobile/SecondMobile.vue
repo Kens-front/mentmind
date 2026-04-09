@@ -53,7 +53,6 @@ const TITLE = 'Скорость и качество обучения увели�
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: 100%;
-    row-gap: 10rem;
   }
 }
 

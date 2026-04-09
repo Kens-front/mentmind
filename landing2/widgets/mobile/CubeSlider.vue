@@ -2,8 +2,9 @@
 import {EffectCube, EffectFlip} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/vue";
 import Loader from "../../app/components/Loader.vue";
- 
- 
+import Arrow from "../../app/components/Arrow.vue";
+
+
 const emits = defineEmits(['change']);
 function onGetActiveIndex(swiper: any) {
   console.log(swiper)
@@ -32,6 +33,7 @@ function onGetActiveIndex(swiper: any) {
       <slot/>
       </Swiper>
     </client-only>
+    <Arrow/>
   </div>
 
 </template>

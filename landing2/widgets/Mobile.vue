@@ -19,6 +19,7 @@ import StartMobile from "~~/widgets/mobile/StartMobile.vue";
  
 import { ref } from "vue";
 import QA from "~~/widgets/QA.vue";
+import Proofs from "~~/widgets/Proofs.vue";
 
 const TarifMobile = defineAsyncComponent({
   loader: () => import('~~/widgets/mobile/TarifMobile.vue'),
@@ -110,12 +111,11 @@ onMounted(async () => {
 
 <template>
   <div class="mobile-v" :class="{'mobile-v__active': isLight}">
-    
+ 
     <StartMobile/>
-      <CubeSlider @change="onChange">
+      <CubeSlider @change="onChange" :currentIndex="activeSlideIndex" :total="3">
         <SwiperSlide>
           <div class="wrap">
-            <Arrow/>
             <PromoMobile/>
           </div>
         </SwiperSlide>
@@ -139,21 +139,12 @@ onMounted(async () => {
         </SwiperSlide>
       </CubeSlider>
  
-     <div ref="secondSliderRef">
+    <Proofs/>
+     <div style="position: relative">
        <CubeSlider>
          <SwiperSlide>
-           <div class="wrap">
-               <div class="wrap-arrow">
-                 <Arrow/>
-              </div>
- 
+           <div class="wrap half">
              <Advantages :slides="secondSlider"/>
-           </div>
-         </SwiperSlide>
- 
-         <SwiperSlide>
-           <div class="wrap">
-             <DirectionMobile/>
            </div>
          </SwiperSlide>
        </CubeSlider>
@@ -244,5 +235,9 @@ onMounted(async () => {
   position: absolute;
   width: 100%;
   top: 10px;
+}
+
+.half {
+  min-height: 70dvh;
 }
 </style>
