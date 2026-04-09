@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import image1 from '../../public/assets/1.png';
-import image2 from '../../public/assets/2.png';
-import image3 from '../../public/assets/3.png';
-import image4 from '../../public/assets/4.png';
+import image1 from '../../public/assets/1.webp';
+import image2 from '../../public/assets/2.webp';
+import image3 from '../../public/assets/3.webp';
+import image4 from '../../public/assets/4.webp';
 
 interface IProps {
   title?: string
