@@ -1,7 +1,7 @@
 <template>
     <section class="steps" >
         <div class="content" >
-            <h5 class="title">{{ title.slice(0,+index.toFixed(0)) }}</h5>
+            <h4 class="title">{{ title.slice(0,+index.toFixed(0)) }}</h4>
 
             <div class="cards">
                 <Card

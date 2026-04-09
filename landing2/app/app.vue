@@ -1,6 +1,6 @@
 <template>
 	<div class="landing">
-		<TheHeader :class="{ hide: hideHeader }"/>
+    <Urgency @close="openQuiz" @cta="scroll"/>
     
     <Quiz v-model="isVisibleModal"/>
     
@@ -62,6 +62,7 @@
 	</div>
 
 	<div  class="mobile">
+    <Urgency @close="openQuiz" @cta="scroll"/>
 		<Mobile/>
 	</div>
 </template>
@@ -89,11 +90,13 @@ import {faqLdJson, mainLdJson} from "~/constnats/ldjson.ts";
 import FixedCTA from "~~/widgets/FixedCTA.vue";
 import Proofs from "~~/widgets/Proofs.vue";
  
+ 
 // Регистрируем плагин
 gsap.registerPlugin(ScrollTrigger)
 
 const Quiz = defineAsyncComponent( () => import('~~/widgets/Quiz.vue'))
 const Form = defineAsyncComponent( () => import('~~/widgets/Form.vue'))
+const Urgency = defineAsyncComponent( () => import('~~/widgets/Urgency.vue'))
 const horizontalContainer = ref(null)
 const sectionsContainer = ref(null)
 const features = ref(['Функция 1', 'Функция 2', 'Функция 3'])
@@ -131,6 +134,11 @@ const lastY= ref(0)
 const hideHeader= ref(false)
 const isVisibleModal = ref(false);
 
+function openQuiz() {
+  setTimeout(() => {
+    gsap.to(isVisibleModal, {value: true});
+  },  window.innerWidth < 1024 ? 3000 : 3000);
+}
 function onTouchStart(e) {
     startY.value = e.touches[0].clientY;
     lastY.value = startY.value;
@@ -164,7 +172,6 @@ onMounted(() => {
 	const container = horizontalContainer.value
 
 	gsap.to(aside.value, {x: 0, delay: 4})
-  gsap.to(isVisibleModal, {value: true, delay: window.innerWidth < 1024 ? 9 : 6});
 	gsap.fromTo('body', {overflow: 'hidden'}, {overflow: 'visible', delay: 4})
 	// Горизонтальная анимация для первых трех секций
 	gsap.to(sections, {

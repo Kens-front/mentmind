@@ -3,10 +3,10 @@
 		<div class="text">
 			<span class="subtitle" ref="subtitle">MentMind</span>
 			<h1 class="title" ref="title">
-				<span class="word" ref="word1">Менторы</span>
-				<span class="word" ref="word2"><span ref="label">By MentMind</span>Понимающие</span>
-				<span class="word" ref="word3">Ваши</span>
-				<span class="word" ref="word4">Цели</span>
+				<span class="word" ref="word1">Новый</span>
+				<span class="word" ref="word2"><span ref="label">By MentMind</span>Грейд</span>
+				<span class="word" ref="word3">За</span>
+				<span class="word" ref="word4">6 месяцев</span>
 			</h1>
 		</div>
 

@@ -1,7 +1,7 @@
 <!-- components/SwipeHint.vue -->
 <template>
   <Transition name="hint-appear" appear>
-    <div v-if="isVisible" class="swipe-hint" :class="`swipe-hint--${position}`">
+    <div v-if="isVisible" @click="isVisible=false" class="swipe-hint" :class="`swipe-hint--${position}`">
       <div class="swipe-hint__glass">
         <!-- Анимированные стрелки -->
         <div class="swipe-hint__arrows">

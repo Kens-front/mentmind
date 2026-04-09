@@ -31,7 +31,7 @@ const emit = defineEmits<{
 }>()
 
 const isVisible = ref(false)
-const label = computed(() => props.label || 'Пробное занятие')
+const label = computed(() => props.label || 'Запись на пробное занятие')
 const position = computed(() => props.position || 'bottom-right')
 
 // Логика скролла с защитой от дребезга

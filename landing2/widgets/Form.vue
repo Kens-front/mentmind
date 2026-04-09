@@ -402,7 +402,7 @@ onMounted( async () => {
   border: 1px solid black;
   box-shadow: 0 0 0 0 black;
   height: max-content;
-  align-self: anchor-center;
+  align-self: center;
 }
 
 .btn:hover {
