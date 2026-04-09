@@ -14,10 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import image1 from '../../public/assets/1.png';
-import image2 from '../../public/assets/2.png';
-import image3 from '../../public/assets/3.png';
-import image4 from '../../public/assets/4.png';
+ 
 
 interface IProps {
     title: string
