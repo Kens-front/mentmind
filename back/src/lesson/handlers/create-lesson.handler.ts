@@ -85,17 +85,20 @@ export class CreateLessonHandler implements ICommandHandler<CreateLessonCommand>
     else {
       // Тут твоя исходная логика: берём один AVAILABLE слот
       // (если по факту у тебя non-trial может быть только один студент — это идеально)
-      lessonPackages = await this.lessonPackageRepo.find({
+      let lessonPackage = await this.lessonPackageRepo.findOne({
         where: { userId: In(studentIds), status: 'active' },
       });
+      
 
  
  
-      if (!lessonPackages.length) {
+      if (!lessonPackage) {
         throw new HttpException('Нет доступного', 404);
       }
+      
+      lessonPackages = [lessonPackage]
 
-      lessonDuration = lessonPackages[0].duration
+      lessonDuration = lessonPackage.duration
     }
  
     const end_time = addMinutesToTime(start_time, lessonDuration);
