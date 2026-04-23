@@ -1,26 +1,24 @@
 <template>
-    <EmptyContainer>
-        <section>
+  <section>
 
-            <el-select v-model="studentId">
-                <el-option 
-                    v-for="student in options"
-                    :value="student.student_profile?.id"
-                    :label="student.fullname"
-                />
-            </el-select>
-            <ul  v-if="homeWorks.length" class="list">
-                <li
-                    v-for="homework of homeWorks"
-                    :key="homework.id"
-                >
-                    <RouterLink :to="`/homeworks/${homework.id}`">
-                        <HomeWork :homework="homework"/>
-                    </RouterLink>
-                </li>
-            </ul>
-        </section>
-    </EmptyContainer>
+    <el-select v-model="studentId">
+      <el-option
+          v-for="student in options"
+          :value="student.student_profile?.id"
+          :label="student.fullname"
+      />
+    </el-select>
+    <ul  v-if="homeWorks.length" class="list">
+      <li
+          v-for="homework of homeWorks"
+          :key="homework.id"
+      >
+        <RouterLink :to="`/homeworks/${homework.id}`">
+          <HomeWork :homework="homework"/>
+        </RouterLink>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script setup lang="ts">
