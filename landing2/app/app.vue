@@ -124,8 +124,7 @@ const items = [
 	{text: '2', hoveredText: 'кто мы', href: '#utp-dark'},
 	{text: '3', hoveredText: 'что мы', href: '#utp-light'},
 	{text: '4', hoveredText: 'чему учим', href: '#learn'},
-	{text: '5', hoveredText: 'старт', href: '#steps'},
-	{text: '6', hoveredText: 'связь', href: '#form'},
+	{text: '5', hoveredText: 'связь', href: '#form'},
 ]
 
 const {scroll} = useAutoScrollOnCycle()
@@ -137,24 +136,8 @@ const isVisibleModal = ref(false);
 function openQuiz() {
   setTimeout(() => {
     gsap.to(isVisibleModal, {value: true});
-  },  window.innerWidth < 1024 ? 3000 : 3000);
+  },  window.innerWidth < 1024 ? 4000 : 8000);
 }
-function onTouchStart(e) {
-    startY.value = e.touches[0].clientY;
-    lastY.value = startY.value;
-  }
-
-  function onTouchMove(e) {
-    const currentY = e.touches[0].clientY;
-    const delta = currentY - lastY.value;
-
-    if (Math.abs(delta) < 10) return;
-
-    hideHeader.value = delta < 0;
-    lastY.value = currentY;
-
-	console.log(delta)
-  }
 onBeforeMount(async () => 	{
 	window.scrollTo({
 		top: 0,

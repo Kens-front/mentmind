@@ -6,7 +6,7 @@
 				<span class="word" ref="word1">Новый</span>
 				<span class="word" ref="word2"><span ref="label">By MentMind</span>Грейд</span>
 				<span class="word" ref="word3">За</span>
-				<span class="word" ref="word4">6 месяцев</span>
+				<span class="word" ref="word4">2 месяца</span>
 			</h1>
 		</div>
 
